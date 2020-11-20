@@ -9,7 +9,5 @@ class InternetMusicDatabaseApplicationTests {
 
     @Test
     void contextLoads() {
-        boolean test = false;
-        assertTrue(test);
     }
 }
