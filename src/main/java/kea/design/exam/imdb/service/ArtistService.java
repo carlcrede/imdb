@@ -1,14 +1,35 @@
 package kea.design.exam.imdb.service;
 
-import kea.design.exam.imdb.repo.ArtistRepository;
+import kea.design.exam.imdb.models.Artist;
+import kea.design.exam.imdb.repository.internal.ArtistRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+
 @Service
-public class ArtistService {
+public class ArtistService implements CrudService<Artist, String> {
 
-    private final ArtistRepository repository;
+    @Autowired
+    private ArtistRepository repository;
 
-    public ArtistService(ArtistRepository repository) {
-        this.repository = repository;
+    @Override
+    public void save(Artist artist) {
+
+    }
+
+    @Override
+    public void delete(Artist artist) {
+
+    }
+
+    @Override
+    public ArrayList<Artist> findByQuery(String query) {
+        return null;
+    }
+
+    @Override
+    public Artist findById(String id) {
+        return null;
     }
 }

@@ -6,7 +6,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "artist")
-public class Artist {
+public class Artist implements IModel{
 
     @Id
     private String spotifyId;

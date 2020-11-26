@@ -1,4 +1,4 @@
-package repository.external;
+package kea.design.exam.imdb.repository.external;
 
 import org.json.JSONObject;
 
@@ -14,7 +14,7 @@ public class SpotifyRepository {
     private String clientId;
     private String clientSecret;
 
-    SpotifyRepository(String clientId, String clientSecret){
+    public SpotifyRepository(String clientId, String clientSecret){
         this.clientId = clientId;
         this.clientSecret = clientSecret;
     }
