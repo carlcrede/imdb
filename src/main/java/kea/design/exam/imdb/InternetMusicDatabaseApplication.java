@@ -8,6 +8,5 @@ public class InternetMusicDatabaseApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(InternetMusicDatabaseApplication.class, args);
-        System.out.println("Endnu en test af jenkins job.");
     }
 }

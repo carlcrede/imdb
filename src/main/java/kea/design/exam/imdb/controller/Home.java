@@ -3,11 +3,7 @@ package kea.design.exam.imdb.controller;
 import kea.design.exam.imdb.repository.external.SpotifyRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.servlet.http.HttpSession;
-import java.util.HashMap;
 
 @Controller
 public class Home {
@@ -21,6 +17,11 @@ public class Home {
     @GetMapping("")
     public String index(){
         return "index";
+    }
+
+    @GetMapping("/artist")
+    public String artist() {
+        return "artist";
     }
 
 
