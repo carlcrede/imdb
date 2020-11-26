@@ -1,5 +1,7 @@
 package kea.design.exam.imdb.service;
 
+import kea.design.exam.imdb.models.IModel;
+
 import java.util.ArrayList;
 
 public interface CrudService<T, ID> {
