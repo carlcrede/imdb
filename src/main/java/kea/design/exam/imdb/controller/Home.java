@@ -20,7 +20,6 @@ public class Home {
     //frontpage
     @GetMapping("")
     public String index(){
-        System.out.println("hello");
         return "index";
     }
 
