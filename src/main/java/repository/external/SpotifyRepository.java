@@ -2,7 +2,6 @@ package repository.external;
 
 import org.json.JSONObject;
 
-import javax.print.URIException;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
