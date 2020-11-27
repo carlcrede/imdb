@@ -11,7 +11,9 @@ public class Artist {
     @Id
     private String spotifyId;
 
-
     private String name;
 
+    public String getName() {
+        return name;
+    }
 }

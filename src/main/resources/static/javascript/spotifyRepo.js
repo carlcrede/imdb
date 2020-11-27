@@ -4,7 +4,7 @@ $(document).ready(function(){
     $.get("/spotify", function(data){accessToken = "Bearer " +data}, "text")
 });
 
-function search(query, type){
+function searchSpotify(query, type){
     let endpoint  = "https://api.spotify.com/v1/search";
     $.ajax(endpoint, {
         headers: {Authorization: accessToken},

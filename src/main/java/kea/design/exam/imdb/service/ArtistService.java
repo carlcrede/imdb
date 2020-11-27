@@ -25,7 +25,7 @@ public class ArtistService implements CrudService<Artist, String> {
 
     @Override
     public ArrayList<Artist> findByQuery(String query) {
-        return null;
+        return repository.findAllByName(query);
     }
 
     @Override

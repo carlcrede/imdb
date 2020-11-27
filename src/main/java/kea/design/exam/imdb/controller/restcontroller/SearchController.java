@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 
@@ -22,7 +23,7 @@ public class SearchController {
     //søger database
     // -input: En query til at søge artist tabelen med
     // -output: Json Resultat der blev fundet
-    @GetMapping("artist")
+    @GetMapping("/artist")
     public ArrayList<Artist> search(String query){
         return artistService.findByQuery(query);
     }
