@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link type="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -15,7 +15,6 @@
     <div class="row">
         <p class="h1">Header placeholder</p>
         <!-- Hardcoded ID for testing artist page !-->
-        <input type="button" onclick="getArtistById('0Ty63ceoRnnJKVEYP0VQpk')">
     </div>
     <div class="row">
         <div class="col-3">
@@ -29,7 +28,7 @@
         <div class="col-4">
             <div class="card">
                 <div class="card-body">
-                    <h2 class="card-title" id="name"></h2>
+                    <h2 th:text="${artist.name}" class="card-title" id="name"></h2>
                 </div>
                 <ul id="genres" class="list-group list-group-flush">
                     <li class="list-group-item">Genres:</li>
