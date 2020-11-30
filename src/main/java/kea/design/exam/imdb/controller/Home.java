@@ -36,9 +36,22 @@ public class Home {
 
         albums.add(new Album("Watch The Throne", "album",tracks,null));
         albums.add(new Album("The Life of Pablo", "album", tracks, null));
+        albums.add(new Album("Watch The Throne", "album",tracks,null));
+        albums.add(new Album("The Life of Pablo", "album", tracks, null));
+        albums.add(new Album("Watch The Throne", "album",tracks,null));
+        albums.add(new Album("The Life of Pablo", "album", tracks, null));
+        albums.add(new Album("Watch The Throne", "album",tracks,null));
+        albums.add(new Album("The Life of Pablo", "album", tracks, null));
+        albums.add(new Album("Watch The Throne", "album",tracks,null));
+        albums.add(new Album("The Life of Pablo", "album", tracks, null));
         model.addAttribute("artist", artist);
         model.addAttribute("album", albums);
         return "artist";
+    }
+
+    @GetMapping("/album")
+    public String album() {
+        return "album";
     }
 
 

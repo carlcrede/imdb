@@ -9,33 +9,116 @@
             crossorigin="anonymous"></script>
     <script src="javascript/spotifyRepo.js"></script>
     <title>Artist</title>
+    <style type="text/css">
+
+        body {
+            color: white;
+        }
+
+        .card {
+            background-color: green;
+        }
+
+        .card-body{
+            background-color: black;
+        }
+
+        #module {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+
+        #module #collapseExample.collapse:not(.show) {
+            display: block;
+            height: 3rem;
+            overflow: hidden;
+        }
+
+        #module #collapseExample.collapsing {
+            height: 3rem;
+        }
+
+        #module a.collapsed::after {
+            content: '+ Show More';
+        }
+
+        #module a:not(.collapsed)::after {
+            content: '- Show Less';
+        }
+
+
+    </style>
 </head>
-<body>
+<body style="background-color:rgb(82,64,64);" >
 <div class="container">
     <div class="row">
         <p class="h1">Header placeholder</p>
         <!-- Hardcoded ID for testing artist page !-->
     </div>
+    <div class="row justify-content-center">
+        <div class="col-sm mb-2">
+            <h1 th:text="${artist.name}" class="display-1"></h1>
+        </div>
+
+    </div>
+
     <div class="row">
         <div class="col-3">
             <div class="card">
-                <img class="card-img-top" id="image" src="" alt="Artist image">
-                <div class="card-body">
-                    <p class="card-text">Artist image</p>
+                <img class="rounded card-img-top" src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2F4.bp.blogspot.com%2F-hTsrjl1ah9I%2FUjmQV9VxK-I%2FAAAAAAAArEk%2FqbMRVweQGNo%2Fs1600%2F1.png&f=1&nofb=1">
+            </div>
+        </div>
+        <div class="col-5">
+            <div class="card">
+                <div id="module" class="card-body">
+                    <h2 class="card-title">artist bio</h2>
+                    <p class="collapse" id="collapseExample" aria-expanded="false"></p>
+                    <a role="button" class="collapsed" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    </a>
+
                 </div>
+
             </div>
         </div>
         <div class="col-4">
+
             <div class="card">
                 <div class="card-body">
-                    <h2 th:text="${artist?.name}" class="card-title" id="name"></h2>
+                    <h3 class="card-title" style="color: yellow">Information</h3>
+                    <div>
+                        <b>Type: </b>
+                        <span th:text="${artist.type}"></span>
+                    </div>
+                    <div>
+                        <b>Gender: </b>
+                        <span th:text="${artist.gender}"></span>
+                    </div>
+                    <div>
+                        <b>Years active: </b>
+                        <span th:text="${artist.beginDate.getYear()}+' - '+${artist.endDate?.getYear()?:'present'}"></span>
+                    </div>
+                    <div>
+                        <b>Founded in: </b>
+                        <span th:text="${artist.founded}"></span>
+                    </div>
                 </div>
-                <ul id="genres" class="list-group list-group-flush">
-                    <li class="list-group-item">Genres:</li>
-                </ul>
+            </div>
+        </div>
+    </div>
+    <h2 class="display-4">Albums</h2>
+    <div class="row mt-3">
+        <div th:each=" album : ${album}" class="col-3">
+            <div  class="card">
+                <div class="card-body">
+                     <img class="rounded card-img-top" src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.bowdoindailysun.com%2Fwp-content%2Fuploads%2F2010%2F04%2FScreen-shot-2010-04-08-at-8.47.48-AM.png&f=1&nofb=1">
+                     <p class="card-text" th:text="${album.title}"></p>
+                </div>
             </div>
         </div>
     </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
