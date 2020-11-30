@@ -1,12 +1,13 @@
 $(document).ready(function() {
     createSearchbar();
+    console.log("hello world")
     $("#searchbar").change(function(){
         getSearchResults($("#searchQuery").val(), $("#searchType").val());
     })
 })
 
 function createSearchbar(){
-    $("body").append(
+    $("body").prepend(
         "<nav class='navbar navbar-light bg-light d-flex justify-content-center'>" +
             "<a class='navbar-brand' href='#'>" +
                 "<img src='https://upload.wikimedia.org/wikipedia/commons/6/69/IMDB_Logo_2016.svg' width='100' class='d-inline-block align-top' alt=''>" +

@@ -39,4 +39,7 @@ public class Album {
         this.annotations = annotations;
     }
 
+    public ArrayList<Track> getTracks() {
+        return tracks;
+    }
 }
