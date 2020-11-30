@@ -17,7 +17,6 @@ import java.util.ArrayList;
 @RestController
 @RequestMapping("/search")
 public class SearchController {
-    @Autowired
     ArtistService artistService;
 
     //søger database

@@ -8,10 +8,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
-@Service
+
 public class AlbumService implements CrudService<Album, String>{
 
-    @Autowired
     private AlbumRepository repository;
 
     @Override

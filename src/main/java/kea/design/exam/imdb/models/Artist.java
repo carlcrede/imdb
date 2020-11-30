@@ -1,82 +1,104 @@
 package kea.design.exam.imdb.models;
 
-import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
-@Entity
-@Table(name = "artist")
-@SecondaryTables({
-        @SecondaryTable(name = "artist_type"),
-        @SecondaryTable(name = "gender")
-})
 public class Artist {
 
-    @Id
     private String id;
-    private String gid;
     private String name;
-    private String sort_name;
-    private String begin_date_year;
-    private String begin_date_month;
-    private String begin_date_day;
-    private String end_date_year;
-    private String end_date_month;
-    private String end_date_day;
-    @Column(name = "name", table = "artist_type")
+
+    private LocalDate beginDate;
+    private LocalDate endDate;
     private String type;
-    @Column(name = "name", table = "gender")
     private String gender;
-    @Column(name = "spotifyId")
+
+    private String founded;
+    private ArrayList<String> annotations;
+
     private String spotifyId;
 
-    public String getName() {
-        return name;
-    }
-
-    public String getSpotifyId() {
-        return spotifyId;
+    public Artist(String id, String name, LocalDate beginDate, LocalDate endDate, String type, String gender, String founded, ArrayList<String> annotations, String spotifyId) {
+        this.id = id;
+        this.name = name;
+        this.beginDate = beginDate;
+        this.endDate = endDate;
+        this.type = type;
+        this.gender = gender;
+        this.founded = founded;
+        this.annotations = annotations;
+        this.spotifyId = spotifyId;
     }
 
     public String getId() {
         return id;
     }
 
-    public String getGid() {
-        return gid;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getSort_name() {
-        return sort_name;
+    public String getName() {
+        return name;
     }
 
-    public String getBegin_date_year() {
-        return begin_date_year;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getBegin_date_month() {
-        return begin_date_month;
+    public LocalDate getBeginDate() {
+        return beginDate;
     }
 
-    public String getBegin_date_day() {
-        return begin_date_day;
+    public void setBeginDate(LocalDate beginDate) {
+        this.beginDate = beginDate;
     }
 
-    public String getEnd_date_year() {
-        return end_date_year;
+    public LocalDate getEndDate() {
+        return endDate;
     }
 
-    public String getEnd_date_month() {
-        return end_date_month;
-    }
-
-    public String getEnd_date_day() {
-        return end_date_day;
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 
     public String getType() {
         return type;
     }
 
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public String getGender() {
         return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getFounded() {
+        return founded;
+    }
+
+    public void setFounded(String founded) {
+        this.founded = founded;
+    }
+
+    public ArrayList<String> getAnnotations() {
+        return annotations;
+    }
+
+    public void setAnnotations(ArrayList<String> annotations) {
+        this.annotations = annotations;
+    }
+
+    public String getSpotifyId() {
+        return spotifyId;
+    }
+
+    public void setSpotifyId(String spotifyId) {
+        this.spotifyId = spotifyId;
     }
 }

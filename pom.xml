@@ -44,6 +44,11 @@
             <version>8.0.22</version>
         </dependency>
         <dependency>
+            <groupId>fm.last</groupId>
+            <artifactId>musicbrainz-data</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+        <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20201115</version>

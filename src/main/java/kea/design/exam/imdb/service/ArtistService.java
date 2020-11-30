@@ -7,10 +7,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
-@Service
+
 public class ArtistService implements CrudService<Artist, String> {
 
-    @Autowired
     private ArtistRepository repository;
 
     @Override
