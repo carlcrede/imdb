@@ -14,36 +14,10 @@
 </head>
 <body>
 <div class="container">
-<nav class="navbar navbar-light bg-light d-flex justify-content-center">
-    <a class="navbar-brand" href="#">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/IMDB_Logo_2016.svg" width="100" class="d-inline-block align-top" alt="">
-    </a>
-    <form id="searchForm" class="form-inline">
-        <div class="input-group mr-2">
-            <input id="searchQuery" class="form-control" type="search" placeholder="Search" aria-label="Search">
-        </div>
-        <div class="input-group mr-2">
-            <select class="custom-select" id="searchType">
-                <option selected>Choose...</option>
-                <option value="artist">Artist</option>
-                <option disabled="disabled" value="album">Album</option>
-                <option disabled="disabled" value="track">Track</option>
-            </select>
-        </div>
-            <div class="input-group-append">
-                <button id="searchBtn" class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
-            </div>
-    </form>
-</nav>
     <div class="text-center">
         <div id="searchResults">
         </div>
     </div>
 </div>
-<script type="text/javascript">
-   $("#searchQuery").keyup( function () {
-        getSearchResults($("#searchQuery").val(), $("#searchType").val());
-   });
-</script>
 </body>
 </html>

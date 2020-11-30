@@ -31,3 +31,7 @@ function getArtistById(id){
         }
     })
 }
+
+function spptifyArtistParser(){
+
+}
