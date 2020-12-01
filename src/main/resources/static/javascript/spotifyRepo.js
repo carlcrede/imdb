@@ -1,15 +1,22 @@
 var accessToken;
 
 $(document).ready(function(){
-    $.get("/spotify", function(data){accessToken = "Bearer " +data}, "text")
-});
+    //$.get("/spotify", function(data){accessToken = "Bearer " +data}, "text")
+    $.ajax(
+        "/spotify", {
+            async: false,
+            success: function (data) {accessToken = "Bearer " + data}
+            })
+        });
 
 function searchSpotify(query, type, callback){
+    console.log(accessToken);
     let endpoint  = "https://api.spotify.com/v1/search";
     $.ajax(endpoint, {
         headers: {Authorization: accessToken},
         data: {q: query, type:type},
-        success: function(data){callback(data);}
+        success: function(data){
+            callback(data);}
     })
 }
 
