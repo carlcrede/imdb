@@ -25,92 +25,88 @@
     </style>
 </head>
 <body class="bg-secondary">
-<div class="container">
     <div class="row">
-    </div>
-    <div class="row justify-content-center">
-        <div class="col-sm mb-2">
-            <h1 id="artistName" th:text="${artist.name}" class="display-1 text-light"></h1>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-3">
-            <div class="card">
-                <img id="artistImage" class="rounded card-img-top" src="img/blank.png" alt="Missing artist image">
+        <div class="row justify-content-center">
+            <div class="col-sm mb-2">
+                <h1 id="artistName" th:text="${artist.name}" class="display-1 text-light"></h1>
             </div>
         </div>
-        <div class="col-5">
-            <div class="card">
-                <div id="module" class="card-body">
-                    <h2 class="text-light">Artist bio</h2>
-                    <p class="collapse text-light" id="collapseExample" aria-expanded="false">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                    </p>
-                    <a role="button" class="collapsed text-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                    </a>
+        <div class="row">
+            <div class="col-3">
+                <div class="card">
+                    <img id="artistImage" class="rounded card-img-top" src="img/blank.png" alt="Missing artist image">
                 </div>
             </div>
-        </div>
-        <div class="col-4">
-            <div class="card">
-                <div class="card-body">
-                    <h3 class="card-title text-warning" >Information</h3>
-                    <div>
-                        <b class="text-warning">Type: </b>
-                        <span class="text-light" th:text="${artist.type}"></span>
-                    </div>
-                    <div>
-                        <b class="text-warning">Gender: </b>
-                        <span class="text-light" th:text="${artist.gender}"></span>
-                    </div>
-                    <div>
-                        <b class="text-warning">Years active: </b>
-                        <span class="text-light" th:text="${artist.beginDate.getYear()}+' - '+${artist.endDate?.getYear()?:'present'}"></span>
-                    </div>
-                    <div>
-                        <b class="text-warning">Founded in: </b>
-                        <span class="text-light" th:text="${artist.founded}"></span>
+            <div class="col-5">
+                <div class="card">
+                    <div id="module" class="card-body">
+                        <h2 class="text-light">Artist bio</h2>
+                        <p class="collapse text-light" id="collapseExample" aria-expanded="false">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                        </p>
+                        <a role="button" class="collapsed text-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        </a>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <hr class="my-4 bg-dark">
-    <div class="row">
-        <div></div>
-    </div>
-    <h2 class="display-4 text-light">Albums</h2>
-    <div id="albums" class="row mt-3">
-        <div th:each=" album, count : ${album}" class="col-3 m-0 p-0 text-light card">
-            <div  class="card">
-                <a data-toggle="collapse" th:href="'#'+${count.count}" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    <div class="loader scaled card-body">
-                        <img class="album rounded card-img-top" th:id="${album.mbid}" src="/img/blank.png" alt="Missing cover art">
-                        <p class="card-text text-center" th:text="${album.title}"></p>
-                    </div>
-                </a>
-                <div class="collapse" th:id="${count.count}">
-                    <hr class="my-1 bg-dark">
+            <div class="col-4">
+                <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title text-light">Tracks</h5>
-                        <hr class="my-1 bg-light">
-                        <div class="card-text text-light">
-                            <div th:each=" track , count : ${album.tracks}">
-                                <div th:text="${count.count}+'. '+${track.name}"></div>
-                            </div>
+                        <h3 class="card-title text-warning" >Information</h3>
+                        <div>
+                            <b class="text-warning">Type: </b>
+                            <span class="text-light" th:text="${artist.type}"></span>
+                        </div>
+                        <div>
+                            <b class="text-warning">Gender: </b>
+                            <span class="text-light" th:text="${artist.gender}"></span>
+                        </div>
+                        <div>
+                            <b class="text-warning">Years active: </b>
+                            <span class="text-light" th:text="${artist.beginDate.getYear()}+' - '+${artist.endDate?.getYear()?:'present'}"></span>
+                        </div>
+                        <div>
+                            <b class="text-warning">Founded in: </b>
+                            <span class="text-light" th:text="${artist.founded}"></span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <hr class="my-4 bg-dark">
     </div>
-</div>
+    <div class="row">
+            <h2 class="display-4 text-light">Albums</h2>
+            <div id="albums" class="row mt-3">
+                <div th:each=" album, count : ${album}" class="col-3 m-0 p-0 text-light card">
+                    <div  class="card">
+                        <a data-toggle="collapse" th:href="'#'+${count.count}" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            <div class="loader scaled card-body">
+                                <img class="album rounded card-img-top" th:id="${album.mbid}" src="/img/blank.png" alt="Missing cover art">
+                                <p class="card-text text-center" th:text="${album.title}"></p>
+                            </div>
+                        </a>
+                        <div class="collapse" th:id="${count.count}">
+                            <hr class="my-1 bg-dark">
+                            <div class="card-body">
+                                <h5 class="card-title text-light">Tracks</h5>
+                                <hr class="my-1 bg-light">
+                                <div class="card-text text-light">
+                                    <div th:each=" track , count : ${album.tracks}">
+                                        <div th:text="${count.count}+'. '+${track.name}"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
 <div id="loader" class="center"></div>
 <script>
 
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script></div>
 </body>
 </html>

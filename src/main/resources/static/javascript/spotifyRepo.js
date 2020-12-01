@@ -1,7 +1,6 @@
 var accessToken;
 
 $(document).ready(function(){
-    //$.get("/spotify", function(data){accessToken = "Bearer " +data}, "text")
     $.ajax(
         "/spotify", {
             async: false,
@@ -36,7 +35,6 @@ function getAlbumByNameAndArtist(name, artist, callback){
         }
     })
 }
-
 function getArtistById(id, callback){
     let endpoint = "https://api.spotify.com/v1/artists/"+ id;
     $.ajax(endpoint, {
