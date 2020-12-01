@@ -17,13 +17,13 @@
     <title>Artist</title>
 
 </head>
-<body class="body">
+<body class="bg-secondary">
 <div class="container">
     <div class="row">
     </div>
     <div class="row justify-content-center">
         <div class="col-sm mb-2">
-            <h1 id="artistName" th:text="${artist.name}" class="display-1"></h1>
+            <h1 id="artistName" th:text="${artist.name}" class="display-1 text-light"></h1>
         </div>
     </div>
 
@@ -36,11 +36,11 @@
         <div class="col-5">
             <div class="card">
                 <div id="module" class="card-body">
-                    <h2 class="card-title">artist bio</h2>
-                    <p class="collapse" id="collapseExample" aria-expanded="false">
+                    <h2 class="text-light">Artist bio</h2>
+                    <p class="collapse text-light" id="collapseExample" aria-expanded="false">
                         Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
                     </p>
-                    <a role="button" class="collapsed" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    <a role="button" class="collapsed text-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                     </a>
                 </div>
             </div>
@@ -48,33 +48,34 @@
         <div class="col-4">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="card-title" style="color: yellow">Information</h3>
+                    <h3 class="card-title text-warning" >Information</h3>
                     <div>
-                        <b>Type: </b>
-                        <span th:text="${artist.type}"></span>
+                        <b class="text-warning">Type: </b>
+                        <span class="text-light" th:text="${artist.type}"></span>
                     </div>
                     <div>
-                        <b>Gender: </b>
-                        <span th:text="${artist.gender}"></span>
+                        <b class="text-warning">Gender: </b>
+                        <span class="text-light" th:text="${artist.gender}"></span>
                     </div>
                     <div>
-                        <b>Years active: </b>
-                        <span th:text="${artist.beginDate.getYear()}+' - '+${artist.endDate?.getYear()?:'present'}"></span>
+                        <b class="text-warning">Years active: </b>
+                        <span class="text-light" th:text="${artist.beginDate.getYear()}+' - '+${artist.endDate?.getYear()?:'present'}"></span>
                     </div>
                     <div>
-                        <b>Founded in: </b>
-                        <span th:text="${artist.founded}"></span>
+                        <b class="text-warning">Founded in: </b>
+                        <span class="text-light" th:text="${artist.founded}"></span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <hr class="my-4 bg-dark">
     <div class="row">
         <div></div>
     </div>
-    <h2 class="display-4">Albums</h2>
+    <h2 class="display-4 text-light">Albums</h2>
     <div id="albums" class="row mt-3">
-        <div th:each=" album, count : ${album}" class="col-3 m-0 p-0">
+        <div th:each=" album, count : ${album}" class="col-3 m-0 p-0 text-light card">
             <div  class="card">
                 <a data-toggle="collapse" th:href="'#'+${count.count}" role="button" aria-expanded="false" aria-controls="collapseExample">
                     <div class="card-body">
@@ -83,11 +84,11 @@
                     </div>
                 </a>
                 <div class="collapse" th:id="${count.count}">
-                    <div class="card-body" style="background-color: slategray">
-                        <h5 class="card-title">
-                            Tracks
-                        </h5>
-                        <div class="card-text">
+                    <hr class="my-1 bg-dark">
+                    <div class="card-body">
+                        <h5 class="card-title text-light">Tracks</h5>
+                        <hr class="my-1 bg-light">
+                        <div class="card-text text-light">
                             <div th:each=" track , count : ${album.tracks}">
                                 <div th:text="${count.count}+'. '+${track.name}"></div>
                             </div>

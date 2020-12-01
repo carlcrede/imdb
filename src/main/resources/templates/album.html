@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <link rel="stylesheet" href="javascript/styles.css">
     <link type="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <script
@@ -11,32 +12,33 @@
             integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
             crossorigin="anonymous"></script>
 
+    <script src="javascript/searchBar.js"></script>
     <script src="javascript/CoverartArchiveRepo.js"></script>
     <script src="javascript/albumScript.js"></script>
 
     <title>Album</title>
 </head>
-<body class="bg-dark">
+<body class="body">
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <a class="navbar-brand" href="#">ALBUMS</a>
+<!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark">-->
+<!--    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--        <span class="navbar-toggler-icon"></span>-->
+<!--    </button>-->
+<!--    <a class="navbar-brand" href="#">ALBUMS</a>-->
 
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">HOME</a>
-            </li>
+<!--    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">-->
+<!--        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">-->
+<!--            <li class="nav-item active">-->
+<!--                <a class="nav-link" href="#">HOME</a>-->
+<!--            </li>-->
 
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </div>
-</nav>
+<!--        </ul>-->
+<!--        <form class="form-inline my-2 my-lg-0">-->
+<!--            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+<!--            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--</nav>-->
 
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
@@ -57,7 +59,7 @@
         </div>
         <br>
         <div class="row">
-            <a href="#collapseExample" class="btn btn-dark btn-outline-light col-2 lead"
+            <a href="#collapseExample" class="btn btn-light btn-outline-dark col-2 lead"
                data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample">ANNOTATIONS</a>
         </div>
         <br>
@@ -73,7 +75,7 @@
     </div>
 </div>
 
-<div class="container">
+<div class="container body">
     <table class="table table-borderless text-light col-md-6">
         <thead>
         <tr>
@@ -84,7 +86,7 @@
         <tbody>
         <tr th:each=" track : ${album.get(0).tracks}">
             <td scope="row" th:text="${track.name}">#track title</td>
-            <td class="badge badge-light badge-pill" th:text="${track.length}">#duration</td>
+            <td scope="row" class="badge badge-light badge-pill" th:text="${track.length}">#duration</td>
         </tr>
         </tbody>
     </table>
