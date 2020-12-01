@@ -50,24 +50,22 @@
         </div>
         <hr class="my-4">
         <div class="row">
-            <p class="lead">#ARTIST</p>
+            <p class="lead" th:text="${artist.name}"></p>
         </div>
         <div class="row">
-            <p class="lead">#TYPE</p>
+            <p class="lead" th:text="${album.get(0).type}">#TYPE</p>
         </div>
         <div class="row">
             <a href="#collapseExample" class="btn btn-dark btn-outline-light col-2 lead"
-               data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample">#ANNOTATION</a>
+               data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample">ANNOTATIONS</a>
         </div>
         <br>
         <div class="row">
             <div class="col-md-12">
                 <div class="collapse" id="collapseExample">
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-                        standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
-                        to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
-                        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-                        and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                    <div th:each=" annotations : ${album.get(0).annotations}">
+                        <p th:text="${annotations}"></p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -83,9 +81,9 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td scope="row">#track title</td>
-            <td class="badge badge-light badge-pill">#duration</td>
+        <tr th:each=" track : ${album.get(0).tracks}">
+            <td scope="row" th:text="${track.name}">#track title</td>
+            <td class="badge badge-light badge-pill" th:text="${track.length}">#duration</td>
         </tr>
         </tbody>
     </table>
