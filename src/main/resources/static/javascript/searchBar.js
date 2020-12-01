@@ -1,6 +1,5 @@
 $(document).ready(function() {
     createSearchbar();
-    console.log("hello world")
     $("#searchbar").change(function(){
         getSearchResults($("#searchQuery").val(), $("#searchType").val());
     })
@@ -8,15 +7,15 @@ $(document).ready(function() {
 
 function createSearchbar(){
     $("body").prepend(
-        "<nav class='navbar navbar-light d-flex w-100 p-0' style='background-color:#000000'>" +
+        "<nav class='navbar navbar-light d-flex w-100 p-0' style='background-color:#000000; size: 1px'>" +
             "<div class='col-2'>" +
                 "<a href='#'>" +
                     "<img src='https://upload.wikimedia.org/wikipedia/commons/6/69/IMDB_Logo_2016.svg' class='img-fluid d-inline-block align-top' alt=''>" +
                 "</a>" +
             "</div>" +
             "<form id='searchForm' class='form-inline justify-content-center p-2'>" +
-                "<input id='searchQuery' class='form-control' type='search' placeholder='Search' aria-label='Search'>" +
-                "<select class='custom-select' id='searchType'>" +
+                "<input id='searchQuery' class='form-control' type='search' placeholder='Search' aria-label='Search' style='background-color:#000000'>" +
+                "<select class='custom-select' id='searchType' style='background-color: black'>" +
                     "<option selected>Choose...</option>" +
                     "<option value='artist'>Artist</option>" +
                     "<option disabled='disabled' value='album'>Album</option>" +
