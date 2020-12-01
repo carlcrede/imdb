@@ -13,4 +13,17 @@ let artistImage = function setArtistImage(data){
 
 let news = function setNews(data) {
     console.log(data);
+    $.each(data.value, function (index, value) {
+        console.log(value.title);
+        $("#news").append(
+            "<div class='col-2 news'>" +
+            "   <div class='card'>" +
+            "       <div class='card-body'>" +
+            "           <p id='title' class='card-title text-light'>" + value.title + "</p>" +
+            "           <a class='text-light' href=" + value.url + ">Read more</a>" +
+            "       </div>" +
+            "   </div>" +
+            "</div>"
+        );
+    })
 };

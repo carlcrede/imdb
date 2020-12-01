@@ -22,6 +22,15 @@
             background: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.dribbble.com%2Fusers%2F65451%2Fscreenshots%2F2922226%2Fslider.gif&f=1&nofb=1') 50% 50% no-repeat rgb(249,249,249);
         }
 
+        /* The heart of the matter */
+        .scrollable > .row {
+            display: block;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        .scrollable > .row > .news {
+            display: inline-block;
+        }
     </style>
 </head>
 <body class="bg-secondary">
@@ -77,9 +86,9 @@
     </div>
     <div class="container">
             <h2 class="display-4 text-light">Albums</h2>
-            <div id="albums" class="row mt-3">
+            <div class="row mt-3">
                 <div th:each=" album, count : ${album}" class="col-3 m-0 p-0 text-light card">
-                    <div  class="card">
+                    <div class="card">
                         <a data-toggle="collapse" th:href="'#'+${count.count}" role="button" aria-expanded="false" aria-controls="collapseExample">
                             <div class="loader scaled card-body">
                                 <img class="album rounded card-img-top" th:id="${album.mbid}" src="/img/blank.png" alt="Missing cover art">
@@ -102,11 +111,16 @@
                 </div>
             </div>
     </div>
+    <div class="container scrollable">
+        <h2 class="display-4 text-light">News</h2>
+        <div id="news" class="row">
+        </div>
+    </div>
 <div id="loader" class="center"></div>
 <script>
 
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script></div>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
