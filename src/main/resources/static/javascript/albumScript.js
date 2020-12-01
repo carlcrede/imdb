@@ -1,4 +1,3 @@
 $(document).ready(function(){
-    const tag = $("#albumcover");
-    getFrontCover(tag);
+    getFrontCover($(".album")[0]);
     });

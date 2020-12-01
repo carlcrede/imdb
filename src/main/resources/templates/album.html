@@ -45,7 +45,7 @@
                 <h1 class="display-4" th:text="${album.get(0).title}"></h1>
             </div>
             <div class="col-md-2">
-                <img id="albumcover" src="" class="rounded-circle align-items-end" width="80" height="80">
+                <img th:id="${album.get(0).mbid}" src="" class="album rounded-circle align-items-end" width="80" height="80">
             </div >
         </div>
         <hr class="my-4">
