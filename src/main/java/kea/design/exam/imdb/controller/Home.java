@@ -39,14 +39,14 @@ public class Home {
 
         albums.add(new Album(UUID.fromString("196bb188-d579-4f00-ac29-9a83a7dc1b9c"), "Watch The Throne", "album",tracks,null));
         albums.add(new Album(UUID.fromString("03f03619-385a-4ed9-9974-cdcdf6404cf5"),"The Life of Pablo", "album", tracks, null));
-        albums.add(new Album(UUID.fromString("76df3287-6cda-33eb-8e9a-044b5e15ffdd"),"Watch The Throne", "album",tracks,null));
-        albums.add(new Album(UUID.fromString("76df3287-6cda-33eb-8e9a-044b5e15ffdd"),"The Life of Pablo", "album", tracks, null));
-        albums.add(new Album(UUID.fromString("76df3287-6cda-33eb-8e9a-044b5e15ffdd"),"Watch The Throne", "album",tracks,null));
-        albums.add(new Album(UUID.fromString("76df3287-6cda-33eb-8e9a-044b5e15ffdd"),"The Life of Pablo", "album", tracks, null));
-        albums.add(new Album(UUID.fromString("76df3287-6cda-33eb-8e9a-044b5e15ffdd"),"Watch The Throne", "album",tracks,null));
-        albums.add(new Album(UUID.fromString("76df3287-6cda-33eb-8e9a-044b5e15ffdd"),"The Life of Pablo", "album", tracks, null));
-        albums.add(new Album(UUID.fromString("76df3287-6cda-33eb-8e9a-044b5e15ffdd"),"Watch The Throne", "album",tracks,null));
-        albums.add(new Album(UUID.fromString("76df3287-6cda-33eb-8e9a-044b5e15ffdd"),"The Life of Pablo", "album", tracks, null));
+        albums.add(new Album(UUID.fromString("196bb188-d579-4f00-ac29-9a83a7dc1b9c"),"Watch The Throne", "album",tracks,null));
+        albums.add(new Album(UUID.fromString("03f03619-385a-4ed9-9974-cdcdf6404cf5"),"The Life of Pablo", "album", tracks, null));
+        albums.add(new Album(UUID.fromString("196bb188-d579-4f00-ac29-9a83a7dc1b9c"),"Watch The Throne", "album",tracks,null));
+        albums.add(new Album(UUID.fromString("03f03619-385a-4ed9-9974-cdcdf6404cf5"),"The Life of Pablo", "album", tracks, null));
+        albums.add(new Album(UUID.fromString("196bb188-d579-4f00-ac29-9a83a7dc1b9c"),"Watch The Throne", "album",tracks,null));
+        albums.add(new Album(UUID.fromString("03f03619-385a-4ed9-9974-cdcdf6404cf5"),"The Life of Pablo", "album", tracks, null));
+        albums.add(new Album(UUID.fromString("196bb188-d579-4f00-ac29-9a83a7dc1b9c"),"Watch The Throne", "album",tracks,null));
+        albums.add(new Album(UUID.fromString("03f03619-385a-4ed9-9974-cdcdf6404cf5"),"The Life of Pablo", "album", tracks, null));
 
         model.addAttribute("artist", artist);
         model.addAttribute("album", albums);
