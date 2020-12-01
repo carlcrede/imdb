@@ -15,7 +15,7 @@ function createSearchbar(){
             "</div>" +
             "<form id='searchForm' class='form-inline justify-content-center p-2'>" +
                 "<input id='searchQuery' class='form-control' type='search' placeholder='Search' aria-label='Search' style='background-color:#000000'>" +
-                "<select class='custom-select' id='searchType' style='background-color: black'>" +
+                "<select class='custom-select m-3' id='searchType' style='background-color: black'>" +
                     "<option selected>Choose...</option>" +
                     "<option value='artist'>Artist</option>" +
                     "<option disabled='disabled' value='album'>Album</option>" +
