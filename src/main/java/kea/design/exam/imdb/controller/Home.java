@@ -35,6 +35,8 @@ public class Home {
         tracks.add(new Track("3:40", "hey there"));
         tracks.add(new Track("10:20", "rapping raps"));
 
+
+
         albums.add(new Album(UUID.fromString("76df3287-6cda-33eb-8e9a-044b5e15ffdd"), "Watch The Throne", "album",tracks,null));
         albums.add(new Album(UUID.fromString("03f03619-385a-4ed9-9974-cdcdf6404cf5"),"The Life of Pablo", "album", tracks, null));
         albums.add(new Album(UUID.fromString("76df3287-6cda-33eb-8e9a-044b5e15ffdd"),"Watch The Throne", "album",tracks,null));
@@ -52,7 +54,17 @@ public class Home {
     }
 
     @GetMapping("/album")
-    public String album() {
+    public String album(Model model) {
+        Artist artist = new Artist("10", "Kanye West", LocalDate.of(2010, 04, 20), LocalDate.now(), "Person", "Male", "Chicago",null, "10");
+        ArrayList<Album> albums = new ArrayList<>();
+        ArrayList<Track> tracks = new ArrayList<Track>();
+        tracks.add(new Track("3:40", "hey there"));
+        tracks.add(new Track("10:20", "rapping raps"));
+
+        albums.add(new Album(UUID.fromString("76df3287-6cda-33eb-8e9a-044b5e15ffdd"), "Watch The Throne", "album",tracks,null));
+
+        model.addAttribute("artist", artist);
+        model.addAttribute("album", albums);
         return "album";
     }
 }
