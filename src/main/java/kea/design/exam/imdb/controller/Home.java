@@ -54,12 +54,4 @@ public class Home {
     public String album() {
         return "album";
     }
-
-
-    //returns a new spotify accesstoken to a session
-    @GetMapping("/spotify")
-    @ResponseBody
-    public String getToken(){
-        return spotifyRepo.createToken();
-    }
 }

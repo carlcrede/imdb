@@ -4,34 +4,43 @@ $(document).ready(function(){
     $.get("/spotify", function(data){accessToken = "Bearer " +data}, "text")
 });
 
-function searchSpotify(query, type){
+function searchSpotify(query, type, callback){
     let endpoint  = "https://api.spotify.com/v1/search";
     $.ajax(endpoint, {
         headers: {Authorization: accessToken},
         data: {q: query, type:type},
+        success: function(data){callback(data);}
+    })
+}
+
+function getAlbumByNameAndArtist(name, artist, callback){
+    let endpoint  = "https://api.spotify.com/v1/search";
+    $.ajax(endpoint, {
+        headers: {Authorization: accessToken},
+        data: {q: name, type:"album"},
         success: function(data){
-            console.log(data);
+            for(let i = 0; i < data.length; i++){
+                if(data.artist.name.toLowerCase() === name.toLowerCase()){
+                    callback(data);
+                    return;
+                }
+            }
+            console.log("no matches");
         }
     })
 }
 
-function getArtistById(id){
+function getArtistById(id, callback){
     let endpoint = "https://api.spotify.com/v1/artists/"+ id;
     $.ajax(endpoint, {
         headers: {Authorization: accessToken},
-        success: function(data){
-            console.log(data);
-            // hardcoded data to test artist-page
-            //TODO: spotify har egentlig ikke ret meget metadata - overveje andre datakilder, fx. last.fm, discogs mv. rovi?
-            $("#image").attr("src", data.images[0].url);
-            $("#name").html(data.name);
-            $.each(data.genres, function (index, value) {
-                $("#genres").append("<li class='list-group-item'>" + value + "</li>");
-            })
-        }
+        success: function(data){callback(data)}
     })
 }
-
-function spptifyArtistParser(){
-
+function getAlbumById(id, callback){
+    let endpoint = "https://api.spotify.com/v1/album/"+ id;
+    $.ajax(endpoint, {
+        headers: {Authorization: accessToken},
+        success: function(data){callback(data)}
+    })
 }

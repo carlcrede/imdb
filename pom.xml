@@ -43,11 +43,11 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.22</version>
         </dependency>
-        <!--<dependency>
+        <dependency>
             <groupId>fm.last</groupId>
             <artifactId>musicbrainz-data</artifactId>
             <version>3.0.0</version>
-        </dependency> -->
+        </dependency>
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>

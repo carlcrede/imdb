@@ -8,21 +8,21 @@ $(document).ready(function() {
 
 function createSearchbar(){
     $("body").prepend(
-        "<nav class='navbar navbar-light bg-light d-flex justify-content-center'>" +
-            "<a class='navbar-brand' href='#'>" +
-                "<img src='https://upload.wikimedia.org/wikipedia/commons/6/69/IMDB_Logo_2016.svg' width='100' class='d-inline-block align-top' alt=''>" +
-            "</a>" +
-            "<form id='searchForm' class='form-inline'>" +
-                "<div class='input-group mr-2'>" +
-                    "<input id='searchQuery' class='form-control' type='search' placeholder='Search' aria-label='Search'>" +
-                    "<select class='custom-select' id='searchType'>" +
-                        "<option selected>Choose...</option>" +
-                        "<option value='artist'>Artist</option>" +
-                        "<option disabled='disabled' value='album'>Album</option>" +
-                        "<option disabled='disabled' value='track'>Track</option>" +
-                    "</select>" +
-                "</div>" +
-                "<div class='input-group-append'>" +
+        "<nav class='navbar navbar-light d-flex w-100 p-0' style='position:fixed; background-color:#000000'>" +
+            "<div class='col-2'>" +
+                "<a href='#'>" +
+                    "<img src='https://upload.wikimedia.org/wikipedia/commons/6/69/IMDB_Logo_2016.svg' class='img-fluid d-inline-block align-top' alt=''>" +
+                "</a>" +
+            "</div>" +
+            "<form id='searchForm' class='form-inline justify-content-center p-2'>" +
+                "<input id='searchQuery' class='form-control' type='search' placeholder='Search' aria-label='Search'>" +
+                "<select class='custom-select' id='searchType'>" +
+                    "<option selected>Choose...</option>" +
+                    "<option value='artist'>Artist</option>" +
+                    "<option disabled='disabled' value='album'>Album</option>" +
+                    "<option disabled='disabled' value='track'>Track</option>" +
+                "</select>" +
+                "<div class='input-group-append justify-content-end'>" +
                     "<button id='searchBtn' class='btn btn-outline-warning my-2 my-sm-0' type='submit'>Search</button>" +
                 "</div>" +
             "</form>" +
