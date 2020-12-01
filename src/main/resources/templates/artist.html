@@ -25,7 +25,7 @@
     </style>
 </head>
 <body class="bg-secondary">
-    <div class="row">
+    <div class="container">
         <div class="row justify-content-center">
             <div class="col-sm mb-2">
                 <h1 id="artistName" th:text="${artist.name}" class="display-1 text-light"></h1>
@@ -75,7 +75,7 @@
         </div>
         <hr class="my-4 bg-dark">
     </div>
-    <div class="row">
+    <div class="container">
             <h2 class="display-4 text-light">Albums</h2>
             <div id="albums" class="row mt-3">
                 <div th:each=" album, count : ${album}" class="col-3 m-0 p-0 text-light card">
