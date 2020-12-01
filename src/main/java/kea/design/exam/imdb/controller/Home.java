@@ -61,7 +61,12 @@ public class Home {
         tracks.add(new Track("3:40", "hey there"));
         tracks.add(new Track("10:20", "rapping raps"));
 
-        albums.add(new Album(UUID.fromString("76df3287-6cda-33eb-8e9a-044b5e15ffdd"), "Watch The Throne", "album",tracks,null));
+        ArrayList<String> annotations = new ArrayList<>();
+        annotations.add("This is an annotation");
+        annotations.add("This also");
+        annotations.add("Hey bro!");
+
+        albums.add(new Album(UUID.fromString("76df3287-6cda-33eb-8e9a-044b5e15ffdd"), "Watch The Throne", "album",tracks,annotations));
 
         model.addAttribute("artist", artist);
         model.addAttribute("album", albums);
