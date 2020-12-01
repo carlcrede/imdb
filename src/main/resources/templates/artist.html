@@ -9,6 +9,7 @@
             crossorigin="anonymous"></script>
     <script src="javascript/spotifyRepo.js"></script>
     <script src="javascript/searchBar.js"></script>
+    <script src="javascript/CoverartArchiveRepo.js"></script>
     <script src="javascript/artist.js"></script>
     <title>Artist</title>
     <style type="text/css">
@@ -132,7 +133,7 @@
             <div  class="card">
                 <a data-toggle="collapse" th:href="'#'+${count.count}" role="button" aria-expanded="false" aria-controls="collapseExample">
                     <div class="card-body">
-                        <img class="album rounded card-img-top" th:value="${album.mbid}" src="" alt="Missing cover art">
+                        <img class="album rounded card-img-top" th:id="${album.mbid}" th:value="${album.mbid}" alt="Missing cover art">
                         <p class="card-text text-center" th:text="${album.title}"></p>
                     </div>
                 </a>

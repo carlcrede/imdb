@@ -1,3 +1,5 @@
 $(document).ready(function(){
-    $(".album").getFrontCover(this);
-})
+    $(".album").each(function(index, image) {
+        getFrontCover(image);
+    })
+});

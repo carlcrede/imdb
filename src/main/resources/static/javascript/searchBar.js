@@ -8,7 +8,7 @@ $(document).ready(function() {
 
 function createSearchbar(){
     $("body").prepend(
-        "<nav class='navbar navbar-light d-flex w-100 p-0' style='position:fixed; background-color:#000000'>" +
+        "<nav class='navbar navbar-light d-flex w-100 p-0' style='background-color:#000000'>" +
             "<div class='col-2'>" +
                 "<a href='#'>" +
                     "<img src='https://upload.wikimedia.org/wikipedia/commons/6/69/IMDB_Logo_2016.svg' class='img-fluid d-inline-block align-top' alt=''>" +
