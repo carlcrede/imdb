@@ -1,21 +1,7 @@
-function getFrontCover(imag){
-    console.log(imag.id);
-    let url = "http://www.coverartarchive.org/release/" + imag.id + "/front";
-    $.ajax({
-        method: 'GET',
-        url: url,
-        success: function (data) {
-            imag.src = data.location;
-            console.log(imag.src);
-        }
-    });
-}
-
 function getFrontCover(imag) {
-    $.getJSON("http://coverartarchive.org/release" + imag.id + "/front", {}, function (data){
-        imag.src = data.location;
-    } {
-
-    })
-
+    console.log(imag.id);
+    $.get("http://coverartarchive.org/release/" + imag.id, {}, function (data){
+        console.log(data.images[0].image);
+        imag.src = data.images[0].image;
+    });
 }
