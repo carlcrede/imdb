@@ -42,3 +42,19 @@ function getSearchResults(query, type) {
         }
     })
 }
+
+//makes a loading symbol, when the html is not fully loaded, so the user is only presented with the finished information
+//makes use of css in the main style.css
+document.onreadystatechange = function() {
+    if (document.readyState !== "complete") {
+        document.querySelector(
+            "body").style.visibility = "hidden";
+        document.querySelector(
+            "#loader").style.visibility = "visible";
+    } else {
+        document.querySelector(
+            "#loader").style.display = "none";
+        document.querySelector(
+            "body").style.visibility = "visible";
+    }
+};
