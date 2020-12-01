@@ -9,9 +9,9 @@
             crossorigin="anonymous"></script>
     <script src="javascript/spotifyRepo.js"></script>
     <script src="javascript/searchBar.js"></script>
+    <script src="javascript/artist.js"></script>
     <title>Artist</title>
     <style type="text/css">
-
         body {
             color: white;
         }
@@ -69,20 +69,16 @@
         #module a:not(.collapsed)::after {
             content: '- Show Less';
         }
-
-
     </style>
 </head>
 <body style="background-color:rgb(82,64,64);" >
 <div class="container">
     <div class="row">
-        <!-- Hardcoded ID for testing artist page !-->
     </div>
     <div class="row justify-content-center">
         <div class="col-sm mb-2">
             <h1 th:text="${artist.name}" class="display-1"></h1>
         </div>
-
     </div>
 
     <div class="row">
@@ -100,9 +96,7 @@
                     </p>
                     <a role="button" class="collapsed" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                     </a>
-
                 </div>
-
             </div>
         </div>
         <div class="col-4">
@@ -130,9 +124,7 @@
         </div>
     </div>
     <div class="row">
-        <div>
-
-        </div>
+        <div></div>
     </div>
     <h2 class="display-4">Albums</h2>
     <div id="albums" class="row mt-3">
@@ -140,7 +132,7 @@
             <div  class="card">
                 <a data-toggle="collapse" th:href="'#'+${count.count}" role="button" aria-expanded="false" aria-controls="collapseExample">
                     <div class="card-body">
-                        <img class="rounded card-img-top" src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.bowdoindailysun.com%2Fwp-content%2Fuploads%2F2010%2F04%2FScreen-shot-2010-04-08-at-8.47.48-AM.png&f=1&nofb=1">
+                        <img class="album rounded card-img-top" th:value="${album.mbid}" src="" alt="Missing cover art">
                         <p class="card-text text-center" th:text="${album.title}"></p>
                     </div>
                 </a>
@@ -156,7 +148,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

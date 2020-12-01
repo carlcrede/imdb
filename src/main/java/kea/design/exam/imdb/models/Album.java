@@ -1,18 +1,25 @@
 package kea.design.exam.imdb.models;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class Album {
+    private UUID mbid;
     private String title;
     private String type;
     ArrayList<String> annotations;
     ArrayList<Track> tracks;
 
-    public Album(String title, String type, ArrayList<Track> tracks,ArrayList<String> annotations) {
+    public Album(UUID mbid, String title, String type, ArrayList<Track> tracks, ArrayList<String> annotations) {
+        this.mbid = mbid;
         this.title = title;
         this.type = type;
         this.tracks = tracks;
         this.annotations = annotations;
+    }
+
+    public UUID getMbid() {
+        return mbid;
     }
 
     public String getTitle() {

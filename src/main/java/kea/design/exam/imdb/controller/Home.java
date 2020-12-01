@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.UUID;
 
 @Controller
 public class Home {
@@ -34,16 +35,16 @@ public class Home {
         tracks.add(new Track("3:40", "hey there"));
         tracks.add(new Track("10:20", "rapping raps"));
 
-        albums.add(new Album("Watch The Throne", "album",tracks,null));
-        albums.add(new Album("The Life of Pablo", "album", tracks, null));
-        albums.add(new Album("Watch The Throne", "album",tracks,null));
-        albums.add(new Album("The Life of Pablo", "album", tracks, null));
-        albums.add(new Album("Watch The Throne", "album",tracks,null));
-        albums.add(new Album("The Life of Pablo", "album", tracks, null));
-        albums.add(new Album("Watch The Throne", "album",tracks,null));
-        albums.add(new Album("The Life of Pablo", "album", tracks, null));
-        albums.add(new Album("Watch The Throne", "album",tracks,null));
-        albums.add(new Album("The Life of Pablo", "album", tracks, null));
+        albums.add(new Album(UUID.fromString("76df3287-6cda-33eb-8e9a-044b5e15ffdd"), "Watch The Throne", "album",tracks,null));
+        albums.add(new Album(UUID.fromString("76df3287-6cda-33eb-8e9a-044b5e15ffdd"),"The Life of Pablo", "album", tracks, null));
+        albums.add(new Album(UUID.fromString("76df3287-6cda-33eb-8e9a-044b5e15ffdd"),"Watch The Throne", "album",tracks,null));
+        albums.add(new Album(UUID.fromString("76df3287-6cda-33eb-8e9a-044b5e15ffdd"),"The Life of Pablo", "album", tracks, null));
+        albums.add(new Album(UUID.fromString("76df3287-6cda-33eb-8e9a-044b5e15ffdd"),"Watch The Throne", "album",tracks,null));
+        albums.add(new Album(UUID.fromString("76df3287-6cda-33eb-8e9a-044b5e15ffdd"),"The Life of Pablo", "album", tracks, null));
+        albums.add(new Album(UUID.fromString("76df3287-6cda-33eb-8e9a-044b5e15ffdd"),"Watch The Throne", "album",tracks,null));
+        albums.add(new Album(UUID.fromString("76df3287-6cda-33eb-8e9a-044b5e15ffdd"),"The Life of Pablo", "album", tracks, null));
+        albums.add(new Album(UUID.fromString("76df3287-6cda-33eb-8e9a-044b5e15ffdd"),"Watch The Throne", "album",tracks,null));
+        albums.add(new Album(UUID.fromString("76df3287-6cda-33eb-8e9a-044b5e15ffdd"),"The Life of Pablo", "album", tracks, null));
 
         model.addAttribute("artist", artist);
         model.addAttribute("album", albums);
