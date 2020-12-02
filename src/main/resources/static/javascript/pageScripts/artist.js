@@ -6,7 +6,7 @@ $(document).ready(function(){
     getNews($("#artistName").text(), news);
     searchSpotify($("#artistName").text(), 'artist', artistImage);
 
-    $("body").niceScroll( {cursorborder:'none', cursor:"#FFFFFF", cursoropacitymax: 1});
+    // $("body").niceScroll( {cursorborder:'none', cursor:"#FFFFFF", cursoropacitymax: 1});
     $(".scroller").niceScroll({cursorborder:'none', cursor:"#FFFFFF", cursoropacitymax: 1});
 });
 
