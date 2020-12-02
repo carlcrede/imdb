@@ -4,6 +4,9 @@ $(document).ready(function(){
     });
     getNews($("#artistName").text(), news);
     searchSpotify($("#artistName").text(), 'artist', artistImage);
+    $("body").niceScroll({cursorborder:'none', cursor:"#C0C0C0", cursoropacitymax: 0.5});
+    $("#albumScroll").niceScroll({cursorborder:'none', cursor:"#C0C0C0", cursoropacitymax: 0.5});
+
 });
 
 let artistImage = function setArtistImage(data){

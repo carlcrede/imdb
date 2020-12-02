@@ -9,11 +9,12 @@
             integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/styles.css">
-    <script src="javascript/spotifyRepo.js"></script>
-    <script src="javascript/searchBar.js"></script>
-    <script src="javascript/CoverartArchiveRepo.js"></script>
-    <script src="javascript/artist.js"></script>
-    <script src="javascript/newsAPI.js"></script>
+    <script src="javascript/Apis/spotifyRepo.js"></script>
+    <script src="javascript/utilScripts/searchBar.js"></script>
+    <script src="javascript/Apis/CoverartArchiveRepo.js"></script>
+    <script src="javascript/pageScripts/artist.js"></script>
+    <script src="javascript/Apis/newsAPI.js"></script>
+    <script src="javascript/utilScripts/jquery.nicescroll.min.js"></script>
     <title>Artist</title>
     <style type="text/css">
         .loader
@@ -89,17 +90,19 @@
             <h2 class="display-4 text-light">Albums</h2>
         </div>
         <div class="scrollable p-3">
-                <div class="row">
-                    <div th:each=" album, count : ${album}" class="col-3 mx-3 p-0 text-light container" style="display: inline-block">
-                        <div class="card">
+                <div id="albumScroll" class="row">
+                    <div th:each=" album, count : ${album}" class="col-3 mx-3 p-0 text-light container align-top" style="display: inline-block">
+                        <div class="card" style="border:none">
                             <a data-toggle="collapse" th:href="'#'+${count.count}" role="button" aria-expanded="false" aria-controls="collapseExample">
                                 <div class="loader scaled card-body p-0">
                                     <img class="album rounded card-img-top" th:id="${album.mbid}" src="/img/blank.png" alt="Missing cover art">
-                                    <p class="card-text text-center" style="background-color: rgba(0, 0, 0, 0.5)" th:text="${album.title}"></p>
                                 </div>
                             </a>
+                        </div>
+                        <div style="white-space: nowrap">
+                            <h5 class="card-text text-center" th:text="${album.title}"></h5>
+                        </div>
                             <div class="collapse" th:id="${count.count}">
-                                <hr class="my-1 bg-dark">
                                 <div class="card-body">
                                     <h5 class="card-title text-light">Tracks</h5>
                                     <hr class="my-1 bg-light">
