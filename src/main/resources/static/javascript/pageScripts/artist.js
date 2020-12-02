@@ -29,8 +29,8 @@ $(document).ready(function(){
     // then calls the callback function 'setConcerts'
     getConcertsByArtist(artistName, concerts);
 
-    $("body").niceScroll( {cursorborder:'none', cursor:"#C0C0C0", cursoropacitymax: 0.5});
-    $(".scroller").niceScroll({cursorborder:'none', cursor:"#C0C0C0", cursoropacitymax: 0.5});
+    // $("body").niceScroll( {cursorborder:'none', cursor:"#FFFFFF", cursoropacitymax: 1});
+    $(".scroller").niceScroll({cursorborder:'none', cursor:"#FFFFFF", cursoropacitymax: 1});
 });
 
 /******************************

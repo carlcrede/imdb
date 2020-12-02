@@ -9,13 +9,23 @@ $(document).ready(function(){
         });
 
 function searchSpotify(query, type, callback){
-    console.log(accessToken);
     let endpoint  = "https://api.spotify.com/v1/search";
     $.ajax(endpoint, {
         headers: {Authorization: accessToken},
         data: {q: query, type:type},
         success: function(data){
             callback(data);}
+    })
+}
+
+function getTracksByAlbumId(id, name, callback){
+    let endpoint = "https://api.spotify.com/v1/albums/" + id + "/tracks";
+    $.ajax(endpoint, {
+        headers: {Authorization: accessToken},
+        data: {name: name},
+        success: function(data){
+            callback(data)
+        }
     })
 }
 
@@ -43,7 +53,7 @@ function getArtistById(id, callback){
     })
 }
 function getAlbumById(id, callback){
-    let endpoint = "https://api.spotify.com/v1/album/"+ id;
+    let endpoint = "https://api.spotify.com/v1/albums/"+ id;
     $.ajax(endpoint, {
         headers: {Authorization: accessToken},
         success: function(data){callback(data)}
