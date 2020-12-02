@@ -1,9 +1,26 @@
 body {
     background-color:rgb(56,56,56);
+    padding-top:2em;
+}
+
+.bg-dark{
+    background-color:#191919!important;
+}
+.bg-item{
+    background-color:#101010!important;
+}
+
+.borderx-dark{
+    border: solid #2D3111;
+    border-width: 1px 0px;
 }
 
 card {
     background-color: rgb(56,56,56);
+}
+
+li{
+    list-style-type: none;
 }
 
 /*.text-color {*/

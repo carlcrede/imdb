@@ -17,10 +17,7 @@
     <script src="javascript/utilScripts/jquery.nicescroll.min.js"></script>
     <title>Artist</title>
     <style type="text/css">
-        .loader
-        {
-            background: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.dribbble.com%2Fusers%2F65451%2Fscreenshots%2F2922226%2Fslider.gif&f=1&nofb=1') 50% 50% no-repeat rgba(0,0,0,0);
-        }
+        .loader {background: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.dribbble.com%2Fusers%2F65451%2Fscreenshots%2F2922226%2Fslider.gif&f=1&nofb=1') 50% 50% no-repeat rgba(0,0,0,0);}
 
         /* The heart of the matter */
         .scrollable > .row {
@@ -35,7 +32,7 @@
     </style>
 </head>
 <body class="bg-secondary ">
-    <div id="banner" class="bg-dark card">
+    <div id="banner" class="section bg-dark card">
         <div class="container">
             <div class="row">
                 <div class="col-sm mb-2">
@@ -86,48 +83,50 @@
             </div>
         </div>
     </div>
-    <div id="content" style="background-color: #313335">
+    <div class="section card" id="content" style="background-color: #313335">
         <div class="container">
             <h2 class="display-4 text-light">Albums</h2>
         </div>
         <div class="scrollable p-3">
-                <div id="albumScroll" class="row">
-                    <div th:each=" album, count : ${album}" class="col-3 mx-3 p-0 text-light container align-top" style="display: inline-block">
-                        <div class="card" style="border:none">
-                            <a data-toggle="collapse" th:href="'#'+${count.count}" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                <div class="loader scaled card-body p-0">
-                                    <img class="album rounded card-img-top" th:id="${album.mbid}" src="/img/blank.png" alt="Missing cover art">
-                                </div>
-                            </a>
-                        </div>
-                        <div style="white-space: nowrap">
-                            <h5 class="card-text text-center" th:text="${album.title}"></h5>
-                        </div>
-                            <div class="collapse" th:id="${count.count}">
-                                <div class="card-body">
-                                    <h5 class="card-title text-light">Tracks</h5>
-                                    <hr class="my-1 bg-light">
-                                    <div class="card-text text-light">
-                                        <div th:each=" track , count : ${album.tracks}">
-                                            <div th:text="${count.count}+'. '+${track.name}"></div>
-                                        </div>
-                                    </div>
+            <div id="albumScroll" class="scroller row">
+                <div th:each=" album, count : ${album}" class="col-3 mx-3 p-0 text-light container align-top" style="display: inline-block">
+                    <div class="card" style="border:none">
+                        <a data-toggle="collapse" th:href="'#'+${count.count}" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            <div class="loader scaled card-body p-0">
+                                <img class="album rounded card-img-top" th:id="${album.mbid}" src="/img/blank.png" alt="Missing cover art">
+                            </div>
+                        </a>
+                    </div>
+                    <div style="white-space: nowrap">
+                        <h5 class="card-text text-center" th:text="${album.title}"></h5>
+                    </div>
+                    <div class="collapse" th:id="${count.count}">
+                        <div class="card-body">
+                            <h5 class="card-title text-light">Tracks</h5>
+                            <hr class="my-1 bg-light">
+                            <div class="card-text text-light">
+                                <div th:each=" track , count : ${album.tracks}">
+                                    <div th:text="${count.count}+'. '+${track.name}"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
     </div>
-    <div class="container scrollable">
-        <h2 class="display-4 text-light">News</h2>
-        <div id="news" class="row">
+    <div class="section bg-dark card" id="newsContainer">
+        <div class="container-fluid">
+            <div class="container">
+                <h2 class="display-4 text-light">News</h2>
+            </div>
+            <div class="scrollable">
+                <div id="news" class="row scroller">
+                </div>
+            </div>
         </div>
     </div>
 <div id="loader" class="center"></div>
-<script>
-
-</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-dateFormat/1.0/jquery.dateFormat.min.js" integrity="sha512-YKERjYviLQ2Pog20KZaG/TXt9OO0Xm5HE1m/OkAEBaKMcIbTH1AwHB4//r58kaUDh5b1BWwOZlnIeo0vOl1SEA==" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

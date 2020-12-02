@@ -4,6 +4,9 @@ import kea.design.exam.imdb.models.Album;
 import kea.design.exam.imdb.models.Artist;
 import kea.design.exam.imdb.models.Track;
 import kea.design.exam.imdb.repository.external.SpotifyRepository;
+import kea.design.exam.imdb.repository.internal.service.AlbumService;
+import kea.design.exam.imdb.repository.internal.service.ArtistService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +19,10 @@ import java.util.UUID;
 @Controller
 public class Home {
     SpotifyRepository spotifyRepo;
+    @Autowired
+    ArtistService artistService;
+    @Autowired
+    AlbumService albumService;
 
     Home() {
         spotifyRepo = new SpotifyRepository("1d1caf5e2f0048abaaf3a5c6c6db18d9", "f0b2c475ad1f47aca16104715212a5b7");
@@ -29,47 +36,16 @@ public class Home {
 
     @GetMapping("/artist")
     public String artist(Model model) {
-        Artist artist = new Artist("10", "Kanye West", LocalDate.of(2010, 04, 20), LocalDate.now(), "Person", "Male", "Chicago",null, "10");
-        ArrayList<Album> albums = new ArrayList<>();
-        ArrayList<Track> tracks = new ArrayList<Track>();
-        tracks.add(new Track("3:40", "hey there"));
-        tracks.add(new Track("10:20", "rapping raps"));
 
-
-
-        albums.add(new Album(UUID.fromString("196bb188-d579-4f00-ac29-9a83a7dc1b9c"), "Watch The Throne", "album",tracks,null));
-        albums.add(new Album(UUID.fromString("03f03619-385a-4ed9-9974-cdcdf6404cf5"),"The Life of Pablo", "album", tracks, null));
-        albums.add(new Album(UUID.fromString("196bb188-d579-4f00-ac29-9a83a7dc1b9c"),"Watch The Throne", "album",tracks,null));
-        albums.add(new Album(UUID.fromString("03f03619-385a-4ed9-9974-cdcdf6404cf5"),"The Life of Pablo", "album", tracks, null));
-        albums.add(new Album(UUID.fromString("196bb188-d579-4f00-ac29-9a83a7dc1b9c"),"Watch The Throne", "album",tracks,null));
-        albums.add(new Album(UUID.fromString("03f03619-385a-4ed9-9974-cdcdf6404cf5"),"The Life of Pablo", "album", tracks, null));
-        albums.add(new Album(UUID.fromString("196bb188-d579-4f00-ac29-9a83a7dc1b9c"),"Watch The Throne", "album",tracks,null));
-        albums.add(new Album(UUID.fromString("03f03619-385a-4ed9-9974-cdcdf6404cf5"),"The Life of Pablo", "album", tracks, null));
-        albums.add(new Album(UUID.fromString("196bb188-d579-4f00-ac29-9a83a7dc1b9c"),"Watch The Throne", "album",tracks,null));
-        albums.add(new Album(UUID.fromString("03f03619-385a-4ed9-9974-cdcdf6404cf5"),"The Life of Pablo", "album", tracks, null));
-
-        model.addAttribute("artist", artist);
-        model.addAttribute("album", albums);
+        model.addAttribute("artist", artistService.findByid(""));
+        model.addAttribute("album", albumService.findAmountByQuery("", 10));
         return "artist";
     }
 
     @GetMapping("/album")
     public String album(Model model) {
-        Artist artist = new Artist("10", "Kanye West", LocalDate.of(2010, 04, 20), LocalDate.now(), "Person", "Male", "Chicago",null, "10");
-        ArrayList<Album> albums = new ArrayList<>();
-        ArrayList<Track> tracks = new ArrayList<Track>();
-        tracks.add(new Track("3:40", "hey there"));
-        tracks.add(new Track("10:20", "rapping raps"));
-
-        ArrayList<String> annotations = new ArrayList<>();
-        annotations.add("This is an annotation");
-        annotations.add("This also");
-        annotations.add("Hey bro!");
-
-        albums.add(new Album(UUID.fromString("196bb188-d579-4f00-ac29-9a83a7dc1b9c"), "Watch The Throne", "album",tracks,annotations));
-
-        model.addAttribute("artist", artist);
-        model.addAttribute("album", albums);
+        model.addAttribute("artist", artistService.findByid(" "));
+        model.addAttribute("album", albumService.findAmountByQuery(" ", 10));
         return "album";
     }
 }
