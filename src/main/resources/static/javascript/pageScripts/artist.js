@@ -1,10 +1,24 @@
-/****************************************************
- ****** EVERYTHING THAT MUST BE SET ON LOAD *********
- ****************************************************/
+/*************************
+ ******** INFO ***********
+ **************************/
 
-// EVERY FUNCTION (or at least those that have limits)  IS SUPPOSE TO HAVE AN IF-STATEMENT THAT CHECKS FOR THIS CONSTANT!
-// this variable is used to prevent unneccessary API calls. When developing / testing a specific function or functions,
-    // start by not having an if-statement that checks for this constant.
+// *** CORS - ISSUES ** //
+// Use cors-anywhere
+// If an API has strict CORS, add 'https://cors-anywhere.herokuapp.com to URL
+
+
+/****************************************************
+****** EVERYTHING THAT MUST BE SET ON ARTIST PAGE LOAD *********
+****************************************************/
+
+/* EVERY FUNCTION (or at least those that have limits)  IS SUPPOSE TO HAVE AN IF-STATEMENT THAT CHECKS FOR THIS CONSTANT!
+    For developement, it is always true, we only change it when pushing to productiion.
+    this variable is used to prevent unneccessary API calls. When developing / testing a specific function or functions,
+    start by not having an if-statement that checks for this constant.
+    After work is done on function(s), add if statement that checks for DEBUG constant.
+    See method 'getNews()' in newsAPI.js for reference.
+ */
+
 const DEBUG = true;
 
 $(document).ready(function(){
