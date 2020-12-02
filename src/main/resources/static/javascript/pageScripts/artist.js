@@ -73,12 +73,12 @@ let news = function setNews(data) {
             "           <img style='max-height: 200px' src='" + value.image.thumbnail + "' class='newsArticle card-img-top' alt='No image'>"  +
             "           <div class='card-text'>" + "<i>Source: " + value.provider.name +"</i></div>" +
             "           <div class='card-text'>" + "<i>Published: " + $.format.date(value.datePublished, 'dd/MM/yyyy HH:mm') + "</i></div>" +
-            "           <a href=" + value.url + ">Read more</a>" +
+            "           <a target='_blank' href=" + value.url + ">Read more</a>" +
             "       </div>" +
             "   </div>" +
             "</div>"
         );
-    })
+    });
     $("body").niceScroll().resize();
 };
 
@@ -89,10 +89,21 @@ let concerts = function setConcerts(data) {
     console.log(events);
     $.each(data.events.event, function (index, value) {
         $(".concerts").append(
-            "<li class='list-group-item bg-transparent'>" +
-                "<img alt='No thumb' src="+ value.image.url +">" +
-                "<div>" + value.title + "</div>" +
-                "<div>" + value.city_name + "</div>" +
+            "<li class='list-group-item bg-transparent card'>" +
+                "<div class='row no-gutters'>" +
+                    "<div class='col-2'>" +
+                        "<img class='card-img' alt='No thumb' src="+ value.image.medium.url +">" +
+                    "</div>" +
+                    "<div class='col'>" +
+                        "<div class='card-body'>" +
+                            "<h5 class='card-title'>" + value.title + ' @ ' + value.venue_name + "</h5>" +
+                            "<div class='card-text'>" + 'Location: ' + value.city_name + "</div>" +
+                            "<div class='card-text'>" + 'When: ' + $.format.date(value.start_time, 'dd/MM/yyyy HH:mm') + "</div>" +
+                            "<a class='btn btn-warning' target='_blank' href=" + value.url + ">Link to event</a> " +
+                            "<a class='btn btn-secondary' target='_blank' href=" + value.venue_url + ">Link to venue</a> " +
+                        "</div>" +
+                    "</div>" +
+                "</div>" +
             "</li>"
         )
     })
