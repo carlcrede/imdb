@@ -11,13 +11,11 @@ card {
 /*}*/
 
 .card-body{
-    padding: 4px;
     border-radius: 4px;
     background-color: rgb(56,56,56);
 }
 
 #albums .card {
-
     padding: 4px;
     border-color: transparent;
     background-color: transparent;

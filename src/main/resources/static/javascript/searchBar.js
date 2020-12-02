@@ -7,26 +7,24 @@ $(document).ready(function() {
 
 function createSearchbar(){
     $("body").prepend(
-        "<nav class='navbar navbar-light d-flex w-100 p-0' style='background-color:#000000;'>" +
-            "<div class='col-2'>" +
-                "<a href='#'>" +
-                    "<img src='https://upload.wikimedia.org/wikipedia/commons/6/69/IMDB_Logo_2016.svg' class='img-fluid d-inline-block align-top' style='max-height: 2em' alt=''>" +
-                "</a>" +
-            "</div>" +
-            "<div style='height:100%;' class='col-10'>" +
-                "<form id='searchForm'>" +
-                    "<div class='input-group row'>" +
-                        "<input id='searchQuery' class='form-control col-10' type='search' placeholder='Search' aria-label='Search' style='background-color:#000000'>" +
-                            "<select class='custom-select input-group-append' id='searchType' style='background-color: black'>" +
-                                "<option selected>Choose...</option>" +
-                                "<option value='artist'>Artist</option>" +
-                                "<option disabled='disabled' value='album'>Album</option>" +
-                                "<option disabled='disabled' value='track'>Track</option>" +
-                            "</select>" +
-                    "</div>" +
-                "</form>" +
-            "</div>" +
-        "</nav>")
+        "<div class='container-fluid' style='background-color:#000000;'>" +
+        "        <div class='row'>" +
+        "            <div class='navbar-brand'>" +
+        "                <a href='#'><img src='https://upload.wikimedia.org/wikipedia/commons/6/69/IMDB_Logo_2016.svg' class='img-fluid d-inline-block align-top' style='max-height: 2em' alt=''></a>" +
+        "            </div>" +
+        "            <div class='col input-group' style='text-align: center'>" +
+        "                <input id='searchQuery' class='form-control input-group-text' type='search' placeholder='Search' aria-label='Search' style='border:none; height:3em; background-color:#000000'>" +
+        "                <div class='input-group-append'>" +
+        "                    <select class='custom-select' id='searchType' style='height:3em; border:none; background-color: black'>" +
+        "                        <option selected>Choose...</option>" +
+        "                        <option value='artist'>Artist</option>" +
+        "                        <option disabled='disabled' value='album'>Album</option>" +
+        "                        <option disabled='disabled' value='track'>Track</option>" +
+        "                    </select>" +
+        "                </div>" +
+        "            </div>" +
+        "        </div>" +
+        "    </div>")
 }
 
 function getSearchResults(query, type) {
