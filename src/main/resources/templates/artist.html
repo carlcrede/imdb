@@ -14,6 +14,7 @@
     <script src="javascript/Apis/CoverartArchiveRepo.js"></script>
     <script src="javascript/pageScripts/artist.js"></script>
     <script src="javascript/Apis/newsAPI.js"></script>
+    <script src="javascript/Apis/eventfulAPI.js"></script>
     <script src="javascript/utilScripts/jquery.nicescroll.min.js"></script>
     <title>Artist</title>
     <style type="text/css">
@@ -117,15 +118,32 @@
     </div>
     <div class="section bg-dark card" id="newsContainer">
         <div class="container-fluid">
-            <div class="container">
-                <h2 class="display-4 text-light">News</h2>
-            </div>
-            <div class="scrollable">
-                <div id="news" class="row scroller">
+            <div class="row">
+            <div class="col-6">
+                <div class="container">
+                    <h2 class="display-4 text-light">News</h2>
                 </div>
+                <div class="scrollable">
+                    <div id="news" class="row scroller">
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="container">
+                    <h2 class="display-4 text-light">Concerts</h2>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                    <ul class="list-group list-group-flush text-light concerts">
+                        <li id="concertTest" class="list-group-item bg-transparent"></li>
+                    </ul>
+                    </div>
+                </div>
+            </div>
             </div>
         </div>
     </div>
+
 <div id="loader" class="center"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-dateFormat/1.0/jquery.dateFormat.min.js" integrity="sha512-YKERjYviLQ2Pog20KZaG/TXt9OO0Xm5HE1m/OkAEBaKMcIbTH1AwHB4//r58kaUDh5b1BWwOZlnIeo0vOl1SEA==" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

@@ -1,18 +1,20 @@
 function getNews(q, callback) {
-    let endpoint = 	"https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/search/NewsSearchAPI?pageSize=10&q="
-        + q.replaceAll(' ', '+')  + "&autoCorrect=false&pageNumber=1&toPublishedDate=null&fromPublishedDate=null&withThumbnails=true";
+    if (!DEBUG) {
+        let endpoint = "https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/search/NewsSearchAPI?pageSize=10&q="
+            + q.replaceAll(' ', '+') + "&autoCorrect=false&pageNumber=1&toPublishedDate=null&fromPublishedDate=null&withThumbnails=true";
         $.ajax(endpoint, {
-        async: true,
-        crossDomain: true,
-        method: "GET",
-        headers: {
-            "x-rapidapi-key": "7a31670570mshbe0a8f1713c6a85p1c1d4djsnac6d7f00ea34",
-            "x-rapidapi-host": "contextualwebsearch-websearch-v1.p.rapidapi.com"
-        },
-        success: function (data) {
-            callback(data);
-        }
-    })
+            async: true,
+            crossDomain: true,
+            method: "GET",
+            headers: {
+                "x-rapidapi-key": "7a31670570mshbe0a8f1713c6a85p1c1d4djsnac6d7f00ea34",
+                "x-rapidapi-host": "contextualwebsearch-websearch-v1.p.rapidapi.com"
+            },
+            success: function (data) {
+                callback(data);
+            }
+        })
+    }
 }
 
 /*function searchNewsByQuery(q) {

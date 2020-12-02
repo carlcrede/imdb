@@ -11,7 +11,7 @@ import java.util.List;
 public class ArtistService implements CrudService<Artist, String>{
     @Override
     public Artist findByid(String s) {
-        return new Artist("10", "Kanye West", LocalDate.of(2010, 04, 20), LocalDate.now(), "Person", "Male", "Chicago",null, "10");
+        return new Artist("10", "Justin Bieber", LocalDate.of(2010, 04, 20), LocalDate.now(), "Person", "Male", "Chicago",null, "10");
     }
 
     @Override
