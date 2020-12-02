@@ -9,7 +9,6 @@ $(document).ready(function(){
         });
 
 function searchSpotify(query, type, callback){
-    console.log(accessToken);
     let endpoint  = "https://api.spotify.com/v1/search";
     $.ajax(endpoint, {
         headers: {Authorization: accessToken},
