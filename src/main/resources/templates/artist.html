@@ -18,7 +18,7 @@
     <style type="text/css">
         .loader
         {
-            background: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.dribbble.com%2Fusers%2F65451%2Fscreenshots%2F2922226%2Fslider.gif&f=1&nofb=1') 50% 50% no-repeat rgb(249,249,249);
+            background: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.dribbble.com%2Fusers%2F65451%2Fscreenshots%2F2922226%2Fslider.gif&f=1&nofb=1') 50% 50% no-repeat rgba(0,0,0,0);
         }
 
         /* The heart of the matter */
@@ -48,7 +48,7 @@
                 </div>
                 <div class="col-5">
                     <div class="card">
-                        <div id="module" class="card-body">
+                        <div id="module" class="card-body container">
                             <h2 class="text-light">Biography</h2>
                             <p class="collapse text-light" id="collapseExample" aria-expanded="false">
                                 Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
@@ -60,7 +60,7 @@
                 </div>
                 <div class="col-4">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body container">
                             <h3 class="card-title text-warning" >Information</h3>
                             <div>
                                 <b class="text-warning">Type: </b>
@@ -84,18 +84,18 @@
             </div>
         </div>
     </div>
-    <div id="content" class="container-fluid" style="background-color: #313335">
+    <div id="content" style="background-color: #313335">
         <div class="container">
             <h2 class="display-4 text-light">Albums</h2>
         </div>
         <div class="scrollable p-3">
                 <div class="row">
-                    <div th:each=" album, count : ${album}" class="col-3 m-0 p-0 text-light card" style="display: inline-block">
+                    <div th:each=" album, count : ${album}" class="col-3 mx-3 p-0 text-light container" style="display: inline-block">
                         <div class="card">
                             <a data-toggle="collapse" th:href="'#'+${count.count}" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                <div class="loader scaled card-body">
+                                <div class="loader scaled card-body p-0">
                                     <img class="album rounded card-img-top" th:id="${album.mbid}" src="/img/blank.png" alt="Missing cover art">
-                                    <p class="card-text text-center" th:text="${album.title}"></p>
+                                    <p class="card-text text-center" style="background-color: rgba(0, 0, 0, 0.5)" th:text="${album.title}"></p>
                                 </div>
                             </a>
                             <div class="collapse" th:id="${count.count}">
