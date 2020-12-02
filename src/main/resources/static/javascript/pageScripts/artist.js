@@ -19,7 +19,7 @@
     See method 'getNews()' in newsAPI.js for reference.
  */
 
-const DEBUG = false;
+const DEBUG = true;
 
 $(document).ready(function(){
     let artistName = $("#artistName").text();
