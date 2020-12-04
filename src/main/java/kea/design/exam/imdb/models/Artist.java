@@ -30,10 +30,7 @@ public class Artist {
         this.spotifyId = spotifyId;
     }
 
-    public Artist(String id, String name){
-        this.id = id;
-        this.name = name;
-    }
+    public Artist(){}
 
     public String getId() {
         return id;
@@ -105,5 +102,20 @@ public class Artist {
 
     public void setSpotifyId(String spotifyId) {
         this.spotifyId = spotifyId;
+    }
+
+    @Override
+    public String toString() {
+        return "Artist{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", beginDate=" + beginDate +
+                ", endDate=" + endDate +
+                ", type='" + type + '\'' +
+                ", gender='" + gender + '\'' +
+                ", founded='" + founded + '\'' +
+                ", annotations=" + annotations +
+                ", spotifyId='" + spotifyId + '\'' +
+                '}';
     }
 }

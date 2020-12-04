@@ -3,11 +3,9 @@ package kea.design.exam.imdb.models;
 public class Track {
     private String length;
     private String name;
+    private String id;
 
-    public Track(String length, String name) {
-        this.length = length;
-        this.name = name;
-    }
+    public Track(){}
 
     public String getLength() {
         return length;
@@ -23,5 +21,13 @@ public class Track {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

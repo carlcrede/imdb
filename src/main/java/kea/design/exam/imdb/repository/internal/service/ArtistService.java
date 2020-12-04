@@ -1,29 +1,39 @@
 package kea.design.exam.imdb.repository.internal.service;
 
 import kea.design.exam.imdb.models.Artist;
+import kea.design.exam.imdb.repository.external.musicbrainz.MbArtist;
+import kea.design.exam.imdb.repository.internal.repository.ArtistRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
+
 
 @Service
 public class ArtistService implements CrudService<Artist, String>{
+    @Autowired
+    MbArtist externalRepo;
+
     @Override
-    public Artist findByid(String s) {
-        return new Artist("10", "Justin Bieber", LocalDate.of(2010, 04, 20), LocalDate.now(), "Person", "Male", "Chicago",null, "10");
+    public Artist findByid(String id) {
+        return externalRepo.getById(id);
     }
 
     @Override
     public List<Artist> findAmountByQuery(String query, int amount) {
-        ArrayList<Artist> artists = new ArrayList<>();
-        artists.add(new Artist("10", "Kanye West", LocalDate.of(2010, 04, 20), LocalDate.now(), "Person", "Male", "Chicago",null, "10"));
-        artists.add(new Artist("10", "Kanye West", LocalDate.of(2010, 04, 20), LocalDate.now(), "Person", "Male", "Chicago",null, "10"));
-        return artists;
+        return externalRepo.findByQuery(query, amount);
     }
 
     @Override
-    public List<Artist> findByQuery(String query) {
-        return null;
+    public void save(Artist artist) {
+
     }
+
+    @Override
+    public void delete(Artist artist) {
+
+    }
+
+
 }
