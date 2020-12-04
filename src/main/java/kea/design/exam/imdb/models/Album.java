@@ -1,25 +1,26 @@
 package kea.design.exam.imdb.models;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class Album {
-    private UUID mbid;
+    private String mbid;
     private String title;
     private String type;
-    ArrayList<String> annotations;
-    ArrayList<Track> tracks;
+    private List<String> annotations;
+    private List<Track> tracks;
+    private LocalDate releaseDate;
 
-    public Album(UUID mbid, String title, String type, ArrayList<Track> tracks, ArrayList<String> annotations) {
-        this.mbid = mbid;
-        this.title = title;
-        this.type = type;
-        this.tracks = tracks;
-        this.annotations = annotations;
+    public Album(){}
+
+    public String getMbid() {
+        return mbid;
     }
 
-    public UUID getMbid() {
-        return mbid;
+    public void setMbid(String mbid) {
+        this.mbid = mbid;
     }
 
     public String getTitle() {
@@ -38,15 +39,39 @@ public class Album {
         this.type = type;
     }
 
-    public ArrayList<String> getAnnotations() {
+    public List<String> getAnnotations() {
         return annotations;
     }
 
-    public void setAnnotations(ArrayList<String> annotations) {
+    public void setAnnotations(List<String> annotations) {
         this.annotations = annotations;
     }
 
-    public ArrayList<Track> getTracks() {
+    public List<Track> getTracks() {
         return tracks;
+    }
+
+    public void setTracks(List<Track> tracks) {
+        this.tracks = tracks;
+    }
+
+    public LocalDate getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(LocalDate releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Album{" +
+                "mbid='" + mbid + '\'' +
+                ", title='" + title + '\'' +
+                ", type='" + type + '\'' +
+                ", annotations=" + annotations +
+                ", tracks=" + tracks +
+                ", releaseDate=" + releaseDate +
+                '}';
     }
 }

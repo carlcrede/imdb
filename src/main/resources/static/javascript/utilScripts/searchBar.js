@@ -39,12 +39,14 @@ function getSearchResults(query, type) {
     if (query.length > 2) {
         $.ajax({
             url: "/search/" + type,
-            data: {query: query, amount: 10},
+            data: {query: query, amount: 5},
             success: function (data) {
                 $("#searchList").empty();
                 $.each(data, function (index, value) {
+                    let id = value.id;
                     searchSpotify(value.name, 'artist', function (data) {
                         $("#searchList").append("" +
+                            "<a href='artist?id="+id+"'>" +
                             "<li style='height:5em;' class='borderx-dark container-fluid p-1'>" +
                             "<div class='container-fluid row' style='height:100%'>" +
                             "<img class='mx-1' style='border-radius:100%; max-height: 100%; width:auto;' src='" + data.artists.items[0].images[0].url + "'>" +
@@ -53,7 +55,8 @@ function getSearchResults(query, type) {
                             "<p style='color:#D7B8B8'>" + value.type + " \t</p>" +
                             "</div>" +
                             "</div>" +
-                            "</li>");
+                            "</li>" +
+                            "</a>");
                     });
                 })
                 $("#searchResults").show();

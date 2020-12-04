@@ -72,7 +72,7 @@
                             </div>
                             <div>
                                 <b class="text-warning">Years active: </b>
-                                <span class="text-light" th:text="${artist.beginDate.getYear()}+' - '+${artist.endDate?.getYear()?:'present'}"></span>
+                                <span class="text-light" th:text="${artist.beginDate?.getYear()}+' - '+${artist.endDate?.getYear()?:'present'}"></span>
                             </div>
                             <div>
                                 <b class="text-warning">Founded in: </b>
@@ -115,26 +115,26 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="section bg-dark card" id="newsContainer">
-        <div class="container-fluid">
-            <div class="row">
-            <div class="col-6">
-                <div class="container">
-                    <h2 class="display-4 text-light">News</h2>
-                </div>
-                <div class="scrollable">
-                    <div id="news" class="row scroller">
+        <div class="section bg-dark card" id="newsContainer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="container">
+                            <h2 class="display-4 text-light">News</h2>
+                        </div>
+                        <div class="scrollable">
+                            <div id="news" class="row scroller">
+                            </div>
+                        </div>
+                    </div>
+                    <div style="max-height: 30em" class="col-6 overflow-auto">
+                        <div class="container">
+                            <h2 class="display-4 text-light">Concerts</h2>
+                        </div>
+                        <ul class="list-group list-group-flush text-light concerts card-body">
+                        </ul>
                     </div>
                 </div>
-            </div>
-            <div style="max-height: 30em" class="col-6 overflow-auto">
-                <div class="container">
-                    <h2 class="display-4 text-light">Concerts</h2>
-                </div>
-                <ul class="list-group list-group-flush text-light concerts card-body">
-                </ul>
-            </div>
             </div>
         </div>
     </div>

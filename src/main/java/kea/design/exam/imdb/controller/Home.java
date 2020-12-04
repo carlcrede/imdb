@@ -4,12 +4,14 @@ import kea.design.exam.imdb.models.Album;
 import kea.design.exam.imdb.models.Artist;
 import kea.design.exam.imdb.models.Track;
 import kea.design.exam.imdb.repository.external.SpotifyRepository;
+import kea.design.exam.imdb.repository.external.musicbrainz.MbArtist;
 import kea.design.exam.imdb.repository.internal.service.AlbumService;
 import kea.design.exam.imdb.repository.internal.service.ArtistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.time.LocalDate;
@@ -35,9 +37,8 @@ public class Home {
     }
 
     @GetMapping("/artist")
-    public String artist(Model model) {
-
-        model.addAttribute("artist", artistService.findByid(""));
+    public String artist(@RequestParam String id, Model model) {
+        model.addAttribute("artist", artistService.findByid(id));
         model.addAttribute("album", albumService.findAmountByQuery("", 10));
         return "artist";
     }
@@ -47,5 +48,12 @@ public class Home {
         model.addAttribute("artist", artistService.findByid(" "));
         model.addAttribute("album", albumService.findAmountByQuery(" ", 10));
         return "album";
+    }
+
+    @GetMapping("/mbtest")
+    public String test(@RequestParam String id){
+        MbArtist artist = new MbArtist();
+        artist.getById(id);
+        return "index";
     }
 }
