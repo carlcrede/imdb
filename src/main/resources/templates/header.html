@@ -16,7 +16,8 @@
     </div>
     <div class="row">
         <div class="col">
-            <a class="btn btn-info" sec:authorize="!isAuthenticated()" href="/login">Login</a>
+            <a class="btn btn-success" sec:authorize="!isAuthenticated()" href="/login">Login</a>
+            <a class="btn btn-info" sec:authorize="!isAuthenticated()" href="/register">Register</a>
             <a class="btn btn-danger" sec:authorize="isAuthenticated()" href="/logout">Logout</a>
         </div>
     </div>
