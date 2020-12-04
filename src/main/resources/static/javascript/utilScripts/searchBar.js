@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    createSearchbar();
+    //createSearchbar();
     $("#searchQuery").keypress(function(){
         getSearchResults($("#searchQuery").val(), $("#searchType").val());
     })
@@ -9,7 +9,7 @@ function hideResults(){
     $("#searchResults").hide();
 }
 
-function createSearchbar(){
+/*function createSearchbar(){
     $("body").prepend(
         "<div class='container-fluid' style='position:fixed; z-index:1000; top:0; background-color:#000000;'>" +
         "        <div class='row'>" +
@@ -33,7 +33,7 @@ function createSearchbar(){
         "           <div class='w-100 p-0' style='cursor:pointer; text-align:center; height:1em' onclick='hideResults()'><img class='align-top' style='height:100%; width:auto;' src='/img/triangle.png'></div>" +
         "       </div>" +
         "    </div>")
-}
+}*/
 
 function getSearchResults(query, type) {
     if (query.length > 2) {
