@@ -1,6 +1,6 @@
 function getNews(q, callback) {
     if (!DEBUG) {
-        let endpoint = "https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/search/NewsSearchAPI?pageSize=10&q="
+        let endpoint = "https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/search/NewsSearchAPI?pageSize=5&q="
             + q.replaceAll(' ', '+') + "&autoCorrect=false&pageNumber=1&toPublishedDate=null&fromPublishedDate=null&withThumbnails=true";
         $.ajax(endpoint, {
             async: true,

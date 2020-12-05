@@ -23,6 +23,11 @@ const DEBUG = true;
 
 $(document).ready(function(){
     let artistName = $("#artistName").text();
+
+    // makes call to Eventfull API search endpoint, to find future concerts for the artist
+    // then calls the callback function 'setConcerts'
+    getConcertsByArtist(artistName, concerts);
+
     // makes call to coverArtArchive API and then sets cover art for each album.
     // the search is done using the MBID for the release-group, and then we choose the first result.
     // should be fairly accurate
@@ -38,10 +43,6 @@ $(document).ready(function(){
     // makes call to spotify API's search endpoint, and then calls out callback function 'setArtistImage'
     // there is a limit of 500 requests / day - so if it is exceeded, we need a new API key.
     getNews(artistName, news);
-
-    // makes call to Eventfull API search endpoint, to find future concerts for the artist
-    // then calls the callback function 'setConcerts'
-    getConcertsByArtist(artistName, concerts);
 
     // $("body").niceScroll( {cursorborder:'none', cursor:"#FFFFFF", cursoropacitymax: 1});
     $(".scroller").niceScroll({cursorborder:'none', cursor:"#FFFFFF", cursoropacitymax: 1});
@@ -66,11 +67,10 @@ let artistImage = function setArtistImage(data){
 let news = function setNews(data) {
     $.each(data.value, function (index, value) {
         $("#news").append(
-            "<div class='col-4 news'>" +
+            "<div class='col news'>" +
             "   <div class='card'>" +
             "       <div class='card-body text-light'>" +
             "           <p id='title' class='card-title text-center'>" + value.title + "</p>" +
-            "           <img style='max-height: 200px' src='" + value.image.thumbnail + "' class='newsArticle card-img-top' alt='No image'>"  +
             "           <div class='card-text'>" + "<i>Source: " + value.provider.name +"</i></div>" +
             "           <div class='card-text'>" + "<i>Published: " + $.format.date(value.datePublished, 'dd/MM/yyyy HH:mm') + "</i></div>" +
             "           <a target='_blank' href=" + value.url + ">Read more</a>" +
@@ -90,20 +90,15 @@ let concerts = function setConcerts(data) {
     $.each(data.events.event, function (index, value) {
         $(".concerts").append(
             "<li class='list-group-item bg-transparent card'>" +
-                "<div class='row no-gutters'>" +
-                    "<div class='col-2'>" +
-                        "<img class='card-img' alt='No thumb' src="+ value.image.medium.url +">" +
-                    "</div>" +
-                    "<div class='col'>" +
+
+                    "<div class='col text-light'>" +
                         "<div class='card-body'>" +
                             "<h5 class='card-title'>" + value.title + ' @ ' + value.venue_name + "</h5>" +
-                            "<div class='card-text'>" + 'Location: ' + value.city_name + "</div>" +
-                            "<div class='card-text'>" + 'When: ' + $.format.date(value.start_time, 'dd/MM/yyyy HH:mm') + "</div>" +
-                            "<a class='btn btn-warning' target='_blank' href=" + value.url + ">Link to event</a> " +
-                            "<a class='btn btn-secondary' target='_blank' href=" + value.venue_url + ">Link to venue</a> " +
+                            "<a class='btn btn-sm btn-warning' target='_blank' href=" + value.url + ">Link to event</a> " +
+                            "<a class='btn btn-sm btn-secondary' target='_blank' href=" + value.venue_url + ">Link to venue</a> " +
                         "</div>" +
                     "</div>" +
-                "</div>" +
+
             "</li>"
         )
     })
