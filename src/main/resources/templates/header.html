@@ -19,6 +19,7 @@
             <a class="btn btn-success" sec:authorize="!isAuthenticated()" href="/login">Login</a>
             <a class="btn btn-info" sec:authorize="!isAuthenticated()" href="/register">Register</a>
             <a class="btn btn-danger" sec:authorize="isAuthenticated()" href="/logout">Logout</a>
+            <a class="btn btn-info" sec:authorize="isAuthenticated()" href="/profile">Profile</a>
         </div>
     </div>
     <div id="searchResults" class="row bg-item" style="display: none">
