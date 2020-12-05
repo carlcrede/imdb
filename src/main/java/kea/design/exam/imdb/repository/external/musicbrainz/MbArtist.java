@@ -36,6 +36,7 @@ public class MbArtist {
     }
 
     public List<Artist> findByQuery(String query, int amount){
+        artist.getSearchFilter().setMinScore((long)100);
         artist.search(query);
         artist.getSearchFilter().setLimit((long) amount);
         List<ArtistResultWs2> artistWs2s = artist.getFirstSearchResultPage();

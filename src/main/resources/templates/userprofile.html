@@ -19,7 +19,14 @@
 </head>
 <div th:replace="/header.html"></div>
 <body>
-<p sec:authentication="name"></p>
+
+<div class="container">
+    <div class="row">
+        <h1 class="display-1" sec:authentication="name"></h1>
+    </div>
+</div>
+
+
 <div id="loader" class="center"></div>
 </body>
 </html>

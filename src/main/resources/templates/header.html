@@ -20,6 +20,13 @@
             <a class="btn btn-info" sec:authorize="!isAuthenticated()" href="/register">Register</a>
             <a class="btn btn-danger" sec:authorize="isAuthenticated()" href="/logout">Logout</a>
             <a class="btn btn-info" sec:authorize="isAuthenticated()" href="/profile">Profile</a>
+
+        </div>
+        <div class="col-5">
+            <a class="btn" style="background-color: rgb(50,50,50); color: #fffafa;">News</a>
+            <a class="btn" style="background-color: rgb(50,50,50); color: snow;">Concerts</a>
+            <a class="btn" style="background-color: rgb(50,50,50); color: snow;">Albums</a>
+            <a class="btn" style="background-color: rgb(50,50,50); color: snow;">Artists</a>
         </div>
     </div>
     <div id="searchResults" class="row bg-item" style="display: none">
