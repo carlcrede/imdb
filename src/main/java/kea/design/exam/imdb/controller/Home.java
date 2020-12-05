@@ -56,11 +56,8 @@ public class Home {
         return "album";
     }
 
-    GetMapping("/userprofile")
+    @GetMapping("/profile")
     public String userprofile() {
-
-
-
         return "/userprofile";
     }
 
