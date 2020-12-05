@@ -39,7 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.logout()
                 .logoutSuccessUrl("/");
-
+        http.rememberMe();
         http
                 .authorizeRequests()
                 .antMatchers("/login")
