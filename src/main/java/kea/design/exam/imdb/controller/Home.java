@@ -56,6 +56,14 @@ public class Home {
         return "album";
     }
 
+    GetMapping("/userprofile")
+    public String userprofile() {
+
+
+
+        return "/userprofile";
+    }
+
     @GetMapping("/mbtest")
     public String test(@RequestParam String id){
         MbArtist artist = new MbArtist();
