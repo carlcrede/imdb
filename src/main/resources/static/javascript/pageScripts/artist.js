@@ -42,7 +42,7 @@ $(document).ready(function(){
 
     // makes call to spotify API's search endpoint, and then calls out callback function 'setArtistImage'
     // there is a limit of 500 requests / day - so if it is exceeded, we need a new API key.
-    getNews(artistName, news);
+    getNews(artistName, 5, news);
 
     // $("body").niceScroll( {cursorborder:'none', cursor:"#FFFFFF", cursoropacitymax: 1});
     $(".scroller").niceScroll({cursorborder:'none', cursor:"#FFFFFF", cursoropacitymax: 1});
@@ -65,14 +65,15 @@ let artistImage = function setArtistImage(data){
 // callback funtion for setting artist news on load.
 // connects with Web Search API - limit of 500 request / day.
 let news = function setNews(data) {
+    console.log(data);
     $.each(data.value, function (index, value) {
         $("#news").append(
             "<div class='col news'>" +
             "   <div class='card'>" +
             "       <div class='card-body text-light'>" +
             "           <p id='title' class='card-title text-center'>" + value.title + "</p>" +
-            "           <div class='card-text'>" + "<i>Source: " + value.provider.name +"</i></div>" +
-            "           <div class='card-text'>" + "<i>Published: " + $.format.date(value.datePublished, 'dd/MM/yyyy HH:mm') + "</i></div>" +
+            "           <div class='card-text'>" + "<i>Source: " + value.source.name +"</i></div>" +
+            "           <div class='card-text'>" + "<i>Published: " + $.format.date(value.publishedAt, 'dd/MM/yyyy HH:mm') + "</i></div>" +
             "           <a target='_blank' href=" + value.url + ">Read more</a>" +
             "       </div>" +
             "   </div>" +
@@ -85,21 +86,31 @@ let news = function setNews(data) {
 // callback function for setting artist concerts on load.
 // connects with Eventful API
 let concerts = function setConcerts(data) {
-    let events = data.events.event;
-    console.log(events);
-    $.each(data.events.event, function (index, value) {
+    if (data.events) {
+        let events = data.events.event;
+        console.log(events);
+        $.each(data.events.event, function (index, value) {
+            $(".concerts").append(
+                "<li class='list-group-item bg-transparent card'>" +
+                "<div class='col text-light'>" +
+                "<div class='card-body'>" +
+                "<h5 class='card-title'>" + value.title + ' @ ' + value.venue_name + "</h5>" +
+                "<a class='btn btn-sm btn-warning' target='_blank' href=" + value.url + ">Link to event</a> " +
+                "<a class='btn btn-sm btn-secondary' target='_blank' href=" + value.venue_url + ">Link to venue</a> " +
+                "</div>" +
+                "</div>" +
+                "</li>"
+            )
+        })
+    } else {
         $(".concerts").append(
             "<li class='list-group-item bg-transparent card'>" +
-
-                    "<div class='col text-light'>" +
-                        "<div class='card-body'>" +
-                            "<h5 class='card-title'>" + value.title + ' @ ' + value.venue_name + "</h5>" +
-                            "<a class='btn btn-sm btn-warning' target='_blank' href=" + value.url + ">Link to event</a> " +
-                            "<a class='btn btn-sm btn-secondary' target='_blank' href=" + value.venue_url + ">Link to venue</a> " +
-                        "</div>" +
+                "<div class='col text-light'>" +
+                    "<div class='card-body'>" +
+                        "<h5 class='card-title'>No upcoming concerts announced</h5>" +
                     "</div>" +
-
+                "</div>" +
             "</li>"
         )
-    })
+    }
 };

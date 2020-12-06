@@ -1,6 +1,7 @@
-let key = "kqfXDcg7Bf7v6Lrm";
+let key_event = "kqfXDcg7Bf7v6Lrm";
 function getConcertsByArtist(artist, callback) {
-    let url = "https://cors-anywhere.herokuapp.com/http://api.eventful.com/json/events/search?q=performer%3A%22" + artist.replaceAll(' ', '+') + "%22&l=&page_size=3&sort_order=date&c=music&app_key=" + key;
+    let url = "https://cors-anywhere.herokuapp.com/http://api.eventful.com/json/events/search?q=performer%3A%22" +
+        artist.replaceAll(' ', '+') + "%22&l=&page_size=3&sort_order=date&c=music&app_key=" + key_event;
     $.get(url, {}, function (data) {
         let dat = JSON.parse(data);
         callback(dat);

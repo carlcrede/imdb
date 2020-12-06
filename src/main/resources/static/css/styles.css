@@ -1,8 +1,8 @@
 body {
     background-color:rgb(56,56,56);
-    padding-top:2em;
+    padding-top:6.5em;
     color: honeydew;
-    font-size: 14px;
+    font-size: 0.8em;
 }
 
 .bg-dark{
@@ -50,7 +50,7 @@ li{
 }
 
 #module {
-    font-size: 1rem;
+    /*font-size: 1rem;*/
     line-height: 1.5;
 }
 
