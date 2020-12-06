@@ -68,6 +68,17 @@ public class Home {
         return "index";
     }
 
+    @GetMapping("/concerts")
+    public String concerts() {
+        return "/concerts";
+    }
+
+    @GetMapping("/concerts/artist")
+    public String concertsForArtist(@RequestParam String artist, Model model) {
+        model.addAttribute("artist", artist);
+        return "/concerts";
+    }
+
     @GetMapping("/register")
     public String registerPage() {
         return "register";
