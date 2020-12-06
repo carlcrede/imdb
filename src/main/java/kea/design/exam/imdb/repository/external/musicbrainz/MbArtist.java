@@ -19,7 +19,7 @@ public class MbArtist {
     public MbArtist(){
         artist = new org.musicbrainz.controller.Artist();
 
-        artist.getIncludes().setReleaseGroups(false);
+        artist.getIncludes().setReleaseGroups(true);
         artist.getIncludes().setReleases(false);
         artist.getIncludes().setRecordings(false);
         artist.getIncludes().setVariousArtists(false);
@@ -28,7 +28,7 @@ public class MbArtist {
 
     public Artist getById(String id){
         try {
-            return parseWebSearch(artist.getComplete(id));
+            return parseWebSearch(artist.lookUp(id));
         } catch (MBWS2Exception e) {
             e.printStackTrace();
         }
@@ -36,6 +36,7 @@ public class MbArtist {
     }
 
     public List<Artist> findByQuery(String query, int amount){
+        artist = new org.musicbrainz.controller.Artist();
         artist.getSearchFilter().setMinScore((long)100);
         artist.search(query);
         artist.getSearchFilter().setLimit((long) amount);
@@ -52,6 +53,8 @@ public class MbArtist {
        Artist artist = new Artist();
        artist.setId(artistWs2.getId());
        artist.setName(artistWs2.getName());
+
+       artistWs2.getReleaseGroupList().getReleaseGroups().forEach(System.out::println);
 
         LifeSpanWs2 life = artistWs2.getLifeSpan();
         if(life != null) {
