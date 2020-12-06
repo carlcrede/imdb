@@ -37,9 +37,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     */
 
     protected void configure(HttpSecurity http) throws Exception {
+
         http.logout()
                 .logoutSuccessUrl("/");
+
+        // adds cookie to browser, so user is remembered between sessions
+        // TODO: find out how long the cookie lasts
         http.rememberMe();
+
         http
                 .authorizeRequests()
                 .antMatchers("/login")
