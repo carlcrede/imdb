@@ -69,12 +69,15 @@
                                 <span class="text-light" th:text="${artist.type}"></span>
                             </div>
                             <div>
-                                <b class="text-warning">Gender: </b>
-                                <span class="text-light" th:text="${artist.gender}"></span>
+<!--                                <th:block th:if="${user.gender eq 'M'}">Male</th:block>-->
+                                <b>
+                                    <th:span th:if="${not #strings.startsWith(artist.type ,'Group')}" class="text-warning">Gender: </th:span>
+                                </b>
+                                <th:span class="text-light" th:if="${not #strings.startsWith(artist.type ,'Group')}" th:text="${artist.gender}"></th:span>
                             </div>
                             <div>
                                 <b class="text-warning">Years active: </b>
-                                <span class="text-light" th:text="${artist.beginDate?.getYear()}+' - '+${artist.endDate?.getYear()?:'present'}"></span>
+                                <span class="text-light" th:text="${artist.beginDate?.getYear()?:'unknown'}+' - '+${artist.endDate?.getYear()?:'present'}"></span>
                             </div>
                             <div>
                                 <b class="text-warning">Founded in: </b>

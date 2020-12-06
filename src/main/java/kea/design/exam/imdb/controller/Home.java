@@ -61,6 +61,11 @@ public class Home {
         return "/userprofile";
     }
 
+    @GetMapping("/news")
+    public String newsSite() {
+        return "/newsPage.html";
+    }
+
     @GetMapping("/mbtest")
     public String test(@RequestParam String id){
         MbArtist artist = new MbArtist();
