@@ -14,14 +14,26 @@ import org.musicbrainz.model.MediumWs2;
 import org.musicbrainz.model.TrackListWs2;
 import org.musicbrainz.model.TrackWs2;
 import org.musicbrainz.model.entity.DiscWs2;
+import org.musicbrainz.model.entity.RecordingWs2;
 import org.musicbrainz.model.entity.ReleaseWs2;
 import org.musicbrainz.model.entity.listelement.DiscListWs2;
 import org.musicbrainz.model.entity.listelement.ReleaseListWs2;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class MbTrack {
+    public Track getTrackById(String id){
+        Recording recording = new Recording();
+        try {
+            return parseRecording(recording.lookUp(id));
+        } catch (MBWS2Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     public List<Track> getTracksForAlbum(Album album){
         try {
             ReleaseGroup releaseGroup = new ReleaseGroup();
@@ -49,7 +61,7 @@ public class MbTrack {
             ReleaseWs2 fullAlbum = release.lookUp(releaseList.get(index));
             List<TrackWs2> websearch = fullAlbum.getMediumList().getCompleteTrackList();
             for (TrackWs2 webTrack: websearch) {
-                tracks.add(parseWebsearch(webTrack));
+                tracks.add(parseTrack(webTrack));
             }
             return tracks;
         } catch (MBWS2Exception e) {
@@ -58,7 +70,15 @@ public class MbTrack {
         return null;
     }
 
-    private Track parseWebsearch(TrackWs2 webTrack){
+    private Track parseRecording(RecordingWs2 recordingWs2){
+        Track track = new Track();
+        track.setName(recordingWs2.getTitle());
+        track.setLength(recordingWs2.getDuration());
+        track.setId(recordingWs2.getId());
+        return track;
+    }
+
+    private Track parseTrack(TrackWs2 webTrack){
         Track track = new Track();
         track.setId(webTrack.getRecording().getId());
         track.setName(webTrack.getRecording().getTitle());
