@@ -1,8 +1,11 @@
 package kea.design.exam.imdb.repositoryTest;
 
+import kea.design.exam.imdb.models.Album;
 import kea.design.exam.imdb.models.Artist;
+import kea.design.exam.imdb.models.Track;
 import kea.design.exam.imdb.repository.external.musicbrainz.MbAlbum;
 import kea.design.exam.imdb.repository.external.musicbrainz.MbArtist;
+import kea.design.exam.imdb.repository.external.musicbrainz.MbTrack;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -34,11 +37,28 @@ public class MbRepoTest {
     }
 
     @Test
-    public void mbGetArtistsAlbums(){
+    public void mbGetArtistsAlbums() {
         MbArtist artistRepo = new MbArtist();
         Artist artist = artistRepo.getById("f82bcf78-5b69-4622-a5ef-73800768d9ac");
 
         MbAlbum albumRepo = new MbAlbum();
-        albumRepo.getAlbumFromArtist(artist.getId()).forEach(System.out::println);
+        Assertions.assertTrue(albumRepo.getAlbumFromArtist(artist).size() > 150);
+    }
+
+    @Test
+    public void mbGetTracksFromAlbum(){
+        MbAlbum albumRepo = new MbAlbum();
+        //getter Jay-Z's the black album
+        Album album = albumRepo.getById("77befaa0-662e-3d84-ba45-c862e16dc109");
+
+        //checks if the black album has a song called "allure" which it does
+        MbTrack trackRepo = new MbTrack();
+        boolean hasAllure = false;
+        for (Track track: trackRepo.getTracksForAlbum(album)) {
+            if(track.getName().toLowerCase().equals("allure")){
+                hasAllure = true;
+            }
+        }
+        Assertions.assertTrue(hasAllure);
     }
 }
