@@ -1,15 +1,17 @@
-function getNews(q, callback) {
+let domains = [
+    "rollingstone.com", "billboard.com", "metacritic.com", "music-news.com",
+    "pitchfork.com", "fm.tv", "edm.com", "metalunderground.com", "ultimateclassicrock.com", "youredm.com", "nme.com",
+    "mtv.com", "digitalmusicnews.com"
+    ];
+let key_news = "60da648bf5674318bb72968b1dbbc553";
+let endpoint = "https://newsapi.org/v2/everything?qInTitle=%22";
+
+function getNews(q, pageSize, callback) {
     if (!DEBUG) {
-        let endpoint = "https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/search/NewsSearchAPI?pageSize=5&q="
-            + q.replaceAll(' ', '+') + "&autoCorrect=false&pageNumber=1&toPublishedDate=null&fromPublishedDate=null&withThumbnails=true";
-        $.ajax(endpoint, {
+        let url = endpoint + q.replaceAll(' ', '+') + "%22&" + pageSize + "&" + domains.join(',') + "&language=en" + "&apiKey=" + key_news;
+        $.ajax(url, {
             async: true,
-            crossDomain: true,
             method: "GET",
-            headers: {
-                "x-rapidapi-key": "7a31670570mshbe0a8f1713c6a85p1c1d4djsnac6d7f00ea34",
-                "x-rapidapi-host": "contextualwebsearch-websearch-v1.p.rapidapi.com"
-            },
             success: function (data) {
                 callback(data);
             }
