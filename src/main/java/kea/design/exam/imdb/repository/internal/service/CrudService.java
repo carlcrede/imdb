@@ -5,6 +5,6 @@ import java.util.List;
 public interface CrudService<T, ID> {
     public T findByid(ID id);
     public List<T> findAmountByQuery(String query, int amount);
-    public void save(T t);
+    public T save(T t);
     public void delete(T t);
 }

@@ -14,19 +14,16 @@ import java.util.List;
 
 @Repository
 public class MbArtist {
-    org.musicbrainz.controller.Artist artist;
 
-    public MbArtist(){
-        artist = new org.musicbrainz.controller.Artist();
 
+    public Artist getById(String id){
+        org.musicbrainz.controller.Artist artist = new org.musicbrainz.controller.Artist();
         artist.getIncludes().setReleaseGroups(true);
         artist.getIncludes().setReleases(false);
         artist.getIncludes().setRecordings(false);
         artist.getIncludes().setVariousArtists(false);
         artist.getIncludes().setWorks(false);
-    }
 
-    public Artist getById(String id){
         try {
             return parseWebSearch(artist.lookUp(id));
         } catch (MBWS2Exception e) {
@@ -36,7 +33,14 @@ public class MbArtist {
     }
 
     public List<Artist> findByQuery(String query, int amount){
-        artist = new org.musicbrainz.controller.Artist();
+        org.musicbrainz.controller.Artist artist = new org.musicbrainz.controller.Artist();
+        artist.getIncludes().setReleaseGroups(true);
+        artist.getIncludes().setReleases(false);
+        artist.getIncludes().setRecordings(false);
+        artist.getIncludes().setVariousArtists(false);
+        artist.getIncludes().setWorks(false);
+
+
         artist.getSearchFilter().setMinScore((long)100);
         artist.search(query);
         artist.getSearchFilter().setLimit((long) amount);

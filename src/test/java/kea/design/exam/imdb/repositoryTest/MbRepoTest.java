@@ -42,7 +42,7 @@ public class MbRepoTest {
         Artist artist = artistRepo.getById("f82bcf78-5b69-4622-a5ef-73800768d9ac");
 
         MbAlbum albumRepo = new MbAlbum();
-        Assertions.assertTrue(albumRepo.getAlbumFromArtist(artist).size() > 150);
+        Assertions.assertTrue(albumRepo.findAlbumsByArtist(artist).size() > 150);
     }
 
     @Test

@@ -1,11 +1,23 @@
 package kea.design.exam.imdb.models;
 
+import javax.persistence.*;
+
+@Entity
 public class Track {
+    @Id
+    private String id;
     private String length;
     private String name;
-    private String id;
+    @ManyToOne
+    private Album album;
 
-    public Track(){}
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getLength() {
         return length;
@@ -23,20 +35,11 @@ public class Track {
         this.name = name;
     }
 
-    public String getId() {
-        return id;
+    public Album getAlbum() {
+        return album;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    @Override
-    public String toString() {
-        return "Track{" +
-                "length='" + length + '\'' +
-                ", name='" + name + '\'' +
-                ", id='" + id + '\'' +
-                '}';
+    public void setAlbum(Album album) {
+        this.album = album;
     }
 }

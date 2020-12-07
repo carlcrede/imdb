@@ -1,10 +1,13 @@
 package kea.design.exam.imdb.models;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
+@Entity
 public class Artist {
-
+    @Id
     private String id;
     private String name;
 
@@ -12,25 +15,15 @@ public class Artist {
     private LocalDate endDate;
     private String type;
     private String gender;
-
     private String founded;
-    private ArrayList<String> annotations;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<Annotation> annotations;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Album> albums;
 
     private String spotifyId;
-
-    public Artist(String id, String name, LocalDate beginDate, LocalDate endDate, String type, String gender, String founded, ArrayList<String> annotations, String spotifyId) {
-        this.id = id;
-        this.name = name;
-        this.beginDate = beginDate;
-        this.endDate = endDate;
-        this.type = type;
-        this.gender = gender;
-        this.founded = founded;
-        this.annotations = annotations;
-        this.spotifyId = spotifyId;
-    }
-
-    public Artist(){}
 
     public String getId() {
         return id;
@@ -88,12 +81,20 @@ public class Artist {
         this.founded = founded;
     }
 
-    public ArrayList<String> getAnnotations() {
+    public List<Annotation> getAnnotations() {
         return annotations;
     }
 
-    public void setAnnotations(ArrayList<String> annotations) {
+    public void setAnnotations(List<Annotation> annotations) {
         this.annotations = annotations;
+    }
+
+    public List<Album> getAlbums() {
+        return albums;
+    }
+
+    public void setAlbums(List<Album> albums) {
+        this.albums = albums;
     }
 
     public String getSpotifyId() {
@@ -102,20 +103,5 @@ public class Artist {
 
     public void setSpotifyId(String spotifyId) {
         this.spotifyId = spotifyId;
-    }
-
-    @Override
-    public String toString() {
-        return "Artist{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", beginDate=" + beginDate +
-                ", endDate=" + endDate +
-                ", type='" + type + '\'' +
-                ", gender='" + gender + '\'' +
-                ", founded='" + founded + '\'' +
-                ", annotations=" + annotations +
-                ", spotifyId='" + spotifyId + '\'' +
-                '}';
     }
 }

@@ -1,19 +1,29 @@
 package kea.design.exam.imdb.models;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
+@Entity
 public class Album {
+    @Id
     private String mbid;
+
     private String title;
     private String type;
-    private List<String> annotations;
-    private List<Track> tracks;
     private LocalDate releaseDate;
 
-    public Album(){}
+    @OneToMany(fetch = FetchType.EAGER)
+    private Set<Annotation> annotations;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Track> tracks;
+
+    @ManyToOne
+    private Artist artist;
 
     public String getMbid() {
         return mbid;
@@ -39,11 +49,19 @@ public class Album {
         this.type = type;
     }
 
-    public List<String> getAnnotations() {
+    public LocalDate getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(LocalDate releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public Set<Annotation> getAnnotations() {
         return annotations;
     }
 
-    public void setAnnotations(List<String> annotations) {
+    public void setAnnotations(Set<Annotation> annotations) {
         this.annotations = annotations;
     }
 
@@ -55,23 +73,11 @@ public class Album {
         this.tracks = tracks;
     }
 
-    public LocalDate getReleaseDate() {
-        return releaseDate;
+    public Artist getArtist() {
+        return artist;
     }
 
-    public void setReleaseDate(LocalDate releaseDate) {
-        this.releaseDate = releaseDate;
-    }
-
-    @Override
-    public String toString() {
-        return "Album{" +
-                "mbid='" + mbid + '\'' +
-                ", title='" + title + '\'' +
-                ", type='" + type + '\'' +
-                ", annotations=" + annotations +
-                ", tracks=" + tracks +
-                ", releaseDate=" + releaseDate +
-                '}';
+    public void setArtist(Artist artist) {
+        this.artist = artist;
     }
 }

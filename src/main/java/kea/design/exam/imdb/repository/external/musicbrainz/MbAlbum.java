@@ -21,13 +21,9 @@ import java.util.List;
 
 @Repository
 public class MbAlbum {
-    ReleaseGroup releaseGroup;
-
-    public MbAlbum(){
-        releaseGroup = new ReleaseGroup();
-    }
 
     public Album getById(String id){
+        ReleaseGroup releaseGroup = new ReleaseGroup();
         try {
             return parseWebSearch(releaseGroup.lookUp(id));
         } catch (MBWS2Exception e) {
@@ -37,6 +33,7 @@ public class MbAlbum {
     }
 
     public List<Album> findByQuery(String query, int amount){
+        ReleaseGroup releaseGroup = new ReleaseGroup();
         releaseGroup.search(query);
         releaseGroup.getSearchFilter().setLimit((long) amount);
         List<Album> albums = new ArrayList<>();
@@ -51,14 +48,37 @@ public class MbAlbum {
         return albums;
     }
 
-    public List<Album> getAlbumFromArtist(kea.design.exam.imdb.models.Artist artistMbid){
+    public List<Album> findAlbumByArtistAndType(kea.design.exam.imdb.models.Artist  artist, String type){
         ArrayList<Album> albums = new ArrayList<>();
-        Artist artist = new Artist();
+        Artist artistEx = new Artist();
 
         try {
-            artist.lookUp(artistMbid.getId());
+            artistEx.lookUp(artist.getId());
 
-            List<ReleaseGroupWs2> releaseGroupWs2s = artist.getFullReleaseGroupList();
+            List<ReleaseGroupWs2> releaseGroupWs2s = artistEx.getFullReleaseGroupList();
+
+            for (ReleaseGroupWs2 releaseWs2 : releaseGroupWs2s){
+                if(releaseWs2.getType() != null) {
+                    if (releaseWs2.getTypeString().toLowerCase().equals(type.toLowerCase())) {
+                        albums.add(parseWebSearch(releaseWs2));
+                    }
+                }
+            }
+
+        } catch (MBWS2Exception e) {
+            e.printStackTrace();
+        }
+        return albums;
+    }
+
+    public List<Album> findAlbumsByArtist(kea.design.exam.imdb.models.Artist artist){
+        ArrayList<Album> albums = new ArrayList<>();
+        Artist artistEx = new Artist();
+
+        try {
+            artistEx.lookUp(artist.getId());
+
+            List<ReleaseGroupWs2> releaseGroupWs2s = artistEx.getFullReleaseGroupList();
 
             for (ReleaseGroupWs2 releaseWs2 : releaseGroupWs2s){
                 albums.add(parseWebSearch(releaseWs2));

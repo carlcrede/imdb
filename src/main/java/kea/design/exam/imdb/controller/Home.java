@@ -44,8 +44,9 @@ public class Home {
 
     @GetMapping("/artist")
     public String artist(@RequestParam String id, Model model) {
-        model.addAttribute("artist", artistService.findByid(id));
-        model.addAttribute("album", albumService.findAmountByQuery("", 10));
+        Artist artist = artistService.findByid(id);
+        model.addAttribute("artist", artist);
+        model.addAttribute("album", albumService.findAlbumTypeByArtist(artist, "album"));
         return "artist";
     }
 
