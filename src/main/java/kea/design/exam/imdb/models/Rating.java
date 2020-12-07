@@ -13,6 +13,5 @@ public class Rating {
 
     @Column(unique = true)
     private int rating;
-    private User user;
 
 }
