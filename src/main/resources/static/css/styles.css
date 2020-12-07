@@ -108,3 +108,15 @@ a, a:hover{ color: inherit;
     right: 0;
     margin: auto;
 }
+
+.star-input {
+    display: none;
+}
+
+.star {
+    color: goldenrod;
+}
+
+.star-input:checked + .star ~ .star {
+    color: grey;
+}
