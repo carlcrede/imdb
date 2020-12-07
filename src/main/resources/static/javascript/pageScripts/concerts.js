@@ -5,6 +5,11 @@ $(document).ready(function () {
     if (artist.length > 0) {
         getConcertsByArtist(artist, 25, concerts);
     }
+    $("#searchConcerts").submit(function (event) {
+        event.preventDefault();
+        console.log($("#artistName").val());
+        getConcertsByArtist($("#artistName").val(), 20, $("#location").val(), "date", null, concerts);
+    })
 });
 
 let concerts = function setConcerts(data) {
