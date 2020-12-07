@@ -50,10 +50,11 @@ public class Home {
         return "artist";
     }
 
-    @GetMapping("/album")
-    public String album(Model model) {
-        model.addAttribute("artist", artistService.findByid(" "));
-        model.addAttribute("album", albumService.findAmountByQuery(" ", 10));
+    @PostMapping("/album")
+    public String album(Model model, @RequestParam String id) {
+        Album album = albumService.findByid(id);
+        //model.addAttribute("artistName", album.getArtist().getName());
+        model.addAttribute("album", album);
         return "album";
     }
 
@@ -65,13 +66,6 @@ public class Home {
     @GetMapping("/news")
     public String newsSite() {
         return "/newsPage.html";
-    }
-
-    @GetMapping("/mbtest")
-    public String test(@RequestParam String id){
-        MbArtist artist = new MbArtist();
-        artist.getById(id);
-        return "index";
     }
 
     @GetMapping("/concerts")

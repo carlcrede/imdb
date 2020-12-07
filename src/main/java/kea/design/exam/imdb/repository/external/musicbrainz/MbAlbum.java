@@ -25,7 +25,7 @@ public class MbAlbum {
     public Album getById(String id){
         ReleaseGroup releaseGroup = new ReleaseGroup();
         try {
-            return parseWebSearch(releaseGroup.lookUp(id));
+            return parseWebSearch(releaseGroup.lookUp(id), null);
         } catch (MBWS2Exception e) {
             e.printStackTrace();
         }
@@ -40,7 +40,7 @@ public class MbAlbum {
         try {
             List<ReleaseGroupResultWs2> releases = releaseGroup.getFirstSearchResultPage();
             for(ReleaseGroupResultWs2 release : releases) {
-                    albums.add(parseWebSearch(release.getReleaseGroup()));
+                    albums.add(parseWebSearch(release.getReleaseGroup(), null));
             }
         } catch (MBWS2Exception e) {
             e.printStackTrace();
@@ -60,7 +60,7 @@ public class MbAlbum {
             for (ReleaseGroupWs2 releaseWs2 : releaseGroupWs2s){
                 if(releaseWs2.getType() != null) {
                     if (releaseWs2.getTypeString().toLowerCase().equals(type.toLowerCase())) {
-                        albums.add(parseWebSearch(releaseWs2));
+                        albums.add(parseWebSearch(releaseWs2, artist));
                     }
                 }
             }
@@ -81,7 +81,7 @@ public class MbAlbum {
             List<ReleaseGroupWs2> releaseGroupWs2s = artistEx.getFullReleaseGroupList();
 
             for (ReleaseGroupWs2 releaseWs2 : releaseGroupWs2s){
-                albums.add(parseWebSearch(releaseWs2));
+                albums.add(parseWebSearch(releaseWs2, artist));
             }
 
         } catch (MBWS2Exception e) {
@@ -90,9 +90,10 @@ public class MbAlbum {
         return albums;
     }
 
-    private Album parseWebSearch(ReleaseGroupWs2 release) throws MBWS2Exception {
+    private Album parseWebSearch(ReleaseGroupWs2 release, kea.design.exam.imdb.models.Artist artist) throws MBWS2Exception {
         Album album = new Album();
 
+        album.setArtist(artist);
         album.setTitle(release.getTitle());
         album.setMbid(release.getId());
         if(release.getType() != null) {
