@@ -49,9 +49,9 @@
                     <div class="card">
                         <img id="artistImage" class="rounded card-img-top" src="img/blank.png" alt="Missing artist image">
                     </div>
-                        <form method="post" action="/rating">
+                        <form id="ratingform">
                             <div class="pt-2">
-                                <input type="radio" class="star-input" name="rating" id="star-1" value="1" checked>
+                                <input type="radio" class="star-input" name="rating" id="star-1" value="1" >
                                 <label for="star-1" class="star"><i class="fas fa-star"></i></label>
                                 <input type="radio" class="star-input" name="rating" id="star-2" value="2">
                                 <label for="star-2" class="star"><i class="fas fa-star"></i></label>
@@ -59,11 +59,14 @@
                                 <label for="star-3" class="star"><i class="fas fa-star"></i></label>
                                 <input type="radio" class="star-input" name="rating" id="star-4" value="4">
                                 <label for="star-4" class="star"><i class="fas fa-star"></i></label>
-                                <input type="radio" class="star-input" name="rating" id="star-5" value="5">
+                                <input type="radio" class="star-input" name="rating" id="star-5" value="5" checked>
                                 <label for="star-5" class="star"><i class="fas fa-star"></i></label>
                                 <button type="submit" class="button-inverse">Rate</button>
                             </div>
                         </form>
+                        <div id="showtext">
+
+                        </div>
                      </div>
                 <div class="col-5">
                     <div class="card">
