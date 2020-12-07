@@ -49,9 +49,9 @@
                     <div class="card">
                         <img id="artistImage" class="rounded card-img-top" src="img/blank.png" alt="Missing artist image">
                     </div>
-                        <form method="post" action="/rating">
+                        <form id="ratingform">
                             <div class="pt-2">
-                                <input type="radio" class="star-input" name="rating" id="star-1" value="1" checked>
+                                <input type="radio" class="star-input" name="rating" id="star-1" value="1" >
                                 <label for="star-1" class="star"><i class="fas fa-star"></i></label>
                                 <input type="radio" class="star-input" name="rating" id="star-2" value="2">
                                 <label for="star-2" class="star"><i class="fas fa-star"></i></label>
@@ -59,11 +59,14 @@
                                 <label for="star-3" class="star"><i class="fas fa-star"></i></label>
                                 <input type="radio" class="star-input" name="rating" id="star-4" value="4">
                                 <label for="star-4" class="star"><i class="fas fa-star"></i></label>
-                                <input type="radio" class="star-input" name="rating" id="star-5" value="5">
+                                <input type="radio" class="star-input" name="rating" id="star-5" value="5" checked>
                                 <label for="star-5" class="star"><i class="fas fa-star"></i></label>
                                 <button type="submit" class="button-inverse">Rate</button>
                             </div>
                         </form>
+                        <div id="showtext">
+
+                        </div>
                      </div>
                 <div class="col-5">
                     <div class="card">
@@ -86,19 +89,29 @@
                                 <span class="text-light" th:text="${artist.type}"></span>
                             </div>
                             <div>
-<!--                                <th:block th:if="${user.gender eq 'M'}">Male</th:block>-->
                                 <b>
-                                    <th:span th:if="${not #strings.startsWith(artist.type ,'Group')}" class="text-warning">Gender: </th:span>
+                                    <th:span th:if="${!#strings.startsWith(artist.type ,'Group')}" th:unless="${artist.gender == null}" class="text-warning">Gender: </th:span>
                                 </b>
                                 <th:span class="text-light" th:if="${not #strings.startsWith(artist.type ,'Group')}" th:text="${artist.gender}"></th:span>
-                            </div>
-                            <div>
-                                <b class="text-warning">Years active: </b>
-                                <span class="text-light" th:text="${artist.beginDate?.getYear()?:'unknown'}+' - '+${artist.endDate?.getYear()?:'present'}"></span>
-                            </div>
-                            <div>
-                                <b class="text-warning">Founded in: </b>
-                                <span class="text-light" th:text="${artist.founded}"></span>
+                                </div>
+                                <div>
+                                    <b class="text-warning">Years active: </b>
+                                    <span class="text-light" th:text="${artist.beginDate?.getYear()?:'unknown'}+' - '+${artist.endDate?.getYear()?:'present'}"></span>
+                                </div>
+                                <div>
+                                <b>
+                                    <span class="text-warning" th:unless="${artist.founded == null}" >Founded in: </span>
+                                </b>
+                                <span class="text-light"  th:text="${artist.founded}"></span>
+                                </div>
+                                <div>
+
+                                <div class="text-light" id="genres">
+                                    <b>
+                                    <span class="text-warning" >Genres: </span>
+                                    </b>
+                                </div>
+                                </div>
                             </div>
                         </div>
                     </div>

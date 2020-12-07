@@ -6,7 +6,6 @@ import org.musicbrainz.model.LifeSpanWs2;
 import org.musicbrainz.model.entity.ArtistWs2;
 import org.musicbrainz.model.searchresult.ArtistResultWs2;
 import org.springframework.stereotype.Repository;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -50,7 +49,6 @@ public class MbArtist {
             artists.add(parseWebSearch(artistWs2.getArtist()));
         }
         return artists;
-
     }
 
     private Artist parseWebSearch(ArtistWs2 artistWs2){
@@ -72,7 +70,6 @@ public class MbArtist {
             } catch (DateTimeParseException exception) {
             }
         }
-
         if(artistWs2.getType() != null) { artist.setType(artistWs2.getType().substring(artistWs2.getType().indexOf("#")+1)); }
 
        artist.setGender(artistWs2.getGender());
