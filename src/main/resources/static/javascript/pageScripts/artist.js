@@ -26,7 +26,7 @@ $(document).ready(function(){
 
     // makes call to Eventfull API search endpoint, to find future concerts for the artist
     // then calls the callback function 'setConcerts'
-    getConcertsByArtist(artistName, concerts);
+    getConcertsByArtist(artistName, 3, concerts);
 
     // makes call to coverArtArchive API and then sets cover art for each album.
     // the search is done using the MBID for the release-group, and then we choose the first result.

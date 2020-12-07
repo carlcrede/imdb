@@ -62,11 +62,27 @@ public class Home {
         return "/userprofile";
     }
 
+    @GetMapping("/news")
+    public String newsSite() {
+        return "/newsPage.html";
+    }
+
     @GetMapping("/mbtest")
     public String test(@RequestParam String id){
         MbArtist artist = new MbArtist();
         artist.getById(id);
         return "index";
+    }
+
+    @GetMapping("/concerts")
+    public String concerts() {
+        return "/concerts";
+    }
+
+    @GetMapping("/concerts/artist")
+    public String concertsForArtist(@RequestParam String artist, Model model) {
+        model.addAttribute("artist", artist);
+        return "/concerts";
     }
 
     @GetMapping("/register")

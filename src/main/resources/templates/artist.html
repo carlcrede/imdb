@@ -10,6 +10,8 @@
             integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Buttons/2.0.0/css/buttons.min.css">
     <script src="javascript/Apis/spotifyRepo.js"></script>
     <script src="javascript/Apis/CoverartArchiveRepo.js"></script>
     <script src="javascript/Apis/newsAPI.js"></script>
@@ -47,7 +49,22 @@
                     <div class="card">
                         <img id="artistImage" class="rounded card-img-top" src="img/blank.png" alt="Missing artist image">
                     </div>
-                </div>
+                        <form method="post" action="/rating">
+                            <div class="pt-2">
+                                <input type="radio" class="star-input" name="rating" id="star-1" value="1" checked>
+                                <label for="star-1" class="star"><i class="fas fa-star"></i></label>
+                                <input type="radio" class="star-input" name="rating" id="star-2" value="2">
+                                <label for="star-2" class="star"><i class="fas fa-star"></i></label>
+                                <input type="radio" class="star-input" name="rating" id="star-3" value="3">
+                                <label for="star-3" class="star"><i class="fas fa-star"></i></label>
+                                <input type="radio" class="star-input" name="rating" id="star-4" value="4">
+                                <label for="star-4" class="star"><i class="fas fa-star"></i></label>
+                                <input type="radio" class="star-input" name="rating" id="star-5" value="5">
+                                <label for="star-5" class="star"><i class="fas fa-star"></i></label>
+                                <button type="submit" class="button-inverse">Rate</button>
+                            </div>
+                        </form>
+                     </div>
                 <div class="col-5">
                     <div class="card">
                         <div id="module" class="card-body container">
@@ -69,12 +86,15 @@
                                 <span class="text-light" th:text="${artist.type}"></span>
                             </div>
                             <div>
-                                <b class="text-warning">Gender: </b>
-                                <span class="text-light" th:text="${artist.gender}"></span>
+<!--                                <th:block th:if="${user.gender eq 'M'}">Male</th:block>-->
+                                <b>
+                                    <th:span th:if="${not #strings.startsWith(artist.type ,'Group')}" class="text-warning">Gender: </th:span>
+                                </b>
+                                <th:span class="text-light" th:if="${not #strings.startsWith(artist.type ,'Group')}" th:text="${artist.gender}"></th:span>
                             </div>
                             <div>
                                 <b class="text-warning">Years active: </b>
-                                <span class="text-light" th:text="${artist.beginDate?.getYear()}+' - '+${artist.endDate?.getYear()?:'present'}"></span>
+                                <span class="text-light" th:text="${artist.beginDate?.getYear()?:'unknown'}+' - '+${artist.endDate?.getYear()?:'present'}"></span>
                             </div>
                             <div>
                                 <b class="text-warning">Founded in: </b>
@@ -129,7 +149,7 @@
                     </div>
                     <div class="col-6">
                         <div class="container">
-                            <h1 class="display-4 text-light"><a href="/concerts">Concerts</a></h1>
+                            <h1 class="display-4 text-light"><a th:href="@{/concerts/artist(artist=${artist.name})}">Concerts</a></h1>
                         </div>
                         <div>
                         <ul class="list-unstyled text-light row concerts">
