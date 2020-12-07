@@ -86,19 +86,29 @@
                                 <span class="text-light" th:text="${artist.type}"></span>
                             </div>
                             <div>
-<!--                                <th:block th:if="${user.gender eq 'M'}">Male</th:block>-->
                                 <b>
-                                    <th:span th:if="${not #strings.startsWith(artist.type ,'Group')}" class="text-warning">Gender: </th:span>
+                                    <th:span th:if="${!#strings.startsWith(artist.type ,'Group')}" th:unless="${artist.gender == null}" class="text-warning">Gender: </th:span>
                                 </b>
                                 <th:span class="text-light" th:if="${not #strings.startsWith(artist.type ,'Group')}" th:text="${artist.gender}"></th:span>
-                            </div>
-                            <div>
-                                <b class="text-warning">Years active: </b>
-                                <span class="text-light" th:text="${artist.beginDate?.getYear()?:'unknown'}+' - '+${artist.endDate?.getYear()?:'present'}"></span>
-                            </div>
-                            <div>
-                                <b class="text-warning">Founded in: </b>
-                                <span class="text-light" th:text="${artist.founded}"></span>
+                                </div>
+                                <div>
+                                    <b class="text-warning">Years active: </b>
+                                    <span class="text-light" th:text="${artist.beginDate?.getYear()?:'unknown'}+' - '+${artist.endDate?.getYear()?:'present'}"></span>
+                                </div>
+                                <div>
+                                <b>
+                                    <span class="text-warning" th:unless="${artist.founded == null}" >Founded in: </span>
+                                </b>
+                                <span class="text-light"  th:text="${artist.founded}"></span>
+                                </div>
+                                <div>
+
+                                <div class="text-light" id="genres">
+                                    <b>
+                                    <span class="text-warning" >Genres: </span>
+                                    </b>
+                                </div>
+                                </div>
                             </div>
                         </div>
                     </div>

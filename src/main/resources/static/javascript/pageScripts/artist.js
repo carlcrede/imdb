@@ -40,6 +40,10 @@ $(document).ready(function(){
     // makes call to Web Search API and then calls our callback function 'setNews'
     searchSpotify(artistName, 'artist', artistImage);
 
+    searchSpotify(artistName, 'artist', artistGenre);
+
+
+
     // makes call to spotify API's search endpoint, and then calls out callback function 'setArtistImage'
     // there is a limit of 500 requests / day - so if it is exceeded, we need a new API key.
     getNews(artistName, 5, news);
@@ -61,6 +65,20 @@ $(document).ready(function(){
 let artistImage = function setArtistImage(data){
     $("#artistImage").attr("src", data.artists.items[0].images[0].url);
 };
+
+
+let artistGenre = function setArtistGenre(data){
+
+    let textInGenre = "";
+
+    data.artists.items[0].genres.forEach( a => textInGenre += a + ", ");
+
+    textInGenre = textInGenre.slice(0, textInGenre.length -2);
+    textInGenre += ".";
+
+    $("#genres").append(textInGenre)
+}
+
 
 // callback funtion for setting artist news on load.
 // connects with Web Search API - limit of 500 request / day.

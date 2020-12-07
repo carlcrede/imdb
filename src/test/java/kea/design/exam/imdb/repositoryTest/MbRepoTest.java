@@ -8,6 +8,7 @@ import kea.design.exam.imdb.repository.external.musicbrainz.MbArtist;
 import kea.design.exam.imdb.repository.external.musicbrainz.MbTrack;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.musicbrainz.MBWS2Exception;
 
 public class MbRepoTest {
 
@@ -19,7 +20,7 @@ public class MbRepoTest {
     }
 
     @Test
-    public void mbGetMultipleArtists(){
+    public void mbGetMultipleArtists() throws MBWS2Exception {
         MbArtist artistRepo = new MbArtist();
         Assertions.assertEquals(20, artistRepo.findByQuery("justin", 20).size());
     }
