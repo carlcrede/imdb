@@ -35,7 +35,7 @@ public class Home {
     Home() {
         spotifyRepo = new SpotifyRepository("1d1caf5e2f0048abaaf3a5c6c6db18d9", "f0b2c475ad1f47aca16104715212a5b7");
     }
-
+//TODO: add footer
     //frontpage
     @GetMapping("")
     public String index(){

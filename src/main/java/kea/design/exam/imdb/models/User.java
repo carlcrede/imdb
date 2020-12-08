@@ -1,6 +1,7 @@
 package kea.design.exam.imdb.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -16,6 +17,9 @@ public class User {
     private String password;
     private String role = "ROLE_USER";
     private boolean enabled = true;
+
+    @OneToMany()
+    private List<Rating> ratings;
 
     public Long getId() {
         return id;

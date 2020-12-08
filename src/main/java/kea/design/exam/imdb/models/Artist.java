@@ -17,6 +17,9 @@ public class Artist {
     private String gender;
     private String founded;
 
+    @OneToMany
+    private List<Rating> ratings;
+
     @OneToMany(fetch = FetchType.EAGER)
     private List<Annotation> annotations;
 
