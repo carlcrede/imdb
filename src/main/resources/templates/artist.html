@@ -119,11 +119,11 @@
             </div>
         </div>
     <div class="section card container-fluid" id="content" style="background-color: #313335">
-       <!-- <div class="container">
-            <h2 class="display-4 text-light">Albums</h2>
-        </div> -->
         <div class="row">
-            <div class="col" id="albumColumn">
+            <div class="col p-0 col-lg-6" id="albumColumn">
+                <div class="container">
+                    <h3 class="text-light">Albums</h3>
+                </div>
                 <div id="albumsCollection" class="scrollable p-3 col">
                     <div id="albumScroll" class="scroller row">
                         <div th:each=" album, count : ${album}" class="col-3 mx-3 p-0 text-light container align-top" style="display: inline-block">
@@ -137,7 +137,7 @@
                                 </div>
                                 <input type="hidden" th:value="${album.getMbid()}">
                             </form>
-                            <div style="white-space: nowrap">
+                            <div style="white-space: initial">
                                 <h5 class="card-text text-center" th:text="${album.title}"></h5>
                             </div>
                             <div class="collapse" th:id="${count.count}">
@@ -155,25 +155,24 @@
                     </div>
                 </div>
             </div>
-            <div class="col" id="extraInfo">
+            <div class="col p-0 col-lg-6" id="extraInfo">
                 <div class="section bg-dark card" id="newsContainer">
-                    <div class="container">
+                    <div class="container-fluid">
                         <div class="row justify-content-center">
-                            <div class="col-6">
+                            <div class="col">
                                 <div class="container">
-                                    <h2 class="display-4 text-light"><a href="/news">News</a></h2>
-                                </div>
-                                <div id="news" class="row scroller">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="container">
-                                    <h1 class="display-4 text-light"><a th:href="@{/concerts/artist(artist=${artist.name})}">Concerts</a></h1>
+                                    <h3 class="text-light"><a th:href="@{/concerts/artist(artist=${artist.name})}">Concerts</a></h3>
                                 </div>
                                 <div>
-                                <ul class="list-unstyled text-light row concerts">
+                                <ul class="list-group list-group-flush text-light row concerts">
                                 </ul>
                                 </div>
+                            </div>
+                            <div class="col">
+                                <div class="container">
+                                    <h3 class="text-light"><a href="/news">News</a></h3>
+                                </div>
+                                <ul id="news" class="list-group text-light row"></ul>
                             </div>
                         </div>
                     </div>
