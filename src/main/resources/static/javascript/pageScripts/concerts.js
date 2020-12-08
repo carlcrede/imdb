@@ -5,6 +5,12 @@ $(document).ready(function () {
     if (artist.length > 0) {
         getConcertsByArtist(artist, 25, concerts);
     }
+    $("#searchConcerts").submit(function (event) {
+        event.preventDefault();
+        console.log($("#artistName").val());
+        //TODO fix script for artist page and when linking to concerts from artist. Also implement more search options
+        getConcertsByArtist($("#artistName").val(), 20, $("#location").val(), "date", null, concerts);
+    })
 });
 
 let concerts = function setConcerts(data) {
