@@ -1,5 +1,5 @@
 let key_event = "kqfXDcg7Bf7v6Lrm";
-var endpoint_event = "https://cors-anywhere.herokuapp.com/http://api.eventful.com/json/events/search?";
+var endpoint_event = "https://corspasser-1010.herokuapp.com/http://api.eventful.com/json/events/search?";
 function getConcertsByArtist(artist, pageSize, location, sortOrder, date, callback) {
     requestBuilder(artist, pageSize, location, sortOrder, date);
     $.get(endpoint_event, {}, function (data) {
