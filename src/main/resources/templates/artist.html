@@ -118,34 +118,61 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="section card" id="content" style="background-color: #313335">
-        <div class="container">
+    <div class="section card container-fluid" id="content" style="background-color: #313335">
+       <!-- <div class="container">
             <h2 class="display-4 text-light">Albums</h2>
-        </div>
-        <div class="scrollable p-3">
-            <div id="albumScroll" class="scroller row">
-                <div th:each=" album, count : ${album}" class="col-3 mx-3 p-0 text-light container align-top" style="display: inline-block">
-                    <form class="albumLink" action="/album" method="post">
-                        <div class="card" style="border:none">
-                            <!--<a data-toggle="collapse" th:href="'#'+${count.count}" role="button" aria-expanded="false" aria-controls="collapseExample"> -->
-                                <div class="loader scaled card-body p-0">
-                                    <img class="album rounded card-img-top" th:id="${album.mbid}" src="/img/blank.png" alt="Missing cover art">
+        </div> -->
+        <div class="row">
+            <div class="col" id="albumColumn">
+                <div id="albumsCollection" class="scrollable p-3 col">
+                    <div id="albumScroll" class="scroller row">
+                        <div th:each=" album, count : ${album}" class="col-3 mx-3 p-0 text-light container align-top" style="display: inline-block">
+                            <form class="albumLink" action="/album" method="post">
+                                <div class="card" style="border:none">
+                                    <!--<a data-toggle="collapse" th:href="'#'+${count.count}" role="button" aria-expanded="false" aria-controls="collapseExample"> -->
+                                        <div class="loader scaled card-body p-0">
+                                            <img class="album rounded card-img-top" th:id="${album.mbid}" src="/img/blank.png" alt="Missing cover art">
+                                        </div>
+                                    <!-- </a> -->
                                 </div>
-                            <!-- </a> -->
+                                <input type="hidden" th:value="${album.getMbid()}">
+                            </form>
+                            <div style="white-space: nowrap">
+                                <h5 class="card-text text-center" th:text="${album.title}"></h5>
+                            </div>
+                            <div class="collapse" th:id="${count.count}">
+                                <div class="card-body">
+                                    <h5 class="card-title text-light">Tracks</h5>
+                                    <hr class="my-1 bg-light">
+                                    <div class="card-text text-light">
+                                        <div th:each=" track , count : ${album.tracks}">
+                                            <div th:text="${count.count}+'. '+${track.name}"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <input type="hidden" th:value="${album.getMbid()}">
-                    </form>
-                    <div style="white-space: nowrap">
-                        <h5 class="card-text text-center" th:text="${album.title}"></h5>
                     </div>
-                    <div class="collapse" th:id="${count.count}">
-                        <div class="card-body">
-                            <h5 class="card-title text-light">Tracks</h5>
-                            <hr class="my-1 bg-light">
-                            <div class="card-text text-light">
-                                <div th:each=" track , count : ${album.tracks}">
-                                    <div th:text="${count.count}+'. '+${track.name}"></div>
+                </div>
+            </div>
+            <div class="col" id="extraInfo">
+                <div class="section bg-dark card" id="newsContainer">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-6">
+                                <div class="container">
+                                    <h2 class="display-4 text-light"><a href="/news">News</a></h2>
+                                </div>
+                                <div id="news" class="row scroller">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="container">
+                                    <h1 class="display-4 text-light"><a th:href="@{/concerts/artist(artist=${artist.name})}">Concerts</a></h1>
+                                </div>
+                                <div>
+                                <ul class="list-unstyled text-light row concerts">
+                                </ul>
                                 </div>
                             </div>
                         </div>
@@ -153,29 +180,8 @@
                 </div>
             </div>
         </div>
-        <div class="section bg-dark card" id="newsContainer">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-6">
-                        <div class="container">
-                            <h2 class="display-4 text-light"><a href="/news">News</a></h2>
-                        </div>
-                        <div id="news" class="row scroller">
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="container">
-                            <h1 class="display-4 text-light"><a th:href="@{/concerts/artist(artist=${artist.name})}">Concerts</a></h1>
-                        </div>
-                        <div>
-                        <ul class="list-unstyled text-light row concerts">
-                        </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
+
 
 <div id="loader" class="center"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-dateFormat/1.0/jquery.dateFormat.min.js" integrity="sha512-YKERjYviLQ2Pog20KZaG/TXt9OO0Xm5HE1m/OkAEBaKMcIbTH1AwHB4//r58kaUDh5b1BWwOZlnIeo0vOl1SEA==" crossorigin="anonymous"></script>
