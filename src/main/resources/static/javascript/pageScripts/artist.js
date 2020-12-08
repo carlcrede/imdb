@@ -24,9 +24,9 @@ const DEBUG = true;
 $(document).ready(function(){
     let artistName = $("#artistName").text();
 
-    // adds onclick to albums to redirect them
+    // adds onclick to albums to redirect their main page
     $(".albumLink").click(function(){
-        $(this).post();
+        $(this).submit();
     })
     // makes call to Eventfull API search endpoint, to find future concerts for the artist
     // then calls the callback function 'setConcerts'
