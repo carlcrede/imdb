@@ -13,6 +13,7 @@ function requestBuilder(artist, pageSize, location, sortOrder, date) {
     if (location) { endpoint_event += "&location=" + location.replaceAll(' ', '+'); }
     if (sortOrder) { endpoint_event +=  "&sort_order=" + sortOrder; }
     if (date) { endpoint_event += "&date=" + date; }
+    if (pageSize) { endpoint_event += "&page_size=" + pageSize; }
     endpoint_event += "&c=music";
     endpoint_event += "&app_key=" + key_event;
     console.log(endpoint_event);

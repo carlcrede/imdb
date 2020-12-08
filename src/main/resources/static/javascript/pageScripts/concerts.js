@@ -3,13 +3,14 @@ $(document).ready(function () {
     console.log(artist);
     console.log(artist.length);
     if (artist.length > 0) {
-        getConcertsByArtist(artist, 25, concerts);
+        getConcertsByArtist(artist, 25, false, false, false, concerts);
     }
     $("#searchConcerts").submit(function (event) {
         event.preventDefault();
-        console.log($("#artistName").val());
+        console.log("Artist name: " + $("#artistName").val());
+        console.log("Value for location:" + $("#location").val());
         //TODO fix script for artist page and when linking to concerts from artist. Also implement more search options
-        getConcertsByArtist($("#artistName").val(), 20, $("#location").val(), "date", null, concerts);
+        getConcertsByArtist($("#artistName").val(), 20, $("#location").val(), "date", false, concerts);
     })
 });
 
