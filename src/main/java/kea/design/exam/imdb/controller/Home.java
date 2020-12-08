@@ -64,8 +64,9 @@ public class Home {
     }
 
     @GetMapping("/news")
-    public String newsSite() {
-        return "/newsPage.html";
+    public String newsSite(Model model, @RequestParam(required = false) String artist){
+        model.addAttribute("artistName", artist);
+        return "/news";
     }
 
     @GetMapping("/concerts")

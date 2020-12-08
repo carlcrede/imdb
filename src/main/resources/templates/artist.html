@@ -17,7 +17,6 @@
     <script src="javascript/Apis/newsAPI.js"></script>
     <script src="javascript/Apis/eventfulAPI.js"></script>
     <script src="javascript/utilScripts/jquery.nicescroll.min.js"></script>
-    <script src="javascript/utilScripts/searchBar.js"></script>
     <script src="javascript/pageScripts/artist.js"></script>
     <title>Artist</title>
     <style type="text/css">
@@ -170,7 +169,7 @@
                             </div>
                             <div class="col">
                                 <div class="container">
-                                    <h3 class="text-light"><a href="/news">News</a></h3>
+                                    <h3 class="text-light"><a th:href="@{/news(artist=${artist.name})}">News</a></h3>
                                 </div>
                                 <ul id="news" class="list-group text-light row"></ul>
                             </div>
