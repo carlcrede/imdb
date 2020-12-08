@@ -19,8 +19,6 @@
     See method 'getNews()' in newsAPI.js for reference.
  */
 
-const DEBUG = true;
-
 $(document).ready(function(){
     let artistName = $("#artistName").text();
 
@@ -30,7 +28,7 @@ $(document).ready(function(){
     })
     // makes call to Eventfull API search endpoint, to find future concerts for the artist
     // then calls the callback function 'setConcerts'
-    getConcertsByArtist(artistName, 3, false, false, false, concerts);
+    getConcertsByArtist(artistName, 4, false, false, false, concerts);
 
     // makes call to coverArtArchive API and then sets cover art for each album.
     // the search is done using the MBID for the release-group, and then we choose the first result.
@@ -50,7 +48,7 @@ $(document).ready(function(){
 
     // makes call to spotify API's search endpoint, and then calls out callback function 'setArtistImage'
     // there is a limit of 500 requests / day - so if it is exceeded, we need a new API key.
-    getNews(artistName, 5, news);
+    getNews(artistName, 3, news);
 
     // $("body").niceScroll( {cursorborder:'none', cursor:"#FFFFFF", cursoropacitymax: 1});
     $(".scroller").niceScroll({cursorborder:'none', cursor:"#FFFFFF", cursoropacitymax: 1});
@@ -87,19 +85,19 @@ let artistGenre = function setArtistGenre(data){
 // callback funtion for setting artist news on load.
 // connects with Web Search API - limit of 500 request / day.
 let news = function setNews(data) {
-    console.log(data);
-    $.each(data.value, function (index, value) {
+    let articles = data.articles;
+    $.each(articles, function (index, value) {
         $("#news").append(
-            "<div class='col news'>" +
-            "   <div class='card'>" +
-            "       <div class='card-body text-light'>" +
-            "           <p id='title' class='card-title text-center'>" + value.title + "</p>" +
-            "           <div class='card-text'>" + "<i>Source: " + value.source.name +"</i></div>" +
-            "           <div class='card-text'>" + "<i>Published: " + $.format.date(value.publishedAt, 'dd/MM/yyyy HH:mm') + "</i></div>" +
-            "           <a target='_blank' href=" + value.url + ">Read more</a>" +
-            "       </div>" +
-            "   </div>" +
-            "</div>"
+            "<li class='news list-group-item bg-transparent'>" +
+                "<div class='col'>" +
+                    "<h6 id='title' class='row my-0 '>" + value.title + "</h6>" +
+                    "<p class='text-muted mx-1 my-0'>" + "<i>Source: " + value.source.name +"</i></p>" +
+                    "<p class='text-muted mx-1 my-0'>" + "<i>Published: " + $.format.date(value.publishedAt, 'dd-MM-yyyy') + "</i></p>" +
+                "</div>" +
+                "<div class='col text-light'>" +
+                    "<a target='_blank' href=" + value.url + ">Read more</a>" +
+                "</div>" +
+            "</li>"
         );
     });
     $("body").niceScroll().resize();
@@ -109,18 +107,17 @@ let news = function setNews(data) {
 // connects with Eventful API
 let concerts = function setConcerts(data) {
     if (data.events) {
-        let events = data.events.event;
-        console.log(events);
         $.each(data.events.event, function (index, value) {
             $(".concerts").append(
-                "<li class='list-group-item bg-transparent card'>" +
-                "<div class='col text-light'>" +
-                "<div class='card-body'>" +
-                "<h5 class='card-title'>" + value.title + ' @ ' + value.venue_name + "</h5>" +
-                "<a class='btn btn-sm btn-warning' target='_blank' href=" + value.url + ">Link to event</a> " +
-                "<a class='btn btn-sm btn-secondary' target='_blank' href=" + value.venue_url + ">Link to venue</a> " +
-                "</div>" +
-                "</div>" +
+                "<li class='list-group-item bg-transparent'>" +
+                    "<div class='col'>" +
+                        "<p class='m-0'>" + value.title + ' @ ' + value.venue_name + "</p>" +
+                        "<p class='text-muted m-0'>"+ $.format.date(value.start_time, 'd-MMM-yyyy') +"</p>" +
+                    "</div>" +
+                    "<div class='col'>" +
+                    "<a class='btn btn-sm btn-warning' target='_blank' href=" + value.url + ">Link to event</a> " +
+                    "<a class='btn btn-sm btn-secondary' target='_blank' href=" + value.venue_url + ">Link to venue</a> " +
+                    "</div>" +
                 "</li>"
             )
         })

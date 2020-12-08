@@ -6,9 +6,11 @@ let domains = [
 let key_news = "60da648bf5674318bb72968b1dbbc553";
 let endpoint = "https://newsapi.org/v2/everything?qInTitle=%22";
 
+const DEBUG = true;
+
 function getNews(q, pageSize, callback) {
     if (!DEBUG) {
-        let url = endpoint + q.replaceAll(' ', '+') + "%22&" + pageSize + "&" + domains.join(',') + "&language=en" + "&apiKey=" + key_news;
+        let url = endpoint + q.replaceAll(' ', '+') + "%22&pageSize=" + pageSize + "&" + domains.join(',') + "&language=en" + "&apiKey=" + key_news;
         $.ajax(url, {
             async: true,
             method: "GET",
