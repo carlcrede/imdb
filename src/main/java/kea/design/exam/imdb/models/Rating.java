@@ -12,7 +12,7 @@ public class Rating {
     private long id;
 
     @Column(name = "rating")
-    private int rating;
+    private double rating;
 
     @ManyToOne
     private User user;
@@ -44,11 +44,11 @@ public class Rating {
         this.id = id;
     }
 
-    public int getRating() {
+    public double getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(double rating) {
         this.rating = rating;
     }
 }

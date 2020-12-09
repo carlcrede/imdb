@@ -24,11 +24,14 @@ function submitRating(mbid, rating, userName) {
     $.get("/rating/save", {mbid: mbid, rating: rating, userName: userName})
         .done(function (data) {
             console.log(data);
-
+            $("#ratingFeedback").text("Your rating has been submitted!");
+            $("#ratingFeedback").show();
             $("#artistRating").text(data);
         })
         .fail(function (data) {
             console.log(data);
+            $("#ratingFeedback").text("Your rating has been updated!");
+            $("#ratingFeedback").show();
             getRatingsByArtist(mbid);
         });
         //TODO: give user feedback after rating is submitted

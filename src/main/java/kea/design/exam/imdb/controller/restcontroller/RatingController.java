@@ -42,7 +42,7 @@ public class RatingController {
     }
 
     @GetMapping("/save")
-    public ResponseEntity<Object> sendRating(@RequestParam int rating, @RequestParam String mbid, @RequestParam String userName){
+    public ResponseEntity<Object> sendRating(@RequestParam double rating, @RequestParam String mbid, @RequestParam String userName){
         MyUserDetails userDetails = (MyUserDetails) userService.loadUserByUsername(userName);
         User user = userDetails.getUser();
         List<Rating> ratingList = user.getRatings();
