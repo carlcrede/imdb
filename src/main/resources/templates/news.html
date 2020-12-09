@@ -19,6 +19,54 @@
     <script src="javascript/pageScripts/news.js"></script>
 </head>
 <style>
+    /*
+    DEMO STYLE
+*/
+
+
+    /* ---------------------------------------------------
+        SIDEBAR STYLE
+    ----------------------------------------------------- */
+
+    .wrapper {
+        display: flex;
+        width: 100%;
+        align-items: stretch;
+    }
+
+    #sidebar {
+        width: 100%;
+        background: #242222;
+        color: #fff;
+
+    }
+
+    #sidebar.active {
+        margin-top:  -100%;
+    }
+
+    .dropdown-toggle::after {
+        display: block;
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+    }
+
+
+
+    @media (max-width: 768px) {
+        #sidebar {
+            margin-top: -250px;
+        }
+        #sidebar.active {
+            margin-top: 250px;
+        }
+        #sidebarCollapse span {
+            display: none;
+        }
+    }
+
 
     #seeMore{
         color: #d3e5ff;
@@ -27,6 +75,7 @@
     #seeMore:hover{
         text-decoration: underline;
     }
+
 
     #Title:hover{
         color: #fff;
@@ -67,12 +116,22 @@
 </style>
 <body>
 <div th:replace="/header.html"></div>
+<div class="wrapper">
+    <!-- Sidebar -->
+    <nav id="sidebar">
+        <div class="container py-3">
+            <h3>news sources:</h3>
+            <span id="domainsUsedInApi" class="list-unstyled components"></span>
+        </div>
+    </nav>
+</div>
 <div class="container">
+
     <div class="row">
         <div class="col">
-            <div  class="inner cover">
-                <h1 class="cover-heading">music news</h1>
-                <p class="lead">Here you can find the latest news <br> from the biggest music news vendors in the world</p>
+            <div>
+                <h1>music news</h1>
+                <p  class="lead">Here you can find the latest news <br> from the biggest music news vendors in the world</p>
             </div>
             <div class="display-4">News</span></div>
         </div>
@@ -83,6 +142,9 @@
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-warning">Search</button>
+                    <button type="button" id="sidebarCollapse" class="btn btn-warning" style="background: #242222;">
+                        <span style="color: white">news sources</span>
+                    </button>
                 </div>
             </form>
         </div>
@@ -99,8 +161,9 @@
 </div>
 <div id="loader" class="center"></div>
 <script>
-    var myobj = document.getElementById("demo");
-    myobj.remove();
+
+
+    // ;
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-dateFormat/1.0/jquery.dateFormat.min.js" integrity="sha512-YKERjYviLQ2Pog20KZaG/TXt9OO0Xm5HE1m/OkAEBaKMcIbTH1AwHB4//r58kaUDh5b1BWwOZlnIeo0vOl1SEA==" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
