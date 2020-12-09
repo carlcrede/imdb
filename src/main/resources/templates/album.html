@@ -17,11 +17,11 @@
     <script src="javascript/Apis/newsAPI.js"></script>
     <script src="javascript/utilScripts/jquery.nicescroll.min.js"></script>
     <script src="javascript/pageScripts/albumScript.js"></script>
-    <title>Album</title>
+    <title th:text="${album.getTitle()}"></title>
 </head>
 <body class="body">
 <div th:replace="/header.html"></div>
-<div class="jumbotron jumbotron-fluid">
+<div class="jumbotron">
     <div class="container">
         <div class="row">
             <div class="col-md-10" >
@@ -29,16 +29,11 @@
             </div>
             <div class="col-md-2">
                 <img th:id="${album.mbid}" src="" class="album rounded-circle align-items-end" width="80" height="80">
-            </div >
-        </div>
-        <hr class="my-4">
-        <div class="row">
-            <!--<p class="lead" th:text="${artistName}"></p>-->
+            </div>
         </div>
         <div class="row">
             <p class="lead" th:text="${album.type}"></p>
         </div>
-        <br>
         <div class="row">
             <a href="#collapseExample" class="btn btn-light btn-outline-dark col-2 lead"
                data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample">ANNOTATIONS</a>
@@ -55,22 +50,21 @@
         </div>
     </div>
 </div>
-
-<div class="container body">
-    <table class="table table-borderless text-light col-md-6">
-        <thead>
-        <tr>
-            <th scope="col">Track title</th>
-            <th scope="col">Duration</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each=" track : ${album.tracks}">
-            <td scope="row" th:text="${track.name}">#track title</td>
-            <td scope="row" class="badge badge-light badge-pill" th:text="${track.length}">#duration</td>
-        </tr>
-        </tbody>
-    </table>
+<div class="container row">
+    <ul id="tracklist row">
+        <th:block th:each="track : ${album.tracks}">
+            <li class="track row ">
+                <div class="row">
+                    <div class="col-3">
+                        <h4 th:text="${track.name}"> </h4>
+                    </div>
+                    <div class="col-3">
+                        <h4 th:text="${track.length}"> </h4>
+                    </div>
+                </div>
+            </li>
+        </th:block>
+    </ul>
 </div>
 <div id="loader" class="center"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

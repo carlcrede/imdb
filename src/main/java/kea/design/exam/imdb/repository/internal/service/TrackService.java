@@ -18,15 +18,28 @@ public class TrackService implements CrudService<Track, String>{
     @Autowired
     TrackRepository internalRepo;
 
+    @Autowired
+    AlbumService albumService;
+
 
     @Override
     public Track findByid(String id) {
         return internalRepo.findById(id).orElseGet(() -> save(externalRepo.getTrackById(id)));
     }
 
-    public List<Track> findAlbumTrackList(Album album){
-        internalRepo.findTracksByAlbum(album);
-        return externalRepo.getTracksForAlbum(album);
+    public Album addAlbumTrackList(Album album){
+        List<Track> tracks = album.getTracks();
+        if(tracks != null) {
+            if (tracks.isEmpty()) {
+                tracks = internalRepo.findTracksByAlbum(album);
+            }
+            if (tracks.isEmpty()) {
+                tracks = saveAll(externalRepo.getTracksForAlbum(album));
+            }
+            album.setTracks(tracks);
+            album = albumService.save(album);
+        }
+        return album;
     }
     @Override
     public List<Track> findAmountByQuery(String query, int amount) {
@@ -37,6 +50,11 @@ public class TrackService implements CrudService<Track, String>{
     @Override
     public Track save(Track track) {
         return internalRepo.save(track);
+    }
+
+    public List<Track> saveAll(List<Track> tracks){
+        internalRepo.saveAll(tracks);
+        return tracks;
     }
 
     @Override
