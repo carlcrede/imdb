@@ -6,9 +6,9 @@ $( document ).ready(function() {
         event.preventDefault();
         let mbid = $("#mbid").val();
         let rating = $('input[name="rating"]:checked').val();
-        let userId = $("#userId").text();
-        console.log("User: " + userId);
-        submitRating(mbid, rating);
+        let userName = $("#userName").text();
+        console.log("User: " + userName);
+        submitRating(mbid, rating, userName);
     });
 });
 
@@ -19,27 +19,17 @@ function getRatingsByArtist(mbid) {
     });
 }
 // mbid for artist, user id, rating
-function submitRating(mbid, rating) {
+function submitRating(mbid, rating, userName) {
     // post
-    $.get("/rating/save", {mbid: mbid, rating: rating}, function (data) {
-        //TODO: give user feedback after rating is submitted
-        console.log(data);
-        $("#artistRating").text(data);
-    },"json");
+    $.get("/rating/save", {mbid: mbid, rating: rating, userName: userName})
+        .done(function (data) {
+            console.log(data);
 
-    /*$.ajax({
-        type: "POST",
-        contentType: "application/json",
-        url: "rating/save",
-        data: JSON.stringify(formData),
-        dataType: 'json',
-        success: function (result) {
-            $("#showtext").append("<p>" + result.data.stars + "</p>");
-            console.log(result);
-        },
-        error: function (result) {
-            console.log(result);
-            alert("Error!")
-        }
-    });*/
+            $("#artistRating").text(data);
+        })
+        .fail(function (data) {
+            console.log(data);
+            getRatingsByArtist(mbid);
+        });
+        //TODO: give user feedback after rating is submitted
 }

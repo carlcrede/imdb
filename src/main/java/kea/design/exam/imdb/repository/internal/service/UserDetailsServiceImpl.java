@@ -22,6 +22,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
+    public void saveUserRating(User user) {
+        userRepository.save(user);
+    }
+
     public void signUpUser(User user) {
         final String encryptedPassword = bCryptPasswordEncoder.encode(user.getPassword());
         user.setPassword(encryptedPassword);
