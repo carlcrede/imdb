@@ -2,19 +2,38 @@ package kea.design.exam.imdb.models;
 
 public class AjaxRequest {
 
-    private Object data;
+    private String mbid;
+    private String rating;
+    private String userId;
 
-    public AjaxRequest(Object data) {
-
-        this.data = data;
+    public AjaxRequest(String mbid, String rating, String userId) {
+        this.mbid = mbid;
+        this.rating = rating;
+        this.userId = userId;
     }
 
-    public Object getData() {
-        return data;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setData(Object data) {
-        this.data = data;
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getMbid() {
+        return mbid;
+    }
+
+    public void setMbid(String mbid) {
+        this.mbid = mbid;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
     }
 }
 

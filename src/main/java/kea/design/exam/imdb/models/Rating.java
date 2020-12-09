@@ -12,7 +12,29 @@ public class Rating {
     private long id;
 
     @Column(name = "rating")
-    private String rating;
+    private int rating;
+
+    @ManyToOne
+    private User user;
+
+    @ManyToOne
+    private Artist artist;
+
+    public Artist getArtist() {
+        return artist;
+    }
+
+    public void setArtist(Artist artist) {
+        this.artist = artist;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public long getId() {
         return id;
@@ -22,11 +44,11 @@ public class Rating {
         this.id = id;
     }
 
-    public String getRating() {
+    public int getRating() {
         return rating;
     }
 
-    public void setRating(String rating) {
+    public void setRating(int rating) {
         this.rating = rating;
     }
 }

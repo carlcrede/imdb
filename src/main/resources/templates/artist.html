@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Buttons/2.0.0/css/buttons.min.css">
+    <script th:src="@{javascript/pageScripts/ratingScript.js}"></script>
     <script src="javascript/Apis/spotifyRepo.js"></script>
     <script src="javascript/Apis/CoverartArchiveRepo.js"></script>
     <script src="javascript/Apis/newsAPI.js"></script>
@@ -35,6 +36,8 @@
     </style>
 </head>
 <body class="bg-secondary">
+<input id="mbid" type="hidden" th:value="${artist.id}">
+<div style="display: none" id="userId" sec:authentication="name"></div>
 <div th:replace="/header.html"></div>
     <div id="banner" class="section bg-dark card">
         <div class="container">
