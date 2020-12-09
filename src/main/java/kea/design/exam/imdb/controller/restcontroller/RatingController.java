@@ -38,7 +38,7 @@ public class RatingController {
     }
 
     @GetMapping("/save")
-    public Rating sendRating(@RequestParam int rating, @RequestParam String mbid){
+    public Double sendRating(@RequestParam int rating, @RequestParam String mbid){
         System.out.println("We're in the method now");
         //ratingService.save(rating);
         System.out.println(rating + ", " + mbid);
@@ -55,7 +55,7 @@ public class RatingController {
         rating1.setRating(rating);
         rating1.setUser(user);
         rating1.setArtist(artist);*/
-        return null;
+        return ratingService.getRatingsByArtist(mbid);
     }
 
 }
