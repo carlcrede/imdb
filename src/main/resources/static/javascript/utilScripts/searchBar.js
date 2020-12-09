@@ -1,7 +1,13 @@
 $(document).ready(function() {
-    //createSearchbar();
     $("#searchQuery").keypress(function(){
         getSearchResults($("#searchQuery").val(), $("#searchType").val());
+    })
+
+    $(".headerLink").each(function(index, elem){
+        let path = document.location.pathname;
+        if($(this).attr("href") === path){
+            $(this).css("color", "white");
+        }
     })
 })
 

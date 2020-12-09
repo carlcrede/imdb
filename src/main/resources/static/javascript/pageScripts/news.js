@@ -10,7 +10,6 @@ $(document).ready(function(){
 })
 
 function loadNews(data){
-    console.log(data);
     let articles = data.articles;
     console.log(articles);
     $.each(articles, function(index, article){
