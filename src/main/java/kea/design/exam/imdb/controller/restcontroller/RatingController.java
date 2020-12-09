@@ -32,20 +32,30 @@ public class RatingController {
         return ResponseEntity.ok("Well done");
     }*/
 
+    @GetMapping("/getRatingsByArtist")
+    public Double getRatingsByArtist(@RequestParam String mbid) {
+        return ratingService.getRatingsByArtist(mbid);
+    }
+
     @GetMapping("/save")
-    public Rating sendRating(@RequestParam int rating, @RequestParam String mbid, @RequestParam String username){
+    public Rating sendRating(@RequestParam int rating, @RequestParam String mbid){
         System.out.println("We're in the method now");
         //ratingService.save(rating);
-        System.out.println(rating + ", " + mbid + ", " + username);
+        System.out.println(rating + ", " + mbid);
         // find user, find artist
         // ny rating
         Artist artist = artistService.findByid(mbid);
-        User user = (User) userService.loadUserByUsername(username);
         Rating rating1 = new Rating();
         rating1.setRating(rating);
-        rating1.setUser(user);
         rating1.setArtist(artist);
-        return ratingService.save(rating1);
+
+        ratingService.save(rating1);
+        //User user = (User) userService.loadUserByUsername(username);
+        /*Rating rating1 = new Rating();
+        rating1.setRating(rating);
+        rating1.setUser(user);
+        rating1.setArtist(artist);*/
+        return null;
     }
 
 }

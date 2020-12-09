@@ -1,5 +1,7 @@
 $( document ).ready(function() {
 
+    getRatingsByArtist($("#mbid").val());
+
     // submit form
     $("#ratingform").submit(function (event) {
         // Prevents the form from submitting via the browser.
@@ -8,14 +10,23 @@ $( document ).ready(function() {
         let rating = $('input[name="rating"]:checked').val();
         let userId = $("#userId").text();
         console.log("User: " + userId);
-        ajaxPost(mbid, rating, userId);
+        ajaxPost(mbid, rating);
+        getRatingsByArtist(mbid);
     });
 
 });
+
+function getRatingsByArtist(mbid) {
+    $.get("/rating/getRatingsByArtist", {mbid: mbid}, function (data) {
+        console.log(data);
+        $("#artistRating").text(data);
+    });
+}
 // mbid for artist, user id, rating
-function ajaxPost(mbid, rating, username) {
+function ajaxPost(mbid, rating) {
     // post
-    $.get("/rating/save", {mbid: mbid, rating: rating, username: username}, function (data) {
+    $.get("/rating/save", {mbid: mbid, rating: rating}, function (data) {
+        //TODO: give user feedback after rating is submitted
         console.log(data);
     },"json");
 

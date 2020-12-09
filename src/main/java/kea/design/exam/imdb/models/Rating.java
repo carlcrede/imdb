@@ -3,7 +3,7 @@ package kea.design.exam.imdb.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name ="rating")
+@Table(name ="ratings")
 public class Rating {
 
     @Id
