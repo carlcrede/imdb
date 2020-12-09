@@ -1,7 +1,6 @@
 $(document).ready(function () {
     let artist = $("#artistName").val();
-    console.log(artist);
-    console.log(artist.length);
+
     if (artist.length > 0) {
         getConcertsByArtist(artist, 25, false, false, false, concerts);
     }
