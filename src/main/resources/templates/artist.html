@@ -130,7 +130,7 @@
                 <div id="albumsCollection" class="scrollable p-3 col">
                     <div id="albumScroll" class="scroller row">
                         <div th:each=" album, count : ${album}" class="col-3 mx-3 p-0 text-light container align-top" style="display: inline-block">
-                            <form class="albumLink" action="/album" method="post">
+                            <form class="albumLink" action="/album" method="get">
                                 <div class="card" style="border:none">
                                     <!--<a data-toggle="collapse" th:href="'#'+${count.count}" role="button" aria-expanded="false" aria-controls="collapseExample"> -->
                                         <div class="loader scaled card-body p-0">
@@ -138,21 +138,10 @@
                                         </div>
                                     <!-- </a> -->
                                 </div>
-                                <input type="hidden" th:value="${album.getMbid()}">
+                                <input type="hidden" name="id" th:value="${album.getMbid()}">
                             </form>
                             <div style="white-space: initial">
                                 <h5 class="card-text text-center" th:text="${album.title}"></h5>
-                            </div>
-                            <div class="collapse" th:id="${count.count}">
-                                <div class="card-body">
-                                    <h5 class="card-title text-light">Tracks</h5>
-                                    <hr class="my-1 bg-light">
-                                    <div class="card-text text-light">
-                                        <div th:each=" track , count : ${album.tracks}">
-                                            <div th:text="${count.count}+'. '+${track.name}"></div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

@@ -2,12 +2,12 @@ package kea.design.exam.imdb.controller;
 
 import kea.design.exam.imdb.models.Album;
 import kea.design.exam.imdb.models.Artist;
-import kea.design.exam.imdb.models.Track;
 import kea.design.exam.imdb.models.User;
 import kea.design.exam.imdb.repository.external.SpotifyRepository;
 import kea.design.exam.imdb.repository.external.musicbrainz.MbArtist;
 import kea.design.exam.imdb.repository.internal.service.AlbumService;
 import kea.design.exam.imdb.repository.internal.service.ArtistService;
+import kea.design.exam.imdb.repository.internal.service.TrackService;
 import kea.design.exam.imdb.repository.internal.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.sound.midi.Track;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.UUID;
@@ -31,6 +32,8 @@ public class Home {
     AlbumService albumService;
     @Autowired
     UserDetailsServiceImpl userService;
+    @Autowired
+    TrackService trackService;
 
     Home() {
         spotifyRepo = new SpotifyRepository("1d1caf5e2f0048abaaf3a5c6c6db18d9", "f0b2c475ad1f47aca16104715212a5b7");
@@ -50,10 +53,11 @@ public class Home {
         return "artist";
     }
 
-    @PostMapping("/album")
+    @GetMapping("/album")
     public String album(Model model, @RequestParam String id) {
         Album album = albumService.findByid(id);
-        //model.addAttribute("artistName", album.getArtist().getName());
+        album = trackService.addAlbumTrackList(album);
+
         model.addAttribute("album", album);
         return "album";
     }
