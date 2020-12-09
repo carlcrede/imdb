@@ -96,6 +96,7 @@ public class MbAlbum {
         album.setArtist(artist);
         album.setTitle(release.getTitle());
         album.setMbid(release.getId());
+
         if(release.getType() != null) {
             album.setType(release.getTypeString());
         }

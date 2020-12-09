@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" th:href="@{css/styles.css}">
     <link type="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <script
@@ -19,56 +19,49 @@
     <script src="javascript/pageScripts/albumScript.js"></script>
     <title th:text="${album.getTitle()}"></title>
 </head>
-<body class="body">
+<body class="bg-dark">
 <div th:replace="/header.html"></div>
-<div class="jumbotron">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-10" >
-                <h1 class="display-4" th:text="${album.title}"></h1>
+<div class="container-fluid py-5">
+    <div class="container-fluid">
+        <div class="row text-center">
+            <div class="col-6">
+                <h2 th:text="${album.title}"></h2>
             </div>
-            <div class="col-md-2">
-                <img th:id="${album.mbid}" src="" class="album rounded-circle align-items-end" width="80" height="80">
-            </div>
-        </div>
-        <div class="row">
-            <p class="lead" th:text="${album.type}"></p>
-        </div>
-        <div class="row">
-            <a href="#collapseExample" class="btn btn-light btn-outline-dark col-2 lead"
-               data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample">ANNOTATIONS</a>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="collapse" id="collapseExample">
-                    <div th:each=" annotations : ${album.annotations}">
-                        <p th:text="${annotations}"></p>
-                    </div>
+            <div class="col-6">
+                <div class="card">
+                    <p><b></b><span></span></p>
                 </div>
             </div>
         </div>
+
     </div>
 </div>
-<div class="container row">
-    <ul id="tracklist row">
-        <th:block th:each="track : ${album.tracks}">
-            <li class="track row ">
-                <div class="row">
-                    <div class="col-3">
-                        <h4 th:text="${track.name}"> </h4>
-                    </div>
-                    <div class="col-3">
-                        <h4 th:text="${track.length}"> </h4>
-                    </div>
-                </div>
-            </li>
-        </th:block>
-    </ul>
+<div class="container border border-dark">
+    <div class="row">
+    <table class="table text-light">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Feat.</th>
+                <th scope="col">Length</th>
+                <th scope="col">Streams</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="track :${album.tracks}">
+                <td th:text="${track.position}"></td>
+                <td th:text="${track.name}"></td>
+                <td th:text="${track.features}"></td>
+                <td th:text="${track.length}"></td>
+                <td>null</td>
+            </tr>
+        </tbody>
+    </div>
+
+    </table>
 </div>
 <div id="loader" class="center"></div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
 </body>
 </html>´

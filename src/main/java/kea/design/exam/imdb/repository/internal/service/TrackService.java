@@ -1,15 +1,14 @@
 package kea.design.exam.imdb.repository.internal.service;
 
 import kea.design.exam.imdb.models.Album;
-import kea.design.exam.imdb.models.Artist;
 import kea.design.exam.imdb.models.Track;
 import kea.design.exam.imdb.repository.external.musicbrainz.MbTrack;
 import kea.design.exam.imdb.repository.internal.repository.TrackRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class TrackService implements CrudService<Track, String>{
@@ -31,7 +30,7 @@ public class TrackService implements CrudService<Track, String>{
         List<Track> tracks = album.getTracks();
         if(tracks != null) {
             if (tracks.isEmpty()) {
-                tracks = internalRepo.findTracksByAlbum(album);
+                tracks = internalRepo.findTracksByAlbumOrderByPosition(album);
             }
             if (tracks.isEmpty()) {
                 tracks = saveAll(externalRepo.getTracksForAlbum(album));

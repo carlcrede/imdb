@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.sound.midi.Track;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.UUID;
 
 @Controller
@@ -57,6 +58,7 @@ public class Home {
     public String album(Model model, @RequestParam String id) {
         Album album = albumService.findByid(id);
         album = trackService.addAlbumTrackList(album);
+        Collections.sort(album.getTracks());
 
         model.addAttribute("album", album);
         return "album";

@@ -14,7 +14,7 @@ public interface TrackRepository extends CrudRepository<Track, String> {
     @Override
     Optional<Track> findById(String id);
 
-    List<Track> findTracksByAlbum(Album album);
+    List<Track> findTracksByAlbumOrderByPosition(Album album);
 
     @Query(value = "SELECT * FROM track WHERE title LIKE %?1% LIMIT ?2", nativeQuery = true)
     List<Track> findAmountByTitle(String title, int amount);

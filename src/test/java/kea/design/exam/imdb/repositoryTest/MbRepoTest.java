@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.musicbrainz.MBWS2Exception;
 
+import java.util.List;
+
 public class MbRepoTest {
 
     @Test
@@ -61,5 +63,16 @@ public class MbRepoTest {
             }
         }
         Assertions.assertTrue(hasAllure);
+    }
+
+    @Test
+    public void getTrackLabel(){
+        MbAlbum albumRepo = new MbAlbum();
+        //getter Jay-Z's the black album
+        Album album = albumRepo.getById("77befaa0-662e-3d84-ba45-c862e16dc109");
+        MbTrack track = new MbTrack();
+        List<Track> trackList = track.getTracksForAlbum(album);
+
+        trackList.forEach(System.out::println);
     }
 }

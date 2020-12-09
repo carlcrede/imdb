@@ -15,11 +15,12 @@ public class Album {
     private String title;
     private String type;
     private LocalDate releaseDate;
+    private String label;
 
     @OneToMany(fetch = FetchType.EAGER)
     private Set<Annotation> annotations;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<Track> tracks;
 
     @ManyToOne
@@ -63,6 +64,15 @@ public class Album {
 
     public void setAnnotations(Set<Annotation> annotations) {
         this.annotations = annotations;
+    }
+
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
     }
 
     public List<Track> getTracks() {
