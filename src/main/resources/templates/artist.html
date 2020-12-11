@@ -37,7 +37,7 @@
 </head>
 <body class="bg-secondary">
 <input id="mbid" type="hidden" th:value="${artist.id}">
-<div style="display: none" id="userId" sec:authentication="name"></div>
+<div style="display: none" id="userName" sec:authentication="name"></div>
 <div th:replace="/header.html"></div>
     <div id="banner" class="section bg-dark card">
         <div class="container">
@@ -51,7 +51,9 @@
                     <div class="card">
                         <img id="artistImage" class="rounded card-img-top" src="img/blank.png" alt="Missing artist image">
                     </div>
-                    <div>Rating: <span id="artistRating"></span></div>
+                    <div>Average rating: <span id="artistRating"></span> <i class="fas fa-star star"></i></div>
+                    <div id="ratingFeedback" style="display: none" class="alert alert-success" role="alert">
+                    </div>
                     <form id="ratingform">
                             <div class="pt-2">
                                 <input type="radio" class="star-input" name="rating" id="star-1" value="1" >
@@ -64,7 +66,9 @@
                                 <label for="star-4" class="star"><i class="fas fa-star"></i></label>
                                 <input type="radio" class="star-input" name="rating" id="star-5" value="5" checked>
                                 <label for="star-5" class="star"><i class="fas fa-star"></i></label>
-                                <button type="submit" class="button-inverse">Rate</button>
+                                <button type="submit" th:disabled="${#authorization.expr('isAnonymous()')}" class="button-inverse">Rate</button>
+                                <div sec:authorize="isAnonymous()">Log in to rate</div>
+
                             </div>
                         </form>
                         <div id="showtext">
