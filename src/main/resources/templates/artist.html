@@ -138,7 +138,8 @@
                                         </div>
                                     <!-- </a> -->
                                 </div>
-                                <input type="hidden" name="id" th:value="${album.getMbid()}">
+                                <input type="hidden" name="albumId" th:value="${album.getMbid()}">
+                                <input type="hidden" name="artistId" th:value="${artist.id}">
                             </form>
                             <div style="white-space: initial">
                                 <h5 class="card-text text-center" th:text="${album.title}"></h5>

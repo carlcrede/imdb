@@ -56,8 +56,9 @@ public class AlbumService implements CrudService<Album, String> {
     }
 
     public List<Album> saveAll(List<Album> albums){
-        internalRepo.saveAll(albums);
-        return albums;
+        List<Album> newAlbum = new ArrayList<>();
+        internalRepo.saveAll(albums).forEach(newAlbum::add);
+        return newAlbum;
     }
 
     @Override

@@ -27,7 +27,7 @@ public class SearchController {
     }
 
     @GetMapping("/album")
-    public List<Album> getAlbumFromQuery(String query, Integer amount){
+    public List<Album> getAlbumFromQuery(String query, int amount){
         return albumService.findAmountByQuery(query, amount);
     }
 }
