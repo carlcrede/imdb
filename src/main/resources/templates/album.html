@@ -19,48 +19,75 @@
     <script src="javascript/pageScripts/albumScript.js"></script>
     <title th:text="${album.getTitle()}"></title>
 </head>
-<body class="bg-dark">
+<body class="bg-dark" style="">
 <div th:replace="/header.html"></div>
-<div class="container-fluid py-5">
-    <div class="container-fluid">
-        <div class="row text-center">
-            <div class="col-6">
-                <h2 th:text="${album.title}"></h2>
-            </div>
-            <div class="col-6">
-                <div class="card">
-                    <p><b></b><span></span></p>
+    <div class="container-fluid row py-5" id="mast">
+        <div class="container-fluid">
+            <div class="row text-center">
+                <input type="hidden" id="id" th:value="${album.mbid}">
+                <div class="col-3 d-flex align-items-center">
+                    <img class="shadow mx-1 img-fluid" id="cover" style="border-radius:100%; max-height: 100%; width:auto;">
+                </div>
+                <div class="col text-light d-flex align-items-center">
+                    <div class="container">
+                        <h1 class="text-center" style="text-shadow: 3px 3px #32383E;" th:text="${album.title}"></h1>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card bg-dark">
+                        <div>
+                            <b class="text-warning">Years active: </b>
+                            <span class="text-light"></span>
+                        </div>
+                        <div>
+                            <b class="text-warning">Years active: </b>
+                            <span class="text-light"></span>
+                        <div>
+                            <b class="text-warning">Years active: </b>
+                            <span></span>
+                        </div>
+                        <div>
+                            <b class="text-warning">Years active: </b>
+                            <span class="text-light"></span>
+                        </div>
+                        <div>
+                            <b class="text-warning">Years active: </b>
+                            <span class="text-light"></span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
-<div class="container border border-dark">
-    <div class="row">
-    <table class="table text-light">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Title</th>
-                <th scope="col">Feat.</th>
-                <th scope="col">Length</th>
-                <th scope="col">Streams</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="track :${album.tracks}">
-                <td th:text="${track.position}"></td>
-                <td th:text="${track.name}"></td>
-                <td th:text="${track.features}"></td>
-                <td th:text="${track.length}"></td>
-                <td>null</td>
-            </tr>
-        </tbody>
+<div class="container">
+    <div class="container card bg-dark">
+        <div class="card-header py-1">
+            <h2 class="text-light">Track List</h2>
+        </div>
+        <table class="table table-bordered table-dark table-hover card-body table-striped text-light">
+            <thead>
+                <tr>
+                    <th class="text-center" scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Feat.</th>
+                    <th scope="col">Length</th>
+                    <th scope="col">Streams</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="track :${album.tracks}">
+                    <th class="text-center" th:text="${track.position}"></th>
+                    <td th:text="${track.name}"></td>
+                    <td th:text="${track.features}"></td>
+                    <td th:text="${track.length}"></td>
+                    <td>null</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-
-    </table>
 </div>
+
 <div id="loader" class="center"></div>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>

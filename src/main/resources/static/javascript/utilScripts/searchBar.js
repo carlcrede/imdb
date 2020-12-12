@@ -77,7 +77,7 @@ let displayArtist = function artistDisplay(data) {
                 "<img class='mx-1' style='border-radius:100%; max-height: 100%; width:auto;' src='" + artistPic.artists.items[0].images[0].url + "'>" +
                 "<div class='text-light col'>" +
                 "<h4>" + artist.name + "</h4>" +
-                "<p style='color:#D7B8B8'>" + artist.type + " \t</p>" +
+                "<p style='color:#D7B8B8'>" + artist.type + "</p>" +
                 "</div>" +
                 "</div>" +
                 "</li>" +
@@ -90,13 +90,13 @@ let displayAlbum = function albumDisplay(data){
         $.get("http://coverartarchive.org/release-group/" + album.mbid, {}, function (cover){
             let src = cover.images[0].image;
             $("#searchList").append(
-                "<a href='artist?id=" + album.mbid + "'>" +
+                "<a href='album?id=" + album.mbid + "'>" +
                 "<li style='height:5em;' class='borderx-dark container-fluid p-1'>" +
                     "<div class='container-fluid row' style='height:100%'>" +
                         "<img class='mx-1' style='border-radius:100%; max-height: 100%; width:auto;' src='"+src+"'>" +
                         "<div class='text-light col'>" +
                             "<h4>" + album.title + "</h4>" +
-                            "<p style='color:#D7B8B8'>" + album.type + " \t</p>" +
+                            "<span class='text-left' style='color:#D7B8B8'>" + album.artist.name + "</span><span style='color:#D7B8B8; float: right;'>" + album.type + "</span>" +
                         "</div>" +
                     "</div>" +
                 "</li>" +

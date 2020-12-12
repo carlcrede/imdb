@@ -51,10 +51,11 @@ public class MbArtist {
         return artists;
     }
 
-    private Artist parseWebSearch(ArtistWs2 artistWs2){
+    protected Artist parseWebSearch(ArtistWs2 artistWs2){
        Artist artist = new Artist();
        artist.setId(artistWs2.getId());
        artist.setName(artistWs2.getName());
+       artist.setDisambiguation(artistWs2.getDisambiguation());
 
        artistWs2.getReleaseGroupList().getReleaseGroups().forEach(System.out::println);
 

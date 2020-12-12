@@ -16,6 +16,7 @@ public class Artist {
     private String type;
     private String gender;
     private String founded;
+    private String disambiguation;
 
     @OneToMany
     private List<Rating> ratings;
@@ -114,5 +115,13 @@ public class Artist {
 
     public void setSpotifyId(String spotifyId) {
         this.spotifyId = spotifyId;
+    }
+
+    public String getDisambiguation() {
+        return disambiguation;
+    }
+
+    public void setDisambiguation(String disambiguation) {
+        this.disambiguation = disambiguation;
     }
 }

@@ -56,12 +56,11 @@ public class Home {
     }
 
     @GetMapping("/album")
-    public String album(Model model, @RequestParam String albumId, @RequestParam String artistId) {
-        Album album = albumService.findByid(albumId);
+    public String album(Model model, @RequestParam String id) {
+        Album album = albumService.findByid(id);
         album = trackService.addAlbumTrackList(album);
         Collections.sort(album.getTracks());
-        
-        model.addAttribute("artist", artistService.findByid(artistId));
+
         model.addAttribute("album", album);
         return "album";
     }

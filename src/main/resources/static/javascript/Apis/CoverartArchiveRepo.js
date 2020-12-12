@@ -3,3 +3,9 @@ function getFrontCover(imag) {
         imag.src = data.images[0].image;
     });
 }
+
+function getCover(id, callback) {
+    $.get("http://coverartarchive.org/release-group/" + id, {}, function (data){
+        callback(data.images[0].image);
+    });
+}

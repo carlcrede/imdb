@@ -1,5 +1,8 @@
 package kea.design.exam.imdb.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.json.JSONPropertyIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;

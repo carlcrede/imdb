@@ -28,6 +28,9 @@ public class SearchController {
 
     @GetMapping("/album")
     public List<Album> getAlbumFromQuery(String query, int amount){
-        return albumService.findAmountByQuery(query, amount);
+        //first we remove tracks from album to prevent infinite recursion when converting to json
+        List<Album> albums = albumService.findAmountByQuery(query, amount);
+        albums.forEach((v) -> {v.setTracks(null);});
+        return albums;
     }
 }
