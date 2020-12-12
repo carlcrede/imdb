@@ -13,6 +13,5 @@ $(document).ready(function () {
             //console.log(data);
             $(first).append(" | Average: " + data.toFixed(2) + "/10");
         });
-        //$(last).text()
     })
 });

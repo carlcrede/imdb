@@ -1,7 +1,7 @@
 function getAverageRatingByArtist(mbid) {
     $.get("/rating/getRatingsByArtist", {mbid: mbid}, function (data) {
         //console.log(data);
-        $("#artistRating").text(data);
+        $("#artistRating").text(data.toFixed(2));
     });
 }
 // mbid for artist, user id, rating
