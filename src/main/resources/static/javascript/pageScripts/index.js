@@ -11,7 +11,7 @@ $(document).ready(function () {
         console.log(mbid);
         $.get("/rating/getRatingsByArtist", {mbid: mbid}, function (data) {
             //console.log(data);
-            $(first).append(" | Average: " + data.toFixed(2) + "/10");
+            $(first).append(" | Average rating: " + data.toFixed(2) + "/10");
         });
     })
 });
