@@ -30,6 +30,18 @@ $(document).ready(function(){
     // then calls the callback function 'setConcerts'
     getConcertsByArtist(artistName, 4, false, false, false, concerts);
 
+    getAverageRatingByArtist($("#mbid").val());
+    // submit form
+    $("#ratingform").submit(function (event) {
+        // Prevents the form from submitting via the browser.
+        event.preventDefault();
+        let mbid = $("#mbid").val();
+        let rating = $('input[name="rating"]:checked').val();
+        let userName = $("#userName").text();
+        console.log("User: " + userName);
+        submitRating(mbid, rating, userName);
+    });
+
     // makes call to coverArtArchive API and then sets cover art for each album.
     // the search is done using the MBID for the release-group, and then we choose the first result.
     // should be fairly accurate

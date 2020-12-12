@@ -13,8 +13,13 @@ public class RatingService implements CrudService<Rating, Integer> {
     @Autowired
     RatingRepository ratingRepository;
 
-    public Double getRatingsByArtist(String mbid) {
-        return ratingRepository.getRatingsByArtist(mbid);
+    public List<Rating> getTopRatedArtists() {
+        return ratingRepository.getTopRatedArtists();
+    }
+
+
+    public Double getAverageRatingByArtist(String mbid) {
+        return ratingRepository.getAverageRatingByArtist(mbid);
     }
 
     @Override

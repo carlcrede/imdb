@@ -11,17 +11,54 @@
     <script src="javascript/Apis/CoverartArchiveRepo.js"></script>
     <script src="javascript/Apis/newsAPI.js"></script>
     <script src="javascript/utilScripts/jquery.nicescroll.min.js"></script>
+    <script src="javascript/pageScripts/index.js"></script>
+    <script src="javascript/pageScripts/ratingScript.js"></script>
     <title>Home</title>
 </head>
-<body>
+<body class="bg-dark">
 <div th:replace="/header.html"></div>
-<p> TEST</p>
 <div class="container">
     <div class="text-center">
         <div id="searchResults">
         </div>
     </div>
 </div>
+<div class="container bg-dark">
+    <div class="row my-3">
+        <div class="display-3">Wellcome to Internet Music Database</div>
+    </div>
+    <div class="row">
+        <div class="col-3">
+            <div class="display-4">Top-rated</div>
+            <ul class="nav nav-tabs mt-3" id="ratingTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="artist-tab" data-toggle="tab" role="tab" href="#artist">Artists</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="album-tab" data-toggle="tab" role="tab" href="#albums">Albums</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="ratings">
+                <div class="tab-pane fade show active" id="artist" role="tabpanel">
+                    <div id="ratings_artist" class="list-group mt-3">
+                        <div th:each="rating: ${topArtists}" class="artist">
+                            <a th:id="${rating.getArtist().id}" th:href="@{/artist(id=${rating.getArtist().id})}" th:text="${rating.getArtist().name}" class="list-group-item list-group-item-action artist_name"></a>
+<!--                            <a th:id="${rating.id}" class="list-group-item list-group-item-action artist_rating"></a>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="albums" role="tabpanel">
+                    <div id="ratings_album" class="list-group mt-3">
+                        <a href="#" class="list-group-item list-group-item-action">Link to album</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div id="loader" class="center"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-dateFormat/1.0/jquery.dateFormat.min.js" integrity="sha512-YKERjYviLQ2Pog20KZaG/TXt9OO0Xm5HE1m/OkAEBaKMcIbTH1AwHB4//r58kaUDh5b1BWwOZlnIeo0vOl1SEA==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>

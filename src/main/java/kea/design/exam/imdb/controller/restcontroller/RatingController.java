@@ -8,16 +8,9 @@ import kea.design.exam.imdb.repository.internal.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-import static org.springframework.http.ResponseEntity.badRequest;
 
 @RestController
 @RequestMapping("/rating")
@@ -37,8 +30,8 @@ public class RatingController {
     }*/
 
     @GetMapping("/getRatingsByArtist")
-    public Double getRatingsByArtist(@RequestParam String mbid) {
-        return ratingService.getRatingsByArtist(mbid);
+    public Double getAverageRatingByArtist(@RequestParam String mbid) {
+        return ratingService.getAverageRatingByArtist(mbid);
     }
 
     @GetMapping("/save")
@@ -50,7 +43,7 @@ public class RatingController {
             if (r.getArtist().getId().equals(mbid)) {
                 r.setRating(rating);
                 ratingService.save(r);
-                return new ResponseEntity<>(ratingService.getRatingsByArtist(mbid), HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<>(ratingService.getAverageRatingByArtist(mbid), HttpStatus.BAD_REQUEST);
             }
         }
         Artist artist = artistService.findByid(mbid);
@@ -61,7 +54,7 @@ public class RatingController {
         userDetails.getUser().getRatings().add(rating1);
         ratingService.save(rating1);
         userService.saveUserRating(userDetails.getUser());
-        return ResponseEntity.ok(ratingService.getRatingsByArtist(mbid));
+        return ResponseEntity.ok(ratingService.getAverageRatingByArtist(mbid));
     }
 
 }
