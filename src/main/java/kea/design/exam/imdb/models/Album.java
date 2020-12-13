@@ -1,14 +1,9 @@
 package kea.design.exam.imdb.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.json.JSONPropertyIgnore;
-
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 
 @Entity
 public class Album {
@@ -26,8 +21,19 @@ public class Album {
     @ManyToMany(fetch = FetchType.LAZY)
     private List<Track> tracks;
 
+    @OneToMany
+    private List<AlbumRating> ratings;
+
     @ManyToOne
     private Artist artist;
+
+    public List<AlbumRating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<AlbumRating> ratings) {
+        this.ratings = ratings;
+    }
 
     public String getMbid() {
         return mbid;
@@ -68,7 +74,6 @@ public class Album {
     public void setAnnotations(Set<Annotation> annotations) {
         this.annotations = annotations;
     }
-
 
     public String getLabel() {
         return label;

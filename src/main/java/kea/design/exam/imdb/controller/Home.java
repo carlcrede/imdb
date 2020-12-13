@@ -5,22 +5,15 @@ import kea.design.exam.imdb.models.Artist;
 import kea.design.exam.imdb.models.Rating;
 import kea.design.exam.imdb.models.User;
 import kea.design.exam.imdb.repository.external.SpotifyRepository;
-import kea.design.exam.imdb.repository.external.musicbrainz.MbArtist;
 import kea.design.exam.imdb.repository.internal.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.sound.midi.Track;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.UUID;
 
 @Controller
 public class Home {

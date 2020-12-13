@@ -2,7 +2,6 @@ package kea.design.exam.imdb.models;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,7 +18,7 @@ public class Artist {
     private String disambiguation;
 
     @OneToMany
-    private List<Rating> ratings;
+    private List<ArtistRating> ratings;
 
     @OneToMany(fetch = FetchType.EAGER)
     private List<Annotation> annotations;
@@ -29,11 +28,11 @@ public class Artist {
 
     private String spotifyId;
 
-    public List<Rating> getRatings() {
+    public List<ArtistRating> getRatings() {
         return ratings;
     }
 
-    public void setRatings(List<Rating> ratings) {
+    public void setRatings(List<ArtistRating> ratings) {
         this.ratings = ratings;
     }
 

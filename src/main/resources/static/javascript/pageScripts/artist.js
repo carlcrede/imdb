@@ -31,6 +31,9 @@ $(document).ready(function(){
     getConcertsByArtist(artistName, 4, false, false, false, concerts);
 
     getAverageRatingByArtist($("#mbid").val());
+
+    getAverageRatingsByAlbum();
+
     // submit form
     $("#ratingform").submit(function (event) {
         // Prevents the form from submitting via the browser.
@@ -79,7 +82,6 @@ $(document).ready(function(){
 let artistImage = function setArtistImage(data){
     $("#artistImage").attr("src", data.artists.items[0].images[0].url);
 };
-
 
 let artistGenre = function setArtistGenre(data){
 

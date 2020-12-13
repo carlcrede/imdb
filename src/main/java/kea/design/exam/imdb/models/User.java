@@ -19,14 +19,25 @@ public class User {
     private boolean enabled = true;
 
     @OneToMany()
-    private List<Rating> ratings;
+    private List<ArtistRating> artistRatings;
 
-    public List<Rating> getRatings() {
-        return ratings;
+    @OneToMany
+    private List<AlbumRating> albumRatings;
+
+    public List<ArtistRating> getArtistRatings() {
+        return artistRatings;
     }
 
-    public void setRatings(List<Rating> ratings) {
-        this.ratings = ratings;
+    public void setArtistRatings(List<ArtistRating> artistRatings) {
+        this.artistRatings = artistRatings;
+    }
+
+    public List<AlbumRating> getAlbumRatings() {
+        return albumRatings;
+    }
+
+    public void setAlbumRatings(List<AlbumRating> albumRatings) {
+        this.albumRatings = albumRatings;
     }
 
     public Long getId() {
