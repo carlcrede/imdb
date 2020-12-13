@@ -34,15 +34,27 @@ $(document).ready(function(){
 
     getAverageRatingsByAlbum();
 
-    // submit form
-    $("#ratingform").submit(function (event) {
+    // submit album rating form
+    $(".album-rating").submit(function (event) {
+        event.preventDefault();
+        let mbid = this.id;
+        let rating = $(this).find("input[type=radio]:checked").val();
+        let userName = $("#userName").text();
+        console.log("Album id: " + mbid);
+        console.log("Rating: " + rating);
+        console.log("User: " + userName);
+        submitAlbumRating(mbid, rating, userName);
+    });
+
+    // submit artist rating form
+    $("#artistRatingForm").submit(function (event) {
         // Prevents the form from submitting via the browser.
         event.preventDefault();
         let mbid = $("#mbid").val();
         let rating = $('input[name="rating"]:checked').val();
         let userName = $("#userName").text();
         console.log("User: " + userName);
-        submitRating(mbid, rating, userName);
+        submitArtistRating(mbid, rating, userName);
     });
 
     // makes call to coverArtArchive API and then sets cover art for each album.

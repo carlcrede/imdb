@@ -52,7 +52,7 @@
                         <img id="artistImage" class="rounded card-img-top" src="img/blank.png" alt="Missing artist image">
                     </div>
                     <div>Average rating: <span id="artistRating"></span> <i class="fas fa-star star"></i></div>
-                    <form id="ratingform">
+                    <form id="artistRatingForm">
                         <div class="pt-2">
                             <input type="radio" class="star-input" name="rating" id="star-1" value="1" >
                             <label for="star-1" class="star"><i class="fas fa-star"></i></label>
@@ -153,7 +153,31 @@
                             </form>
                             <div style="white-space: initial">
                                 <h5 class="card-text text-center" th:text="${album.title}"></h5>
-                                <div class="album_rating"></div>
+                                <div>Average rating: <span th:id="'albumRating_' + ${album.mbid}"></span></div>
+                                <form sec:authorize="!isAnonymous()" class="album-rating" th:id="${album.mbid}">
+                                    <input type="radio" class="album-input" name="albumRating" th:id="${album.mbid} + '1'" value="1" >
+                                    <label th:for="${album.mbid} + '1'" class="star"><i class="fas fa-star"></i></label>
+                                    <input type="radio" class="album-input" name="albumRating" th:id="${album.mbid} + '2'" value="2">
+                                    <label th:for="${album.mbid} + '2'" class="star"><i class="fas fa-star"></i></label>
+                                    <input type="radio" class="album-input" name="albumRating" th:id="${album.mbid} + '3'" value="3">
+                                    <label th:for="${album.mbid} + '3'" class="star"><i class="fas fa-star"></i></label>
+                                    <input type="radio" class="album-input" name="albumRating" th:id="${album.mbid} + '4'" value="4" >
+                                    <label th:for="${album.mbid} + '4'" class="star"><i class="fas fa-star"></i></label>
+                                    <input type="radio" class="album-input" name="albumRating" th:id="${album.mbid} + '5'" value="5">
+                                    <label th:for="${album.mbid} + '5'" class="star"><i class="fas fa-star"></i></label>
+                                    <input type="radio" class="album-input" name="albumRating" th:id="${album.mbid} + '6'" value="6">
+                                    <label th:for="${album.mbid} + '6'" class="star"><i class="fas fa-star"></i></label>
+                                    <input type="radio" class="album-input" name="albumRating" th:id="${album.mbid} + '7'" value="7">
+                                    <label th:for="${album.mbid} + '7'" class="star"><i class="fas fa-star"></i></label>
+                                    <input type="radio" class="album-input" name="albumRating" th:id="${album.mbid} + '8'" value="8" >
+                                    <label th:for="${album.mbid} + '8'" class="star"><i class="fas fa-star"></i></label>
+                                    <input type="radio" class="album-input" name="albumRating" th:id="${album.mbid} + '9'" value="9">
+                                    <label th:for="${album.mbid} + '9'" class="star"><i class="fas fa-star"></i></label>
+                                    <input type="radio" class="album-input" name="albumRating" th:id="${album.mbid} + '10'" value="10">
+                                    <label th:for="${album.mbid} + '10'" class="star"><i class="fas fa-star"></i></label>
+                                    <button type="submit" class="button-inverse">Rate</button>
+                                </form>
+                                <div th:id="'albumRatingFeedback_' + ${album.mbid}" style="display: none" class="mt-2 alert alert-success" role="alert">
                             </div>
                         </div>
                     </div>

@@ -107,7 +107,7 @@ a, a:hover{ color: inherit;
     margin: auto;
 }
 
-.star-input {
+.star-input, .album-input {
     display: none;
 }
 
@@ -116,5 +116,9 @@ a, a:hover{ color: inherit;
 }
 
 .star-input:checked + .star ~ .star {
+    color: grey;
+}
+
+.album-input:checked + .star ~ .star {
     color: grey;
 }

@@ -15,8 +15,7 @@ public class RatingService implements CrudService<AbstractRating, Integer> {
     @Autowired
     RatingRepository ratingRepository;
 
-    public Double getAverageRatingByAlbum(String mbid) {
-        return ratingRepository.getAverageRatingByAlbum(mbid);
+    public Double getAverageRatingByAlbum(String mbid) { return ratingRepository.getAverageRatingByAlbum(mbid);
     }
 
     public List<ArtistRating> getTopRatedArtists() {
