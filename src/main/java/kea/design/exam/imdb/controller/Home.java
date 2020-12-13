@@ -37,6 +37,7 @@ public class Home {
     @GetMapping("")
     public String index(Model model){
         model.addAttribute("topArtists", ratingService.getTopRatedArtists());
+        model.addAttribute("topAlbums", ratingService.getTopRatedAlbums());
         return "index";
     }
 

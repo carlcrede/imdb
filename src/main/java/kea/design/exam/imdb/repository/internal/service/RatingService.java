@@ -2,6 +2,7 @@ package kea.design.exam.imdb.repository.internal.service;
 
 
 import kea.design.exam.imdb.models.AbstractRating;
+import kea.design.exam.imdb.models.AlbumRating;
 import kea.design.exam.imdb.models.ArtistRating;
 import kea.design.exam.imdb.models.Rating;
 import kea.design.exam.imdb.repository.internal.repository.RatingRepository;
@@ -20,6 +21,10 @@ public class RatingService implements CrudService<AbstractRating, Integer> {
 
     public List<ArtistRating> getTopRatedArtists() {
         return ratingRepository.getTopRatedArtists();
+    }
+
+    public List<AlbumRating> getTopRatedAlbums() {
+        return ratingRepository.getTopRatedAlbums();
     }
 
     public Double getAverageRatingByArtist(String mbid) {

@@ -42,14 +42,17 @@
                 <div class="tab-pane fade show active" id="artist" role="tabpanel">
                     <div id="ratings_artist" class="list-group mt-3">
                         <div th:each="rating: ${topArtists}" class="artist">
-                            <a th:id="${rating.getArtist().id}" th:href="@{/artist(id=${rating.getArtist().id})}" th:text="${rating.getArtist().name}" class="list-group-item list-group-item-action artist_name"></a>
+                            <a th:id="${rating.artist.getId()}" th:href="@{/artist(id=${rating.artist.getId()})}" th:text="${rating.artist.name}" class="list-group-item list-group-item-action artist_name"></a>
 <!--                            <a th:id="${rating.id}" class="list-group-item list-group-item-action artist_rating"></a>-->
                         </div>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="albums" role="tabpanel">
                     <div id="ratings_album" class="list-group mt-3">
-                        <a href="#" class="list-group-item list-group-item-action">Link to album</a>
+                        <div th:each="rating: ${topAlbums}" class="album">
+                            <a th:id="${rating.album.getMbid()}" th:href="@{/album(id=${rating.album.getMbid()})}" th:text="${rating.album.title}" class="list-group-item list-group-item-action album_name"></a>
+                            <!--                            <a th:id="${rating.id}" class="list-group-item list-group-item-action artist_rating"></a>-->
+                        </div>
                     </div>
                 </div>
             </div>
