@@ -44,7 +44,7 @@
             <div class="row">
                 <div class="col-sm mb-2">
                     <h1 id="artistName" th:text="${artist.name}" class="display-4 text-light"></h1>
-                    <div class="text-muted">
+                    <div class="text-muted" th:if="${artist.bandMembers != null && !artist.bandMembers.isEmpty()}">
                         <span class="text-light">Members: </span>
                         <th:block th:each="member : ${artist.bandMembers}">
                             <a th:href="'artist?id='+${member.id}" class="ml-3"><span th:text="${member.name}"></span></a>
