@@ -47,7 +47,7 @@
                     <div class="text-muted">
                         <span class="text-light">Members: </span>
                         <th:block th:each="member : ${artist.bandMembers}">
-                            <a th:href="'artist/?id='+${member.id}" class="ml-3"><span th:text="${member.name}"></span></a>
+                            <a th:href="'artist?id='+${member.id}" class="ml-3"><span th:text="${member.name}"></span></a>
                         </th:block>
                     </div>
                 </div>
