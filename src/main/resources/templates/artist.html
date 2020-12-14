@@ -160,7 +160,7 @@
                             </form>
                             <div style="white-space: initial">
                                 <h5 class="card-text text-center" th:text="${album.title}"></h5>
-                                <div>Average rating: <span th:id="'albumRating_' + ${album.mbid}"></span></div>
+                                <div>Average rating: <span class="avg_rating" th:value="${album.mbid}" th:id="'albumRating_' + ${album.mbid}"></span></div>
                                 <form sec:authorize="!isAnonymous()" class="album-rating" th:id="${album.mbid}">
                                     <input type="radio" class="album-input" name="albumRating" th:id="${album.mbid} + '1'" value="1" >
                                     <label th:for="${album.mbid} + '1'" class="star"><i class="fas fa-star"></i></label>
