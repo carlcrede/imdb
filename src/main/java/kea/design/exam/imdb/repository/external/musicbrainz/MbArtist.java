@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class MbArtist {
@@ -70,7 +71,15 @@ public class MbArtist {
             } catch (DateTimeParseException exception) {
             }
         }
-        if(artistWs2.getType() != null) { artist.setType(artistWs2.getType().substring(artistWs2.getType().indexOf("#")+1)); }
+        //retrives the relation with the id (689870a4-a1e4-4912-b17f-7b2664215698) which is a wikipedia relationship returning a link
+        List<RelationWs2> wiki = artistWs2.getRelationList().getRelations().stream().filter((relation -> relation.getTypeId().equals("689870a4-a1e4-4912-b17f-7b2664215698") || relation.getTypeId().equals("29651736-fa6d-48e4-aadc-a557c6add1cb"))).collect(Collectors.toList());
+        if(!wiki.isEmpty()){
+            artist.setWiki(wiki.get(0).getTargetId());
+        }
+        //checks if artist has a type identifier and sets the type if not null
+        if(artistWs2.getType() != null) { artist.setType(artistWs2.getType().substring(artistWs2.getType().indexOf("#")+1));}
+
+        //finds band members if artist type equals group
         if(artist.getType() != null && artist.getType().toLowerCase().equals("group")){
             List<Artist> bandMembers = new ArrayList<>();
             artistWs2.getRelationList().getRelations().stream().filter((relation)->relation.getTypeId().equals("5be4c609-9afa-4ea0-910b-12ffb71e3821")).forEach((member) -> bandMembers.add(getBandMember(member.getTargetId())));
