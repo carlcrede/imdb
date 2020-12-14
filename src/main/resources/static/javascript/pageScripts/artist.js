@@ -2,6 +2,18 @@
  ******** INFO ***********
  **************************/
 
+
+/****************************************************
+****** EVERYTHING THAT MUST BE SET ON ARTIST PAGE LOAD *********
+****************************************************/
+
+/* EVERY FUNCTION (or at least those that have limits)  IS SUPPOSE TO HAVE AN IF-STATEMENT THAT CHECKS FOR THIS CONSTANT!
+    For developement, it is always true, we only change it when pushing to productiion.
+    this variable is used to prevent unneccessary API calls. When developing / testing a specific function or functions,
+    start by not having an if-statement that checks for this constant.
+    After work is done on function(s), add if statement that checks for DEBUG constant.
+    See method 'getNews()' in newsAPI.js for reference.
+
 // *** CORS - ISSUES ** //
 // Use cors-anywhere
 // If an API has strict CORS, add 'https://cors-anywhere.herokuapp.com to URL
@@ -20,7 +32,11 @@
  */
 
 $(document).ready(function(){
-    getSummary("Q955635");
+
+    //loads Description from wiki
+    let wiki = $("#description")[0].getAttribute("data-value").split("/")[4];
+    getSummary(wiki, setDescripition);
+
     let artistName = $("#artistName").text();
 
     // adds onclick to albums to redirect their main page
@@ -159,3 +175,7 @@ let concerts = function setConcerts(data) {
         )
     }
 };
+
+let setDescripition = function(description){
+    $("#description").text(description);
+}

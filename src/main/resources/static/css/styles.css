@@ -65,13 +65,13 @@ a, a:hover{ color: inherit;
 
 }
 
-#module #collapseExample.collapse:not(.show) {
+#module #description.collapse:not(.show) {
     display: block;
     height: 3rem;
     overflow: hidden;
 }
 
-#module #collapseExample.collapsing {
+#module #description.collapsing {
     height: 3rem;
 }
 

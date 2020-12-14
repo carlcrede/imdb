@@ -20,7 +20,14 @@ public class MbRepoTest {
         MbArtist artistRepo = new MbArtist();
         Artist artist = artistRepo.getById("f181961b-20f7-459e-89de-920ef03c7ed0");
         Assertions.assertEquals(artist.getName().toLowerCase(), "the strokes");
-        artist.getBandMembers().forEach(System.out::println);
+    }
+
+    @Test
+    public void mbGetArtistWiki(){
+        MbArtist artistRepo = new MbArtist();
+        Artist artist = artistRepo.getById("73e5e69d-3554-40d8-8516-00cb38737a1c");
+        Assertions.assertEquals(artist.getName().toLowerCase(), "rihanna");
+        System.out.println(artist.getWiki());
     }
 
     @Test

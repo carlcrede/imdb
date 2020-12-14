@@ -72,6 +72,7 @@ public class MbArtist {
             }
         }
         //retrives the relation with the id (689870a4-a1e4-4912-b17f-7b2664215698) which is a wikipedia relationship returning a link
+
         List<RelationWs2> wiki = artistWs2.getRelationList().getRelations().stream().filter((relation -> relation.getTypeId().equals("689870a4-a1e4-4912-b17f-7b2664215698") || relation.getTypeId().equals("29651736-fa6d-48e4-aadc-a557c6add1cb"))).collect(Collectors.toList());
         if(!wiki.isEmpty()){
             artist.setWiki(wiki.get(0).getTargetId());
