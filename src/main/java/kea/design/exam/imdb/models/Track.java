@@ -1,6 +1,8 @@
 package kea.design.exam.imdb.models;
 
 import javax.persistence.*;
+import java.lang.management.PlatformLoggingMXBean;
+import java.util.List;
 
 @Entity
 public class Track implements Comparable<Track>{
@@ -13,6 +15,8 @@ public class Track implements Comparable<Track>{
     private String isrc;
     @ManyToOne
     private Album album;
+    @ManyToOne
+    private Playlist playlists;
 
     public String getId() {
         return id;
@@ -38,6 +42,13 @@ public class Track implements Comparable<Track>{
         this.length = length;
     }
 
+    public Playlist getPlaylists() {
+        return playlists;
+    }
+
+    public void setPlaylists(Playlist playlists) {
+        this.playlists = playlists;
+    }
 
     public int getPosition() {
         return position;
