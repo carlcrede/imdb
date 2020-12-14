@@ -20,6 +20,7 @@
  */
 
 $(document).ready(function(){
+    getSummary("Q955635");
     let artistName = $("#artistName").text();
 
     // adds onclick to albums to redirect their main page
