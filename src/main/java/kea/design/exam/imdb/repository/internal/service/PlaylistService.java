@@ -26,7 +26,7 @@ public class PlaylistService implements CrudService<Playlist, Long>{
 
     @Override
     public Playlist save(Playlist playlist) {
-        return null;
+        return playlistRepository.save(playlist);
     }
 
     @Override

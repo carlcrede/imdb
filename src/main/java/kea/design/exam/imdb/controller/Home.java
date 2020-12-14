@@ -1,9 +1,6 @@
 package kea.design.exam.imdb.controller;
 
-import kea.design.exam.imdb.models.Album;
-import kea.design.exam.imdb.models.Artist;
-import kea.design.exam.imdb.models.Rating;
-import kea.design.exam.imdb.models.User;
+import kea.design.exam.imdb.models.*;
 import kea.design.exam.imdb.repository.external.SpotifyRepository;
 import kea.design.exam.imdb.repository.internal.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +25,8 @@ public class Home {
     TrackService trackService;
     @Autowired
     RatingService ratingService;
+    @Autowired
+    PlaylistService playlistService;
 
     Home() {
         spotifyRepo = new SpotifyRepository("1d1caf5e2f0048abaaf3a5c6c6db18d9", "f0b2c475ad1f47aca16104715212a5b7");
@@ -92,4 +91,14 @@ public class Home {
         userService.signUpUser(user);
         return "redirect:/login";
     }
+
+    @PostMapping("/playlist")
+    public String makePlaylist(Playlist playlist){
+//        playlistService.save(playlist);
+        System.out.println("Mapping virker");
+        return "redirect:/profile";
+    }
+
+
+
 }
