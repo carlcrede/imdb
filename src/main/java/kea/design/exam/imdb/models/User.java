@@ -18,11 +18,22 @@ public class User {
     private String role = "ROLE_USER";
     private boolean enabled = true;
 
+    @OneToMany
+    private List<Playlist> playlists;
+
     @OneToMany()
     private List<ArtistRating> artistRatings;
 
     @OneToMany
     private List<AlbumRating> albumRatings;
+
+    public List<Playlist> getPlaylists() {
+        return playlists;
+    }
+
+    public void setPlaylists(List<Playlist> playlists) {
+        this.playlists = playlists;
+    }
 
     public List<ArtistRating> getArtistRatings() {
         return artistRatings;
