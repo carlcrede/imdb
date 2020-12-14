@@ -31,37 +31,38 @@
                 <div class="col text-light d-flex align-items-center">
                     <div class="container">
                         <h1 class="text-center" style="text-shadow: 3px 3px #32383E;" th:text="${album.title}"></h1>
+                        <h5 class="text-center" style="text-shadow: 2px 2px #32383E;" th:text="${album.artist.name}"></h5>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card bg-dark">
-                        <div>
-                            <b class="text-warning">Years active: </b>
-                            <span class="text-light"></span>
-                        </div>
-                        <div>
-                            <b class="text-warning">Years active: </b>
-                            <span class="text-light"></span>
-                        <div>
-                            <b class="text-warning">Years active: </b>
-                            <span></span>
-                        </div>
-                        <div>
-                            <b class="text-warning">Years active: </b>
-                            <span class="text-light"></span>
-                        </div>
-                        <div>
-                            <b class="text-warning">Years active: </b>
-                            <span class="text-light"></span>
-                        </div>
-                    </div>
-                </div>
+                <div class="col container">
+                    <table class="card table bg-dark">
+                        <tr>
+                            <td class="text-warning">Release date: </td>
+                            <td class="text-light" th:text="${album.releaseDate}"> </td>
+                        </tr>
+                        <tr>
+                            <td class="text-warning">Type: </td>
+                            <td class="text-light" th:text="${album.type}"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-warning">Label: </td>
+                            <td class="text-light" th:text="${album.label} ?: 'Unknown'"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-warning">Years active: </td>
+                            <td class="text-light"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-warning">Years active: </td>
+                            <td class="text-light"></td>
+                        </tr>
+                </table>
             </div>
         </div>
     </div>
 </div>
 <div class="container">
-    <div class="container card bg-dark">
+    <div class="container border card bg-dark">
         <div class="card-header py-1">
             <h2 class="text-light">Track List</h2>
         </div>

@@ -3,6 +3,8 @@ package kea.design.exam.imdb.repository.external.musicbrainz;
 import kea.design.exam.imdb.models.Artist;
 import org.musicbrainz.MBWS2Exception;
 import org.musicbrainz.model.LifeSpanWs2;
+import org.musicbrainz.model.RelationListWs2;
+import org.musicbrainz.model.RelationWs2;
 import org.musicbrainz.model.entity.ArtistWs2;
 import org.musicbrainz.model.searchresult.ArtistResultWs2;
 import org.springframework.stereotype.Repository;
@@ -39,7 +41,6 @@ public class MbArtist {
         artist.getIncludes().setVariousArtists(false);
         artist.getIncludes().setWorks(false);
 
-
         artist.getSearchFilter().setMinScore((long)100);
         artist.search(query);
         artist.getSearchFilter().setLimit((long) amount);
@@ -52,12 +53,10 @@ public class MbArtist {
     }
 
     protected Artist parseWebSearch(ArtistWs2 artistWs2){
-       Artist artist = new Artist();
-       artist.setId(artistWs2.getId());
-       artist.setName(artistWs2.getName());
-       artist.setDisambiguation(artistWs2.getDisambiguation());
-
-       artistWs2.getReleaseGroupList().getReleaseGroups().forEach(System.out::println);
+        Artist artist = new Artist();
+        artist.setId(artistWs2.getId());
+        artist.setName(artistWs2.getName());
+        artist.setDisambiguation(artistWs2.getDisambiguation());
 
         LifeSpanWs2 life = artistWs2.getLifeSpan();
         if(life != null) {
@@ -72,11 +71,30 @@ public class MbArtist {
             }
         }
         if(artistWs2.getType() != null) { artist.setType(artistWs2.getType().substring(artistWs2.getType().indexOf("#")+1)); }
-
-       artist.setGender(artistWs2.getGender());
-       if(artistWs2.getBeginArea() != null) {
+        if(artist.getType() != null && artist.getType().toLowerCase().equals("group")){
+            List<Artist> bandMembers = new ArrayList<>();
+            artistWs2.getRelationList().getRelations().stream().filter((relation)->relation.getTypeId().equals("5be4c609-9afa-4ea0-910b-12ffb71e3821")).forEach((member) -> bandMembers.add(getBandMember(member.getTargetId())));
+            artist.setBandMembers(bandMembers);
+        }
+        artist.setGender(artistWs2.getGender());
+        if(artistWs2.getBeginArea() != null) {
            artist.setFounded(artistWs2.getBeginArea().getName());
-       }
-       return artist;
+        }
+        return artist;
+    }
+
+    private Artist getBandMember(String memberId){
+        org.musicbrainz.controller.Artist artist = new org.musicbrainz.controller.Artist();
+        artist.getIncludes().setReleaseGroups(false);
+        artist.getIncludes().setReleases(false);
+        artist.getIncludes().setRecordings(false);
+        artist.getIncludes().setVariousArtists(false);
+        artist.getIncludes().setWorks(false);
+        try {
+            return parseWebSearch(artist.lookUp(memberId));
+        } catch (MBWS2Exception e) {
+            e.printStackTrace();
+        }
+    return null;
     }
 }

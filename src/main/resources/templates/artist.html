@@ -44,6 +44,12 @@
             <div class="row">
                 <div class="col-sm mb-2">
                     <h1 id="artistName" th:text="${artist.name}" class="display-4 text-light"></h1>
+                    <div class="text-muted">
+                        <span class="text-light">Members: </span>
+                        <th:block th:each="member : ${artist.bandMembers}">
+                            <a th:href="'artist/?id='+${member.id}" class="ml-3"><span th:text="${member.name}"></span></a>
+                        </th:block>
+                    </div>
                 </div>
             </div>
             <div class="row mb-5">
@@ -182,6 +188,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
             <div class="col p-0 col-lg-6" id="extraInfo">
                 <div class="section bg-dark card" id="newsContainer">

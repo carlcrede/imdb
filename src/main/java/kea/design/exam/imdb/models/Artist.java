@@ -18,6 +18,9 @@ public class Artist {
     private String disambiguation;
 
     @OneToMany
+    private List<Artist> bandMembers;
+
+    @OneToMany
     private List<ArtistRating> ratings;
 
     @OneToMany(fetch = FetchType.EAGER)
@@ -66,6 +69,14 @@ public class Artist {
 
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
+    }
+
+    public List<Artist> getBandMembers() {
+        return bandMembers;
+    }
+
+    public void setBandMembers(List<Artist> bandMembers) {
+        this.bandMembers = bandMembers;
     }
 
     public String getType() {
@@ -122,5 +133,17 @@ public class Artist {
 
     public void setDisambiguation(String disambiguation) {
         this.disambiguation = disambiguation;
+    }
+
+    @Override
+    public String toString() {
+        return "Artist{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", beginDate=" + beginDate +
+                ", endDate=" + endDate +
+                ", type='" + type + '\'' +
+                ", gender='" + gender + '\'' +
+                '}';
     }
 }

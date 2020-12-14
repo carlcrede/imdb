@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.musicbrainz.MBWS2Exception;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MbRepoTest {
@@ -17,26 +18,38 @@ public class MbRepoTest {
     @Test
     public void mbGetSingleArtistTest(){
         MbArtist artistRepo = new MbArtist();
-        Artist artist = artistRepo.getById("f82bcf78-5b69-4622-a5ef-73800768d9ac");
-        //Assertions.assertEquals(artist.getName().toLowerCase(), "jay-z");
+        Artist artist = artistRepo.getById("f181961b-20f7-459e-89de-920ef03c7ed0");
+        Assertions.assertEquals(artist.getName().toLowerCase(), "the strokes");
+        artist.getBandMembers().forEach(System.out::println);
     }
 
     @Test
-    public void mbGetMultipleArtists() throws MBWS2Exception {
+    public void mbGetMultipleArtists(){
         MbArtist artistRepo = new MbArtist();
-        Assertions.assertEquals(20, artistRepo.findByQuery("justin", 20).size());
+        List<Artist> artists =  artistRepo.findByQuery("the", 20);
+        Assertions.assertEquals(20, artists.size());
     }
 
     @Test
     public void mbGetSingleAlbum(){
         MbAlbum albumRepo = new MbAlbum();
-        Assertions.assertEquals("the black album", albumRepo.getById("77befaa0-662e-3d84-ba45-c862e16dc109").getTitle().toLowerCase());
+        Assertions.assertEquals("the life of pablo", albumRepo.getById("8c18657a-6338-490d-a952-897663596b96").getTitle().toLowerCase());
     }
 
     @Test
     public void mbGetMultipleAlbums(){
         MbAlbum albumRepo = new MbAlbum();
         Assertions.assertEquals(20, albumRepo.findByQuery("the", 20).size());
+    }
+
+    @Test
+    public void mbGetArtistAlbumsOfType(){
+        MbArtist artistRepo = new MbArtist();
+        Artist artist = artistRepo.getById("f82bcf78-5b69-4622-a5ef-73800768d9ac");
+
+        MbAlbum albumRepo = new MbAlbum();
+        List<Album> albums = albumRepo.findAlbumByArtistAndType(artist, "album");
+        albums.forEach(v -> System.out.println(v.getType()));
     }
 
     @Test

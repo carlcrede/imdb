@@ -6,6 +6,7 @@ import org.musicbrainz.MBWS2Exception;
 import org.musicbrainz.controller.Recording;
 import org.musicbrainz.controller.Release;
 import org.musicbrainz.controller.ReleaseGroup;
+import org.musicbrainz.model.TrackListWs2;
 import org.musicbrainz.model.TrackWs2;
 import org.musicbrainz.model.entity.RecordingWs2;
 import org.musicbrainz.model.entity.ReleaseWs2;
@@ -19,12 +20,13 @@ public class MbTrack {
     public Track getTrackById(String id){
         Recording recording = new Recording();
         try {
-            return parseRecording(recording.lookUp(id));
+            return parseRecording(recording.lookUp(id), null);
         } catch (MBWS2Exception e) {
             e.printStackTrace();
         }
         return null;
     }
+
     public List<Track> getTracksForAlbum(Album album){
         try {
             ReleaseGroup releaseGroup = new ReleaseGroup();
@@ -47,12 +49,13 @@ public class MbTrack {
 
             Release release = new Release();
             release.getIncludes().excludeAll();
-            release.getIncludes().setRecordings(false);
+            release.getIncludes().setRecordings(true);
             release.getIncludes().setMedia(true);
+
             ReleaseWs2 fullAlbum = release.lookUp(releaseList.get(index));
 
-
             List<TrackWs2> websearch = fullAlbum.getMediumList().getCompleteTrackList();
+
             for (TrackWs2 webTrack: websearch) {
                 tracks.add(parseTrack(webTrack, album));
             }
@@ -63,27 +66,36 @@ public class MbTrack {
         return null;
     }
 
-    private Track parseRecording(RecordingWs2 recording){
-        Track track = new Track();
-
-        System.out.println(recording.getIsrcString());
-        track.setFeatures(recording.getArtistCredit().getNameCredits().toString());
-        track.setId(recording.getId());
-        track.setName(recording.getTitle());
-        track.setLength(recording.getDuration());
-
-        return track;
-    }
-
     private Track parseTrack(TrackWs2 webTrack, Album album){
         Track track = new Track();
 
         track.setAlbum(album);
 
+        /*webTrack.getRecording().getRelations("artist", "producer", ).getRelationList().getRelations().forEach(
+                relationWs2 -> {
+                    System.out.println(relationWs2.getType().substring(relationWs2.getType().indexOf("#")+1));
+                    System.out.println(relationWs2.getTarget()+"\n");
+                });*/
+
+
+        track.setIsrc(webTrack.getRecording().getIsrcString());
         track.setPosition(webTrack.getPosition());
         track.setId(webTrack.getRecording().getId());
         track.setName(webTrack.getRecording().getTitle());
         track.setLength(webTrack.getDuration());
+        return track;
+    }
+
+    private Track parseRecording(RecordingWs2 recording, Album album){
+        Track track = new Track();
+
+        System.out.println(recording);
+        recording.getRelationList().getRelations().forEach(System.out::println);
+        track.setFeatures(recording.getArtistCredit().getNameCredits().toString());
+        track.setId(recording.getId());
+        track.setName(recording.getTitle());
+        track.setLength(recording.getDuration());
+
         return track;
     }
 }

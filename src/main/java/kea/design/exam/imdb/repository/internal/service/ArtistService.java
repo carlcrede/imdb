@@ -21,13 +21,19 @@ public class ArtistService implements CrudService<Artist, String>{
 
     @Override
     public Artist findByid(String id) {
-        return internalRepo.findById(id).orElseGet(() -> save(externalRepo.getById(id)));
+        Artist artist = internalRepo.findById(id).orElseGet(() -> save(externalRepo.getById(id)));
+        if (artist.getType().toLowerCase().equals("group") && (artist.getBandMembers() == null || artist.getBandMembers().isEmpty())) {
+            artist = externalRepo.getById(id);
+            artist.getBandMembers().forEach(this::save);
+            save(artist);
+        }
+        return artist;
     }
 
     @Override
     public List<Artist> findAmountByQuery(String query, int amount) {
         List<Artist> artists = internalRepo.findAmountByName(query, amount);
-        if (artists.isEmpty()) {
+        if (artists.isEmpty() || artists.size() < 5) {
             artists = saveAll(externalRepo.findByQuery(query, amount));
         }
         return artists;

@@ -44,6 +44,8 @@ public class Home {
     @GetMapping("/artist")
     public String artist(@RequestParam String id, Model model) {
         Artist artist = artistService.findByid(id);
+
+        System.out.println(artist.getBandMembers());
         model.addAttribute("artist", artist);
         model.addAttribute("album", albumService.findAlbumTypeByArtist(artist, "album"));
         return "artist";

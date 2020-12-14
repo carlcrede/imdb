@@ -10,6 +10,7 @@ public class Track implements Comparable<Track>{
     private String name;
     private String features;
     private int position;
+    private String isrc;
     @ManyToOne
     private Album album;
 
@@ -52,6 +53,14 @@ public class Track implements Comparable<Track>{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getIsrc() {
+        return isrc;
+    }
+
+    public void setIsrc(String isrc) {
+        this.isrc = isrc;
     }
 
     public Album getAlbum() {
