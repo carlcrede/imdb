@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" th:href="@{css/styles.css}">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <link type="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <script
@@ -17,6 +18,7 @@
     <script src="javascript/Apis/newsAPI.js"></script>
     <script src="javascript/utilScripts/jquery.nicescroll.min.js"></script>
     <script src="javascript/pageScripts/albumScript.js"></script>
+    <script src="javascript/pageScripts/ratingScript.js"></script>
     <title th:text="${album.getTitle()}"></title>
 </head>
 <body class="bg-dark" style="">
@@ -32,6 +34,34 @@
                     <div class="container">
                         <h1 class="text-center" style="text-shadow: 3px 3px #32383E;" th:text="${album.title}"></h1>
                         <h5 class="text-center" style="text-shadow: 2px 2px #32383E;" th:text="${album.artist.name}"></h5>
+                        <div class="mt-3">Average rating: <span id="albumRating"></span> <i class="fas fa-star star"></i></div>
+                        <form id="albumRatingForm">
+                            <div class="pt-2">
+                                <input type="radio" class="star-input" name="rating" id="star-1" value="1" checked>
+                                <label for="star-1" class="star"><i class="fas fa-star"></i></label>
+                                <input type="radio" class="star-input" name="rating" id="star-2" value="2">
+                                <label for="star-2" class="star"><i class="fas fa-star"></i></label>
+                                <input type="radio" class="star-input" name="rating" id="star-3" value="3">
+                                <label for="star-3" class="star"><i class="fas fa-star"></i></label>
+                                <input type="radio" class="star-input" name="rating" id="star-4" value="4">
+                                <label for="star-4" class="star"><i class="fas fa-star"></i></label>
+                                <input type="radio" class="star-input" name="rating" id="star-5" value="5">
+                                <label for="star-5" class="star"><i class="fas fa-star"></i></label>
+                                <input type="radio" class="star-input" name="rating" id="star-6" value="6">
+                                <label for="star-6" class="star"><i class="fas fa-star"></i></label>
+                                <input type="radio" class="star-input" name="rating" id="star-7" value="7">
+                                <label for="star-7" class="star"><i class="fas fa-star"></i></label>
+                                <input type="radio" class="star-input" name="rating" id="star-8" value="8">
+                                <label for="star-8" class="star"><i class="fas fa-star"></i></label>
+                                <input type="radio" class="star-input" name="rating" id="star-9" value="9">
+                                <label for="star-9" class="star"><i class="fas fa-star"></i></label>
+                                <input type="radio" class="star-input" name="rating" id="star-10" value="10">
+                                <label for="star-10" class="star"><i class="fas fa-star"></i></label>
+                                <button type="submit" th:disabled="${#authorization.expr('isAnonymous()')}" class="button-inverse">Rate</button>
+                                <div sec:authorize="isAnonymous()">Log in to rate</div>
+                            </div>
+                        </form>
+                            <div id="ratingFeedback" style="display: none" class="alert alert-success" role="alert"></div>
                     </div>
                 </div>
                 <div class="col container">

@@ -3,7 +3,15 @@ let id;
 $(document).ready(function(){
     id = $("#id").val();
     console.log(id);
-    getCover(id, setMast)
+    getCover(id, setMast);
+
+    $(".album-rating").submit(function (event) {
+        event.preventDefault();
+        let mbid = this.id;
+        console.log(mbid);
+        //getAverageRatingForOneAlbum(mbid)
+    })
+
 });
 
 let setMast = function(url){
