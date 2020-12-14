@@ -99,7 +99,7 @@ let articleHTML = $("" +
     "<li class='list-group-item row bg-transparent my-2'>" +
     "<div class='col'>" +
     "<div id='Title' class='row'><a href='"+article.url+"' target='_blank' rel='noopener noreferrer'><h2>"+article.title+"</h2></a></div>" +
-    "<div class='row'>" +
+    "<div class='row newsArticle'>" +
     // "<div class='col-3 img-wrap'>" +
     // "<img class='img-fluid align-middle' src='"+article.urlToImage+"' alt=''/>" +
     imageElement +
