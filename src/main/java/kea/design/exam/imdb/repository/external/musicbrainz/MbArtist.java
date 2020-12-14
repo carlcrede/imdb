@@ -75,6 +75,7 @@ public class MbArtist {
         List<RelationWs2> wiki = artistWs2.getRelationList().getRelations().stream().filter((relation -> relation.getTypeId().equals("689870a4-a1e4-4912-b17f-7b2664215698") || relation.getTypeId().equals("29651736-fa6d-48e4-aadc-a557c6add1cb"))).collect(Collectors.toList());
         if(!wiki.isEmpty()){
             artist.setWiki(wiki.get(0).getTargetId());
+            System.out.println(wiki.get(0).getTargetId());
         }
         //checks if artist has a type identifier and sets the type if not null
         if(artistWs2.getType() != null) { artist.setType(artistWs2.getType().substring(artistWs2.getType().indexOf("#")+1));}
