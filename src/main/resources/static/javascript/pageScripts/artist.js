@@ -96,15 +96,14 @@ let artistImage = function setArtistImage(data){
 };
 
 let artistGenre = function setArtistGenre(data){
-
     let textInGenre = "";
-
     data.artists.items[0].genres.forEach( a => textInGenre += a + ", ");
-
     textInGenre = textInGenre.slice(0, textInGenre.length -2);
     textInGenre += ".";
-
     $("#genres").append(textInGenre)
+    if(data.artists.items[0].genres.length === 0){
+        $("#genres").remove();
+    }
 }
 
 
