@@ -6,12 +6,13 @@ function getAverageRatingByArtist(mbid) {
 }
 
 function getAverageRatingsByAlbum() {
-    let album = $(".album-rating");
+    let album = $(".avg_rating");
     $.each(album, function (index, value) {
         console.log("MBID: " + value.id);
-        $.get("/rating/getRatingsByAlbum", {mbid: value.id}, function (data) {
-           console.log("Average: " + data)
-            $("#albumRating_" + value.id).text(data.toFixed(2));
+        let mbid = $(this).attr("value");
+        console.log(mbid);
+        $.get("/rating/getRatingsByAlbum", {mbid: mbid}, function (data) {
+           $(value).text(data);
         })
     })
 }
