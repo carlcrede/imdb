@@ -10,6 +10,7 @@ public class Artist {
     private String id;
     private String name;
 
+    private String wiki;
     private LocalDate beginDate;
     private LocalDate endDate;
     private String type;
@@ -125,6 +126,14 @@ public class Artist {
 
     public void setSpotifyId(String spotifyId) {
         this.spotifyId = spotifyId;
+    }
+
+    public String getWiki() {
+        return wiki;
+    }
+
+    public void setWiki(String wiki) {
+        this.wiki = wiki;
     }
 
     public String getDisambiguation() {

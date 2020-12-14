@@ -33,7 +33,7 @@ public class ArtistService implements CrudService<Artist, String>{
     @Override
     public List<Artist> findAmountByQuery(String query, int amount) {
         List<Artist> artists = internalRepo.findAmountByName(query, amount);
-        if (artists.isEmpty() || artists.size() < 5) {
+        if (artists.isEmpty() || artists.size() < amount) {
             artists = saveAll(externalRepo.findByQuery(query, amount));
         }
         return artists;
