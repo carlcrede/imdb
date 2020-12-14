@@ -5,11 +5,17 @@ $(document).ready(function(){
     console.log(id);
     getCover(id, setMast);
 
-    $(".album-rating").submit(function (event) {
+    getAverageRatingForOneAlbum(id);
+
+    $("#albumRatingForm").submit(function (event) {
         event.preventDefault();
-        let mbid = this.id;
+        let mbid = $("#mbid").val();
+        let rating = $('input[name="rating"]:checked').val();
+        let userName = $("#userName").text();
         console.log(mbid);
-        //getAverageRatingForOneAlbum(mbid)
+        console.log(rating);
+        console.log(userName);
+        submitAlbumRating(mbid, rating, userName);
     })
 
 });

@@ -23,6 +23,8 @@
 </head>
 <body class="bg-dark" style="">
 <div th:replace="/header.html"></div>
+<div style="display: none" id="userName" sec:authentication="name"></div>
+<input id="mbid" type="hidden" th:value="${album.mbid}">
     <div class="container-fluid row py-5" id="mast">
         <div class="container-fluid">
             <div class="row text-center">
@@ -34,7 +36,7 @@
                     <div class="container">
                         <h1 class="text-center" style="text-shadow: 3px 3px #32383E;" th:text="${album.title}"></h1>
                         <h5 class="text-center" style="text-shadow: 2px 2px #32383E;" th:text="${album.artist.name}"></h5>
-                        <div class="mt-3">Average rating: <span id="albumRating"></span> <i class="fas fa-star star"></i></div>
+                        <div class="mt-3">Average rating: <span th:id="'albumRating_' + ${album.mbid}"></span> <i class="fas fa-star star"></i></div>
                         <form id="albumRatingForm">
                             <div class="pt-2">
                                 <input type="radio" class="star-input" name="rating" id="star-1" value="1" checked>
@@ -61,7 +63,7 @@
                                 <div sec:authorize="isAnonymous()">Log in to rate</div>
                             </div>
                         </form>
-                            <div id="ratingFeedback" style="display: none" class="alert alert-success" role="alert"></div>
+                            <div th:id="'albumRatingFeedback_' + ${album.mbid}" style="display: none" class="alert alert-success" role="alert"></div>
                     </div>
                 </div>
                 <div class="col container">
