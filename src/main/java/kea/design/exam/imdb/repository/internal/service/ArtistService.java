@@ -22,7 +22,7 @@ public class ArtistService implements CrudService<Artist, String>{
     @Override
     public Artist findByid(String id) {
         Artist artist = internalRepo.findById(id).orElseGet(() -> save(externalRepo.getById(id)));
-        if (artist.getType().toLowerCase().equals("group") && (artist.getBandMembers() == null || artist.getBandMembers().isEmpty())) {
+        if (artist.getType() != null && artist.getType().toLowerCase().equals("group") && (artist.getBandMembers() == null || artist.getBandMembers().isEmpty())) {
             artist = externalRepo.getById(id);
             artist.getBandMembers().forEach(this::save);
             save(artist);
