@@ -5,6 +5,7 @@ import kea.design.exam.imdb.models.Track;
 import org.musicbrainz.MBWS2Exception;
 import org.musicbrainz.controller.Recording;
 import org.musicbrainz.controller.ReleaseGroup;
+import org.musicbrainz.model.NameCreditWs2;
 import org.musicbrainz.model.entity.RecordingWs2;
 import org.musicbrainz.model.entity.ReleaseWs2;
 import org.musicbrainz.model.searchresult.RecordingResultWs2;
@@ -48,6 +49,9 @@ public class MbTrack {
             String releaseId = releaseList.get(index).getId();
 
             Recording recSearch = new Recording();
+            recSearch.getIncludes().setRecordingRelations(true);
+            recSearch.getIncludes().setRecordingLevelRelations(true);
+
             recSearch.search("reid:"+releaseId);
             List<RecordingResultWs2> recordings = recSearch.getFirstSearchResultPage();
 
@@ -66,14 +70,19 @@ public class MbTrack {
     private Track parseRecording(RecordingWs2 recording, Album album){
         Track track = new Track();
 
-        recording.getRelationList().getRelations().forEach(System.out::println);
-
-        //recording.getArtistCredit().getNameCredits();
-        //track.setFeatures();
+        List<NameCreditWs2> features = recording.getArtistCredit().getNameCredits();
+        StringBuilder credits = new StringBuilder();
+        if(!features.isEmpty()) {
+            credits = new StringBuilder(features.get(0).getArtistName());
+            for (int i = 1; i < features.size(); i++) {
+                credits.append(", "+ features.get(i).getArtistName());
+            }
+        }
+        track.setFeatures(credits.toString());
         track.setAlbum(album);
         track.setIsrc(recording.getIsrcString());
         track.setId(recording.getId());
-        track.setName(recording.getTitle());
+        track.setName(recording.getUniqueTitle());
         track.setLength(recording.getDuration());
 
         return track;

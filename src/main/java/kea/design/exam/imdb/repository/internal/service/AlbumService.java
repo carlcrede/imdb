@@ -43,9 +43,9 @@ public class AlbumService implements CrudService<Album, String> {
 
     @Override
     public List<Album> findAmountByQuery(String query, int amount) {
-        List<Album> albums = internalRepo.findAmountByTitle(query,amount);
+        List<Album> albums = internalRepo.findAmountByTitle(query, amount);
         if(albums.isEmpty() || albums.size() < amount){
-            return saveAll(externalRepo.findByQuery(query, amount));
+            return externalRepo.findByQuery(query, amount);
         }
         return albums;
     }

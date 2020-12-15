@@ -24,6 +24,7 @@ public class MbAlbum {
     public Album getById(String id){
         ReleaseGroup releaseGroup = new ReleaseGroup();
         releaseGroup.getIncludes().setReleases(true);
+
         try {
             ReleaseGroupWs2 releaseGWs2 = releaseGroup.lookUp(id);
             kea.design.exam.imdb.models.Artist artist = mbArtist.parseWebSearch(releaseGWs2.getArtistCredit().getNameCredits().get(0).getArtist());
@@ -37,11 +38,14 @@ public class MbAlbum {
     public List<Album> findByQuery(String query, int amount){
         ReleaseGroup releaseGroup = new ReleaseGroup();
         releaseGroup.getIncludes().setReleases(true);
-        releaseGroup.search("releasegroup:"+query);
         releaseGroup.getSearchFilter().setLimit((long) amount);
+        releaseGroup.getReleaseIncludes().setArtistCredits(false);
         List<Album> albums = new ArrayList<>();
 
+        releaseGroup.search("releasegroup:"+query);
         List<ReleaseGroupResultWs2> releases = releaseGroup.getFirstSearchResultPage();
+
+
         for(ReleaseGroupResultWs2 release : releases) {
             kea.design.exam.imdb.models.Artist artist = mbArtist.parseWebSearch(release.getReleaseGroup().getArtistCredit().getNameCredits().get(0).getArtist());
             albums.add(parseWebSearch(release.getReleaseGroup(), artist));

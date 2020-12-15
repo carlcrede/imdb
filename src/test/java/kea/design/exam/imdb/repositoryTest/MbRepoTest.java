@@ -31,7 +31,7 @@ public class MbRepoTest {
     }
 
     @Test
-    public void mbGetMultipleArtists(){
+    public void mbSearchMultipleArtists(){
         MbArtist artistRepo = new MbArtist();
         List<Artist> artists =  artistRepo.findByQuery("the", 20);
         Assertions.assertEquals(20, artists.size());
@@ -44,9 +44,11 @@ public class MbRepoTest {
     }
 
     @Test
-    public void mbGetMultipleAlbums(){
+    public void mbSearchMultipleAlbums(){
         MbAlbum albumRepo = new MbAlbum();
-        Assertions.assertEquals(20, albumRepo.findByQuery("the", 20).size());
+        List<Album> albums = albumRepo.findByQuery("the", 20);
+        Assertions.assertEquals(20, albums.size());
+        albums.forEach((a) -> System.out.println(a.getArtist()));
     }
 
     @Test
