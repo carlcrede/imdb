@@ -52,7 +52,7 @@ public class MbAlbum {
     public List<Album> findAlbumByArtistAndType(kea.design.exam.imdb.models.Artist  artist, String type){
         List<Album> albums = new ArrayList<>();
         ReleaseGroup releaseGroup = new ReleaseGroup();
-        String searchQuery = "arid:"+artist.getId()+"%20AND%20primaryType:"+type;
+        String searchQuery = "arid:"+artist.getId()+" AND primarytype:"+type;
         releaseGroup.search(searchQuery);
 
         List<ReleaseGroupResultWs2> releaseGroupWs2s = releaseGroup.getFullSearchResultList();
@@ -77,6 +77,8 @@ public class MbAlbum {
         releaseGroup.search(searchQuery);
 
         List<ReleaseGroupResultWs2> releaseGroupWs2s = releaseGroup.getFullSearchResultList();
+        System.out.println(searchQuery);
+        System.out.println(releaseGroupWs2s.size());
 
         for (ReleaseGroupResultWs2 result : releaseGroupWs2s){
             ReleaseGroupWs2 release = result.getReleaseGroup();
