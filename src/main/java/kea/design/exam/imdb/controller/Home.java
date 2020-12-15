@@ -4,6 +4,7 @@ import kea.design.exam.imdb.models.*;
 import kea.design.exam.imdb.repository.external.SpotifyRepository;
 import kea.design.exam.imdb.repository.internal.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -60,7 +61,10 @@ public class Home {
     }
 
     @GetMapping("/profile")
-    public String userprofile() {
+    public String userprofile(Model model, Authentication auth) {
+        MyUserDetails userDetails = (MyUserDetails) userService.loadUserByUsername(auth.getName());
+        User user = userDetails.getUser();
+        model.addAttribute("favoriteArtists", userService.getFavoriteArtists(user.getId()));
         return "/userprofile";
     }
 

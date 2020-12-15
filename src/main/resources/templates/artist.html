@@ -19,7 +19,8 @@
     <script src="javascript/Apis/eventfulAPI.js"></script>
     <script src="javascript/utilScripts/jquery.nicescroll.min.js"></script>
     <script src="javascript/pageScripts/artist.js"></script>
-    <script src="javascript/Apis/wikiRepo.js"> </script>
+    <script src="javascript/Apis/wikiRepo.js"></script>
+    <script src="javascript/pageScripts/favoriteScript.js"></script>
     <title>Artist</title>
     <style type="text/css">
         .loader {background: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.dribbble.com%2Fusers%2F65451%2Fscreenshots%2F2922226%2Fslider.gif&f=1&nofb=1') 50% 50% no-repeat rgba(0,0,0,0);}
@@ -44,7 +45,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm mb-2">
-                    <h1 id="artistName" th:text="${artist.name}" class="display-4 text-light"></h1>
+                    <div class="row">
+                        <h1 id="artistName" th:text="${artist.name}" class="display-4 text-light"></h1>
+                        <a sec:authorize="!isAnonymous()" id="favoriteArtist"><h3 data-toggle="tooltip" data-placement="right" title="Add to favorites" id="favoriteIcon" class="mt-4 ml-3 far fa-heart"></h3></a>
+                        <div id="favoriteFeedback" style="display: none" class="ml-3 mt-3 alert alert-success alert-dismissible" role="alert">
+                            <div id="feedbackText"></div>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
                     <div class="text-muted" th:if="${artist.bandMembers != null && !artist.bandMembers.isEmpty()}">
                         <span class="text-light">Members: </span>
                         <th:block th:each="member : ${artist.bandMembers}">

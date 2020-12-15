@@ -1,5 +1,6 @@
 package kea.design.exam.imdb.repository.internal.service;
 
+import kea.design.exam.imdb.models.FavoriteArtist;
 import kea.design.exam.imdb.models.MyUserDetails;
 import kea.design.exam.imdb.models.User;
 import kea.design.exam.imdb.repository.internal.repository.UserRepository;
@@ -9,6 +10,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -21,8 +24,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         this.userRepository = userRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
+    //TODO: move to favoriteService
+    public List<FavoriteArtist> getFavoriteArtists(Long id) {
+        return userRepository.getFavoriteArtistsByUserId(id);
+    }
 
     public void saveUserRating(User user) {
+        userRepository.save(user);
+    }
+
+    public void saveUser(User user) {
         userRepository.save(user);
     }
 

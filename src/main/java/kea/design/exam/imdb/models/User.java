@@ -27,6 +27,17 @@ public class User {
     @OneToMany
     private List<AlbumRating> albumRatings;
 
+    @OneToMany
+    private List<FavoriteArtist> favoriteArtists;
+
+    public List<FavoriteArtist> getFavoriteArtists() {
+        return favoriteArtists;
+    }
+
+    public void setFavoriteArtists(List<FavoriteArtist> favoriteArtists) {
+        this.favoriteArtists = favoriteArtists;
+    }
+
     public List<Playlist> getPlaylists() {
         return playlists;
     }
