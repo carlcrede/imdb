@@ -68,8 +68,8 @@ public class MbTrack {
 
         recording.getRelationList().getRelations().forEach(System.out::println);
 
-        ArrayList<String> feats = recording.getArtistCredit().getNameCredits();
-        track.setFeatures();
+        //recording.getArtistCredit().getNameCredits();
+        //track.setFeatures();
         track.setAlbum(album);
         track.setIsrc(recording.getIsrcString());
         track.setId(recording.getId());
