@@ -24,7 +24,7 @@ public class ArtistService implements CrudService<Artist, String>{
         Artist artist = internalRepo.findById(id).orElseGet(() -> save(externalRepo.getById(id)));
         if (artist.getType() != null && artist.getType().toLowerCase().equals("group") && (artist.getBandMembers() == null || artist.getBandMembers().isEmpty())) {
             artist = externalRepo.getById(id);
-            artist.getBandMembers().forEach(this::save);
+            if(!artist.getBandMembers().isEmpty()){artist.getBandMembers().forEach(this::save);};
             save(artist);
         }
         return artist;

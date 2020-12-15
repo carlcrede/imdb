@@ -34,8 +34,11 @@
 $(document).ready(function(){
 
     //loads Description from wiki
-    let wiki = $("#description")[0].getAttribute("data-value").split("/")[4];
-    getSummary(wiki, setDescripition);
+    let wiki = $("#description")[0].getAttribute("data-value");
+    if(wiki != null) {
+        wiki = wiki.split("/")[4];
+        getSummary(wiki, setDescripition);
+    }
 
     let artistName = $("#artistName").text();
 
