@@ -53,7 +53,7 @@ public class MbRepoTest {
     public void mbGetArtistAlbumsOfType(){
         MbArtist artistRepo = new MbArtist();
         Artist artist = artistRepo.getById("f82bcf78-5b69-4622-a5ef-73800768d9ac");
-
+        System.out.println(artist);
         MbAlbum albumRepo = new MbAlbum();
         List<Album> albums = albumRepo.findAlbumByArtistAndType(artist, "album");
         albums.forEach(v -> System.out.println(v.getType()));

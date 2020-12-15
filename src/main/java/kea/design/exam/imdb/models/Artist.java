@@ -149,10 +149,8 @@ public class Artist {
         return "Artist{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", beginDate=" + beginDate +
-                ", endDate=" + endDate +
-                ", type='" + type + '\'' +
-                ", gender='" + gender + '\'' +
+                ", wiki='" + wiki + '\'' +
+                ", albums=" + albums +
                 '}';
     }
 }
