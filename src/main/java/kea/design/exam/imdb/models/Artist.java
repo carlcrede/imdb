@@ -18,7 +18,7 @@ public class Artist {
     private String founded;
     private String disambiguation;
 
-    @OneToMany
+    @ManyToMany
     private List<Artist> bandMembers;
 
     @OneToMany
