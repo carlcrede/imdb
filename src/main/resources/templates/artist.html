@@ -47,7 +47,7 @@
                 <div class="col-sm mb-2">
                     <div class="row">
                         <h1 id="artistName" th:text="${artist.name}" class="display-4 text-light"></h1>
-                        <a sec:authorize="!isAnonymous()" id="favoriteArtist"><h3 data-toggle="tooltip" data-placement="right" title="Add to favorites" id="favoriteIcon" class="mt-4 ml-3 far fa-heart"></h3></a>
+                        <a sec:authorize="!isAnonymous()" id="favoriteArtist"><h3 data-toggle="tooltip" data-placement="right" title="Click to add or remove favorite" id="favoriteIcon" class="mt-4 ml-3 far fa-heart"></h3></a>
                         <div id="favoriteFeedback" style="display: none" class="ml-3 mt-3 alert alert-success alert-dismissible" role="alert">
                             <div id="feedbackText"></div>
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">

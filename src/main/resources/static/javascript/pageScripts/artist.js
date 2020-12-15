@@ -44,15 +44,16 @@ $(document).ready(function(){
 
     let artistName = $("#artistName").text();
 
-    let status = $("#favoriteIcon").hasClass('fas fa-heart');
+    var favorited;
     $("#favoriteIcon").hover(
         function () {
+            favorited = $("#favoriteIcon").hasClass('fas fa-heart');
             if ($(this).hasClass('far fa-heart')) {
                 $(this).removeClass('far fa-heart').addClass('fas fa-heart');
             }
     },
         function () {
-            if (!status) {
+            if (!favorited) {
                 $(this).removeClass('fas fa-heart').addClass('far fa-heart');
             }
         });

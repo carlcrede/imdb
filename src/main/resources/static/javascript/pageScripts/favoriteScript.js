@@ -1,5 +1,4 @@
 function addArtistToFavorites(mbid, username) {
-
     $.get("/favorites/addArtist", {mbid: mbid, userName: username})
         .done(function (data) {
             console.log("Favorited artist");
@@ -9,8 +8,10 @@ function addArtistToFavorites(mbid, username) {
             $("#favoriteFeedback").show();
         })
         .fail(function (data) {
-            console.log("Favorite failed - already favorited");
+            console.log("already favorited - favorite deleted");
             $("#favoriteFeedback").hide();
+            $("#favoriteIcon").removeClass('fas fa-heart');
+            $("#favoriteIcon").addClass('far fa-heart');
             $("#feedbackText").text("Removed from favorites");
             $("#favoriteFeedback").show();
             //$("#favoriteFeedback").prepend("Allready added to favorites").show();
