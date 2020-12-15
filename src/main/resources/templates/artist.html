@@ -111,7 +111,7 @@
                                 <b class="text-warning">Type: </b>
                                 <span class="text-light" th:text="${artist.type}"></span>
                             </div>
-                            <div>
+                            <div th:if="${artist.type != null}">
                                 <b><th:span th:if="${!#strings.startsWith(artist.type ,'Group')}" th:unless="${artist.gender == null}" class="text-warning">Gender: </th:span></b>
                                 <th:span class="text-light" th:if="${not #strings.startsWith(artist.type ,'Group')}" th:text="${artist.gender}"></th:span>
                             </div>
