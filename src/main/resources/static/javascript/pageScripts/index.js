@@ -25,7 +25,6 @@ function setArtistTopRatings() {
         let mbid = first[0].id;
 
         $.get("/rating/getRatingsByArtist", {mbid: mbid}, function (data) {
-            //console.log(data);
             $(first).append(" | Average rating: " + data.toFixed(2) + "/10");
         });
     })

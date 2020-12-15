@@ -87,4 +87,18 @@ public class Track implements Comparable<Track>{
     public int compareTo(Track t) {
         return this.position - t.position;
     }
+
+    @Override
+    public String toString() {
+        return "Track{" +
+                "id='" + id + '\'' +
+                ", length='" + length + '\'' +
+                ", name='" + name + '\'' +
+                ", features='" + features + '\'' +
+                ", position=" + position +
+                ", isrc='" + isrc + '\'' +
+                ", album=" + album.getTitle() +
+                ", playlists=" + playlists +
+                '}';
+    }
 }
