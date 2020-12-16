@@ -9,15 +9,16 @@ import java.util.List;
 public class Playlist {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
     private String name;
 
     @ManyToOne
     private User user;
 
-    @OneToMany
-    private List<Track> playlistTracks;
+//    @OneToMany
+//    private List<Track> playlistTracks;
 
     public long getId() {
         return id;
@@ -43,11 +44,5 @@ public class Playlist {
         this.user = user;
     }
 
-    public List<Track> getPlaylistTracks() {
-        return playlistTracks;
-    }
 
-    public void setPlaylistTracks(List<Track> playlistTracks) {
-        this.playlistTracks = playlistTracks;
-    }
 }

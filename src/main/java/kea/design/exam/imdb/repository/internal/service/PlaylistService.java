@@ -13,6 +13,9 @@ public class PlaylistService implements CrudService<Playlist, Long>{
     @Autowired
     PlaylistRepository playlistRepository;
 
+    public List<Playlist> getAllPlaylists(Long id){
+        return playlistRepository.getAllPlaylistsByUserId(id);
+    }
 
     @Override
     public Playlist findByid(Long aLong) {
@@ -28,6 +31,7 @@ public class PlaylistService implements CrudService<Playlist, Long>{
     public Playlist save(Playlist playlist) {
         return playlistRepository.save(playlist);
     }
+
 
     @Override
     public void delete(Playlist playlist) {
