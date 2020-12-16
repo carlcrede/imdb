@@ -8,6 +8,17 @@ $(document).ready(function(){
     getCover(id, setMast);
     getAverageRatingForOneAlbum(id);
 
+    $("#favoriteTrackForm").submit(function (event) {
+        event.preventDefault();
+        let userName = $("#userName").text();
+        var tracks = [];
+        $.each($("input[name='favorite_tracks']:checked"), function (index, value) {
+            tracks.push($(value).val());
+        });
+        console.log("Selected tracks: " + tracks.join(", "));
+        addOrRemoveFavoriteTracks(tracks, userName, "track");
+    });
+
     $("#albumRatingForm").submit(function (event) {
         event.preventDefault();
         let mbid = $("#mbid").val();

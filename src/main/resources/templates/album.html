@@ -27,79 +27,79 @@
 <div th:replace="/header.html"></div>
 <div style="display: none" id="userName" sec:authentication="name"></div>
 <input id="mbid" type="hidden" th:value="${album.mbid}">
-    <div class="container-fluid row py-5" id="mast">
-        <div class="container-fluid">
-            <div class="row text-center">
-                <input type="hidden" id="id" th:value="${album.mbid}">
-                <div class="col-3 d-flex align-items-center">
-                    <img class="shadow mx-1 img-fluid" id="cover" style="border-radius:100%; max-height: 100%; width:auto;">
-                </div>
-                <div class="col text-light d-flex align-items-center">
-                    <div class="container">
-                        <div>
+<div class="container-fluid row py-5" id="mast">
+    <div class="container-fluid">
+        <div class="row text-center">
+            <input type="hidden" id="id" th:value="${album.mbid}">
+            <div class="col-3 d-flex align-items-center">
+                <img class="shadow mx-1 img-fluid" id="cover" style="border-radius:100%; max-height: 100%; width:auto;">
+            </div>
+            <div class="col text-light d-flex align-items-center">
+                <div class="container">
+                    <div>
                         <h1 class="text-center" style="text-shadow: 3px 3px #32383E; display: inline" th:text="${album.title}"></h1>
                         <a sec:authorize="!isAnonymous()" id="favoriteAlbum"><h3 style="color: #ffc107" data-toggle="tooltip" data-placement="right" title="Click to add or remove favorite" id="favoriteIcon" class="mt-4 ml-3 far fa-heart"></h3></a>
-                            <div id="favoriteFeedback" style="display: none" class="ml-3 mt-3 alert alert-success alert-dismissible" role="alert">
-                                <div id="feedbackText"></div>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
+                        <div id="favoriteFeedback" style="display: none" class="ml-3 mt-3 alert alert-success alert-dismissible" role="alert">
+                            <div id="feedbackText"></div>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                        <h5 class="text-center" style="text-shadow: 2px 2px #32383E;" th:text="${album.artist.name}"></h5>
-                        <div class="mt-3">Average rating: <span th:id="'albumRating_' + ${album.mbid}"></span> <i class="fas fa-star star"></i></div>
-                        <form id="albumRatingForm">
-                            <div class="pt-2">
-                                <input type="radio" class="star-input" name="rating" id="star-1" value="1" checked>
-                                <label for="star-1" class="star"><i class="fas fa-star"></i></label>
-                                <input type="radio" class="star-input" name="rating" id="star-2" value="2">
-                                <label for="star-2" class="star"><i class="fas fa-star"></i></label>
-                                <input type="radio" class="star-input" name="rating" id="star-3" value="3">
-                                <label for="star-3" class="star"><i class="fas fa-star"></i></label>
-                                <input type="radio" class="star-input" name="rating" id="star-4" value="4">
-                                <label for="star-4" class="star"><i class="fas fa-star"></i></label>
-                                <input type="radio" class="star-input" name="rating" id="star-5" value="5">
-                                <label for="star-5" class="star"><i class="fas fa-star"></i></label>
-                                <input type="radio" class="star-input" name="rating" id="star-6" value="6">
-                                <label for="star-6" class="star"><i class="fas fa-star"></i></label>
-                                <input type="radio" class="star-input" name="rating" id="star-7" value="7">
-                                <label for="star-7" class="star"><i class="fas fa-star"></i></label>
-                                <input type="radio" class="star-input" name="rating" id="star-8" value="8">
-                                <label for="star-8" class="star"><i class="fas fa-star"></i></label>
-                                <input type="radio" class="star-input" name="rating" id="star-9" value="9">
-                                <label for="star-9" class="star"><i class="fas fa-star"></i></label>
-                                <input type="radio" class="star-input" name="rating" id="star-10" value="10">
-                                <label for="star-10" class="star"><i class="fas fa-star"></i></label>
-                                <button type="submit" th:disabled="${#authorization.expr('isAnonymous()')}" class="btn btn-sm btn-outline-warning">Rate</button>
-                                <div sec:authorize="isAnonymous()">Log in to rate</div>
-                            </div>
-                        </form>
-                            <div th:id="'albumRatingFeedback_' + ${album.mbid}" style="display: none" class="alert alert-success" role="alert"></div>
                     </div>
+                    <h5 class="text-center" style="text-shadow: 2px 2px #32383E;" th:text="${album.artist.name}"></h5>
+                    <div class="mt-3">Average rating: <span th:id="'albumRating_' + ${album.mbid}"></span> <i class="fas fa-star star"></i></div>
+                    <form id="albumRatingForm">
+                        <div class="pt-2">
+                            <input type="radio" class="star-input" name="rating" id="star-1" value="1" checked>
+                            <label for="star-1" class="star"><i class="fas fa-star"></i></label>
+                            <input type="radio" class="star-input" name="rating" id="star-2" value="2">
+                            <label for="star-2" class="star"><i class="fas fa-star"></i></label>
+                            <input type="radio" class="star-input" name="rating" id="star-3" value="3">
+                            <label for="star-3" class="star"><i class="fas fa-star"></i></label>
+                            <input type="radio" class="star-input" name="rating" id="star-4" value="4">
+                            <label for="star-4" class="star"><i class="fas fa-star"></i></label>
+                            <input type="radio" class="star-input" name="rating" id="star-5" value="5">
+                            <label for="star-5" class="star"><i class="fas fa-star"></i></label>
+                            <input type="radio" class="star-input" name="rating" id="star-6" value="6">
+                            <label for="star-6" class="star"><i class="fas fa-star"></i></label>
+                            <input type="radio" class="star-input" name="rating" id="star-7" value="7">
+                            <label for="star-7" class="star"><i class="fas fa-star"></i></label>
+                            <input type="radio" class="star-input" name="rating" id="star-8" value="8">
+                            <label for="star-8" class="star"><i class="fas fa-star"></i></label>
+                            <input type="radio" class="star-input" name="rating" id="star-9" value="9">
+                            <label for="star-9" class="star"><i class="fas fa-star"></i></label>
+                            <input type="radio" class="star-input" name="rating" id="star-10" value="10">
+                            <label for="star-10" class="star"><i class="fas fa-star"></i></label>
+                            <button type="submit" th:disabled="${#authorization.expr('isAnonymous()')}" class="btn btn-sm btn-outline-warning">Rate</button>
+                            <div sec:authorize="isAnonymous()">Log in to rate</div>
+                        </div>
+                    </form>
+                    <div th:id="'albumRatingFeedback_' + ${album.mbid}" style="display: none" class="alert alert-success" role="alert"></div>
                 </div>
-                <div class="col container">
-                    <table class="card table bg-dark">
-                        <tr>
-                            <td class="text-warning">Release date: </td>
-                            <td class="text-light" th:text="${album.releaseDate}"> </td>
-                        </tr>
-                        <tr>
-                            <td class="text-warning">Type: </td>
-                            <td class="text-light" th:text="${album.type}"></td>
-                        </tr>
-                        <tr>
-                            <td class="text-warning">Label: </td>
-                            <td class="text-light" th:text="${album.label} ?: 'Unknown'"></td>
-                        </tr>
-                        <tr>
-                            <td class="text-warning">Years active: </td>
-                            <td class="text-light"></td>
-                        </tr>
-                        <tr>
-                            <td class="text-warning">Genres: </td>
-                            <td class="text-light" th:text="${album.genre}"></td>
-                        </tr>
-                    </table>
+            </div>
+            <div class="col container">
+                <table class="card table bg-dark">
+                    <tr>
+                        <td class="text-warning">Release date: </td>
+                        <td class="text-light" th:text="${album.releaseDate}"> </td>
+                    </tr>
+                    <tr>
+                        <td class="text-warning">Type: </td>
+                        <td class="text-light" th:text="${album.type}"></td>
+                    </tr>
+                    <tr>
+                        <td class="text-warning">Label: </td>
+                        <td class="text-light" th:text="${album.label} ?: 'Unknown'"></td>
+                    </tr>
+                    <tr>
+                        <td class="text-warning">Years active: </td>
+                        <td class="text-light"></td>
+                    </tr>
+                    <tr>
+                        <td class="text-warning">Genres: </td>
+                        <td class="text-light" th:text="${album.genre}"></td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
@@ -121,22 +121,31 @@
                 </div>
                 <table class="table table-bordered table-dark table-hover card-body table-striped text-light">
                     <thead>
-                        <tr>
-                            <th class="text-center" scope="col">#</th>
-                            <th scope="col">Title</th>
-                            <th scope="col">Artist(s)</th>
-                            <th scope="col">Length</th>
-                            <th scope="col">Streams</th>
-                        </tr>
+                    <tr>
+                        <th class="text-center" scope="col">#</th>
+                        <th scope="col">Title</th>
+                        <th class="text-center"><button form="favoriteTrackForm" type="submit" data-toggle="tooltip" data-placement="top" title="Add selected tracks to favorites" class="btn btn-outline-warning"><i class="fas fa-heart"></i></button></th>
+                        <th scope="col">Artist(s)</th>
+                        <th scope="col">Length</th>
+                        <th scope="col">Streams</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="track :${album.tracks}">
-                            <th class="text-center" th:text="${track.position}"></th>
-                            <td th:text="${track.name}"></td>
-                            <td th:text="${track.features}"></td>
-                            <td th:text="${track.length}"></td>
-                            <td>null</td>
-                        </tr>
+                    <form id="favoriteTrackForm">
+                        <fieldset>
+                            <tr th:each="track :${album.tracks}">
+                                <th class="text-center" th:text="${track.position}"></th>
+                                <td th:text="${track.name}"></td>
+                                <td class="text-center">
+                                    <input name="favorite_tracks" th:value="${track.id}" type="checkbox" th:id="${track.id} + ${track.position}">
+                                    <label th:for="${track.id} + ${track.position}"></label>
+                                </td>
+                                <td th:text="${track.features}"></td>
+                                <td th:text="${track.length}"></td>
+                                <td>null</td>
+                            </tr>
+                        </fieldset>
+                    </form>
                     </tbody>
                 </table>
             </div>

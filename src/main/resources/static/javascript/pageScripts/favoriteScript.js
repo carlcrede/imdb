@@ -18,12 +18,15 @@ function addOrRemoveFavorite(mbid, username, type) {
         })
 }
 
-function addAlbumToFavorites(mbid, username) {
-
-}
-
-function addTrackToFavorites(mbid, username) {
-
+function addOrRemoveFavoriteTracks(tracks, username, type) {
+    console.log(JSON.stringify(tracks));
+    $.get("/favorites/addOrRemoveFavorite", {tracks: JSON.stringify(tracks), userName: username, type: type})
+        .done(function (data) {
+            console.log("success");
+        })
+        .fail(function (data) {
+            console.log("fail");
+        })
 }
 
 // function for adding multiple tracks at one - maybe useful
