@@ -19,15 +19,12 @@ public class MbArtist {
 
 
     public Artist getById(String id){
-        org.musicbrainz.controller.Artist artist = new org.musicbrainz.controller.Artist();
-        artist.getIncludes().setReleaseGroups(true);
-        artist.getIncludes().setReleases(false);
-        artist.getIncludes().setRecordings(false);
-        artist.getIncludes().setVariousArtists(false);
-        artist.getIncludes().setWorks(false);
+        org.musicbrainz.controller.Artist search = new org.musicbrainz.controller.Artist();
 
         try {
-            return parseWebSearch(artist.lookUp(id));
+            Artist artist = parseWebSearch(search.getComplete(id));
+            artist.setCompleteInfo(true);
+            return artist;
         } catch (MBWS2Exception e) {
             e.printStackTrace();
         }
@@ -72,7 +69,6 @@ public class MbArtist {
             }
         }
         //retrives the relation with the id (689870a4-a1e4-4912-b17f-7b2664215698) which is a wikipedia relationship returning a link
-
         List<RelationWs2> wiki = artistWs2.getRelationList().getRelations().stream().filter((relation -> relation.getTypeId().equals("689870a4-a1e4-4912-b17f-7b2664215698") || relation.getTypeId().equals("29651736-fa6d-48e4-aadc-a557c6add1cb"))).collect(Collectors.toList());
         if(!wiki.isEmpty()){
             artist.setWiki(wiki.get(0).getTargetId());
@@ -86,6 +82,7 @@ public class MbArtist {
             artistWs2.getRelationList().getRelations().stream().filter((relation)->relation.getTypeId().equals("5be4c609-9afa-4ea0-910b-12ffb71e3821")).forEach((member) -> bandMembers.add(getBandMember(member.getTargetId())));
             artist.setBandMembers(bandMembers);
         }
+
         artist.setGender(artistWs2.getGender());
         if(artistWs2.getBeginArea() != null) {
            artist.setFounded(artistWs2.getBeginArea().getName());

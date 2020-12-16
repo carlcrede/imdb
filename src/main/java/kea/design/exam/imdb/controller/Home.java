@@ -53,7 +53,7 @@ public class Home {
     public String album(Model model, @RequestParam String id) {
         Album album = albumService.findByid(id);
         album = trackService.addAlbumTrackList(album);
-        Collections.sort(album.getTracks());
+        if(!album.getTracks().isEmpty()){Collections.sort(album.getTracks());}
 
         model.addAttribute("album", album);
         return "album";

@@ -19,7 +19,9 @@ public class MbTrack {
     public Track getTrackById(String id){
         Recording recording = new Recording();
         try {
-            return parseRecording(recording.lookUp(id), null);
+            Track track = parseRecording(recording.getComplete(id), null);
+            track.setCompleteInfo(true);
+            return track;
         } catch (MBWS2Exception e) {
             e.printStackTrace();
         }

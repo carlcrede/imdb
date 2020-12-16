@@ -19,6 +19,7 @@
     <script src="javascript/utilScripts/jquery.nicescroll.min.js"></script>
     <script src="javascript/pageScripts/albumScript.js"></script>
     <script src="javascript/pageScripts/ratingScript.js"></script>
+    <script src="javascript/Apis/wikiRepo.js"> </script>
     <title th:text="${album.getTitle()}"></title>
 </head>
 <body class="bg-dark" style="">
@@ -85,39 +86,57 @@
                             <td class="text-light"></td>
                         </tr>
                         <tr>
-                            <td class="text-warning">Years active: </td>
-                            <td class="text-light"></td>
+                            <td class="text-warning">Genres: </td>
+                            <td class="text-light" th:text="${album.genre}"></td>
                         </tr>
-                </table>
+                    </table>
             </div>
         </div>
     </div>
 </div>
 <div class="container">
     <div class="container border card bg-dark">
-        <div class="card-header py-1">
-            <h2 class="text-light">Track List</h2>
+        <ul class="nav nav-tabs mt-3" id="ratingTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="artist-tab" data-toggle="tab" role="tab" href="#trackList">Track List</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="album-tab" data-toggle="tab" role="tab" href="#description">Description</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="trackList" role="tabpanel">
+                <div class="card-header py-1">
+                    <h2 class="text-light">Track List</h2>
+                </div>
+                <table class="table table-bordered table-dark table-hover card-body table-striped text-light">
+                    <thead>
+                        <tr>
+                            <th class="text-center" scope="col">#</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Artist(s)</th>
+                            <th scope="col">Length</th>
+                            <th scope="col">Streams</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="track :${album.tracks}">
+                            <th class="text-center" th:text="${track.position}"></th>
+                            <td th:text="${track.name}"></td>
+                            <td th:text="${track.features}"></td>
+                            <td th:text="${track.length}"></td>
+                            <td>null</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade show active" id="description" role="tabpanel">
+                <div class="card-header py-1">
+                    <h2 class="text-light">Description</h2>
+                </div>
+                <p id="descText" class="text-light" th:data-value="${album.wiki}">This album has no description.</p>
+            </div>
         </div>
-        <table class="table table-bordered table-dark table-hover card-body table-striped text-light">
-            <thead>
-                <tr>
-                    <th class="text-center" scope="col">#</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Artist(s)</th>
-                    <th scope="col">Length</th>
-                    <th scope="col">Streams</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="track :${album.tracks}">
-                    <th class="text-center" th:text="${track.position}"></th>
-                    <td th:text="${track.name}"></td>
-                    <td th:text="${track.features}"></td>
-                    <td th:text="${track.length}"></td>
-                    <td>null</td>
-                </tr>
-            </tbody>
-        </table>
     </div>
 </div>
 

@@ -1,5 +1,6 @@
 package kea.design.exam.imdb.repository.internal.service;
 
+import kea.design.exam.imdb.models.Album;
 import kea.design.exam.imdb.models.Artist;
 import kea.design.exam.imdb.repository.external.musicbrainz.MbArtist;
 import kea.design.exam.imdb.repository.internal.repository.ArtistRepository;
@@ -21,13 +22,11 @@ public class ArtistService implements CrudService<Artist, String>{
 
     @Override
     public Artist findByid(String id) {
-        Artist artist = internalRepo.findById(id).orElseGet(() -> save(externalRepo.getById(id)));
-        if (artist.getType() != null && artist.getType().toLowerCase().equals("group") && (artist.getBandMembers() == null || artist.getBandMembers().isEmpty())) {
-            artist = externalRepo.getById(id);
-            if(!artist.getBandMembers().isEmpty()){artist.getBandMembers().forEach(this::save);};
-            save(artist);
+        Optional<Artist> artist = internalRepo.findById(id);
+        if(artist.isPresent() && artist.get().isCompleteInfo()){
+            return artist.get();
         }
-        return artist;
+        return save(externalRepo.getById(id));
     }
 
     @Override

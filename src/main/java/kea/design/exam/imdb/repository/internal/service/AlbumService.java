@@ -21,7 +21,10 @@ public class AlbumService implements CrudService<Album, String> {
     @Override
     public Album findByid(String id) {
         Optional<Album> album = internalRepo.findById(id);
-        return album.orElseGet(() -> save(externalRepo.getById(id)));
+        if(album.isPresent() && album.get().isCompleteInfo()){
+            return album.get();
+        }
+        return save(externalRepo.getById(id));
     }
 
     public List<Album> findAlbumTypeByArtist(Artist artist, String type){

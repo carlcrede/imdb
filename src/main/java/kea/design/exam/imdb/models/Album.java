@@ -19,6 +19,9 @@ public class Album {
     private String type;
     private LocalDate releaseDate;
     private String label;
+    private boolean completeInfo;
+    private String genre;
+    private String wiki;
 
     @OneToMany(fetch = FetchType.EAGER)
     private Set<Annotation> annotations;
@@ -69,7 +72,6 @@ public class Album {
         this.annotations = annotations;
     }
 
-
     public String getLabel() {
         return label;
     }
@@ -92,5 +94,29 @@ public class Album {
 
     public void setArtist(Artist artist) {
         this.artist = artist;
+    }
+
+    public boolean isCompleteInfo() {
+        return completeInfo;
+    }
+
+    public void setCompleteInfo(boolean completeInfo) {
+        this.completeInfo = completeInfo;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public String getWiki() {
+        return wiki;
+    }
+
+    public void setWiki(String wiki) {
+        this.wiki = wiki;
     }
 }

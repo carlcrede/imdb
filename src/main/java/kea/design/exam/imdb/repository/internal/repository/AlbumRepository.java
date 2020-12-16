@@ -15,6 +15,7 @@ public interface AlbumRepository extends CrudRepository<Album, String>{
     @Override
     Optional<Album> findById(String id);
 
+    @Query(value = "SELECT * FROM album WHERE artist_id = ?1 ORDER BY release_date", nativeQuery = true)
     List<Album> findAlbumsByArtist(Artist artist);
     List<Album> findAlbumsByArtistAndType(Artist artist, String type);
     @Query(value = "SELECT * FROM album WHERE title LIKE %?1% LIMIT ?2", nativeQuery = true)

@@ -2,9 +2,8 @@ let id;
 
 $(document).ready(function(){
     id = $("#id").val();
-    console.log(id);
-    getCover(id, setMast);
 
+    getCover(id, setMast);
     getAverageRatingForOneAlbum(id);
 
     $("#albumRatingForm").submit(function (event) {
@@ -18,6 +17,13 @@ $(document).ready(function(){
         submitAlbumRating(mbid, rating, userName);
     })
 
+    //sets description
+    let wiki = $("#descText")[0].getAttribute("data-value");
+    if(wiki != null) {
+        wiki = wiki.split("/")[4];
+        getSummary(wiki, setDescripition);
+    }
+
 });
 
 let setMast = function(url){
@@ -26,5 +32,9 @@ let setMast = function(url){
         "background": "url('"+url+"') no-repeat center center fixed",
         "-webkit-background-size": "cover", "-moz-background-size": "cover", "background-size": "cover", "-o-background-size": "cover"
     });
+}
+
+let setDescripition = function(description){
+    $("#descText").text(description);
 }
 

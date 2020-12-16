@@ -17,6 +17,7 @@ public class Artist {
     private String gender;
     private String founded;
     private String disambiguation;
+    private boolean completeInfo;
 
     @ManyToMany
     private List<Artist> bandMembers;
@@ -142,6 +143,14 @@ public class Artist {
 
     public void setDisambiguation(String disambiguation) {
         this.disambiguation = disambiguation;
+    }
+
+    public boolean isCompleteInfo() {
+        return completeInfo;
+    }
+
+    public void setCompleteInfo(boolean completeInfo) {
+        this.completeInfo = completeInfo;
     }
 
     @Override

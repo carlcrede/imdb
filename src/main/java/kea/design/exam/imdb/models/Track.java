@@ -13,6 +13,8 @@ public class Track implements Comparable<Track>{
     private String features;
     private int position;
     private String isrc;
+    private boolean completeInfo;
+
     @ManyToOne
     private Album album;
     @ManyToOne
@@ -82,6 +84,13 @@ public class Track implements Comparable<Track>{
         this.album = album;
     }
 
+    public boolean isCompleteInfo() {
+        return completeInfo;
+    }
+
+    public void setCompleteInfo(boolean completeInfo) {
+        this.completeInfo = completeInfo;
+    }
 
     @Override
     public int compareTo(Track t) {

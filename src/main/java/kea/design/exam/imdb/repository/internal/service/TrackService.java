@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TrackService implements CrudService<Track, String>{
@@ -23,7 +24,11 @@ public class TrackService implements CrudService<Track, String>{
 
     @Override
     public Track findByid(String id) {
-        return internalRepo.findById(id).orElseGet(() -> save(externalRepo.getTrackById(id)));
+        Optional<Track> track = internalRepo.findById(id);
+        if(track.isPresent() && track.get().isCompleteInfo()){
+            return track.get();
+        }
+        return save(externalRepo.getTrackById(id));
     }
 
     public Album addAlbumTrackList(Album album){

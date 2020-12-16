@@ -4,6 +4,7 @@ import kea.design.exam.imdb.models.Album;
 import org.musicbrainz.MBWS2Exception;
 import org.musicbrainz.controller.*;
 import org.musicbrainz.model.entity.ReleaseGroupWs2;
+import org.musicbrainz.model.entity.ReleaseWs2;
 import org.musicbrainz.model.searchresult.ReleaseGroupResultWs2;
 import org.springframework.stereotype.Repository;
 
@@ -23,12 +24,13 @@ public class MbAlbum {
 
     public Album getById(String id){
         ReleaseGroup releaseGroup = new ReleaseGroup();
-        releaseGroup.getIncludes().setReleases(true);
 
         try {
-            ReleaseGroupWs2 releaseGWs2 = releaseGroup.lookUp(id);
+            ReleaseGroupWs2 releaseGWs2 = releaseGroup.getComplete(id);
             kea.design.exam.imdb.models.Artist artist = mbArtist.parseWebSearch(releaseGWs2.getArtistCredit().getNameCredits().get(0).getArtist());
-            return parseWebSearch(releaseGWs2, artist);
+            Album album = parseWebSearch(releaseGWs2, artist);
+            album.setCompleteInfo(true);
+            return album;
         } catch (MBWS2Exception e) {
             e.printStackTrace();
         }
@@ -56,6 +58,7 @@ public class MbAlbum {
     public List<Album> findAlbumByArtistAndType(kea.design.exam.imdb.models.Artist  artist, String type){
         List<Album> albums = new ArrayList<>();
         ReleaseGroup releaseGroup = new ReleaseGroup();
+        releaseGroup.getIncludes().setReleases(true);
         String searchQuery = "arid:"+artist.getId()+" AND primarytype:"+type;
         releaseGroup.search(searchQuery);
 
@@ -81,8 +84,6 @@ public class MbAlbum {
         releaseGroup.search(searchQuery);
 
         List<ReleaseGroupResultWs2> releaseGroupWs2s = releaseGroup.getFullSearchResultList();
-        System.out.println(searchQuery);
-        System.out.println(releaseGroupWs2s.size());
 
         for (ReleaseGroupResultWs2 result : releaseGroupWs2s){
             ReleaseGroupWs2 release = result.getReleaseGroup();
@@ -93,9 +94,17 @@ public class MbAlbum {
 
     private Album parseWebSearch(ReleaseGroupWs2 releaseGroup, kea.design.exam.imdb.models.Artist artist){
         Album album = new Album();
-
+        if(!releaseGroup.getReleases().isEmpty()) {
+            ReleaseWs2 releaseWs2 = releaseGroup.getReleases().get(0);
+            album.setLabel(releaseWs2.getLabelInfoList().toString());
+        }
+        if(releaseGroup.getTags() != null) {
+            StringBuilder genres = new StringBuilder();
+            releaseGroup.getTags().forEach((tag) -> genres.append(tag.getName()).append(", "));
+            album.setGenre(genres.toString());
+        }
+        releaseGroup.getRelationList().getRelations().stream().filter((v) -> v.getTypeId().equals("b988d08c-5d86-4a57-9557-c83b399e3580")).forEach((r) -> album.setWiki(r.getTargetId()));
         album.setArtist(artist);
-
         album.setTitle(releaseGroup.getTitle());
         album.setMbid(releaseGroup.getId());
 
@@ -105,8 +114,6 @@ public class MbAlbum {
                 album.setType(releaseGroup.getSecondaryTypes().get(0));
             }
         }
-
-
         if(releaseGroup.getFirstReleaseDate() != null) {
             album.setReleaseDate(releaseGroup.getFirstReleaseDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
         }
