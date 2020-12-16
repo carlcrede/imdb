@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Collections;
+import java.util.List;
 
 @Controller
 public class Home {
@@ -69,7 +70,9 @@ public class Home {
     public String userprofile(Model model, Authentication auth) {
         MyUserDetails userDetails = (MyUserDetails) userService.loadUserByUsername(auth.getName());
         User user = userDetails.getUser();
+        List<Playlist> playlist = playlistService.getAllPlaylists(user.getId());
         model.addAttribute("favoriteArtists", favoriteService.getFavoriteArtists(user.getId()));
+        model.addAttribute("playlist", playlist);
         return "/userprofile";
     }
 
@@ -101,13 +104,9 @@ public class Home {
         return "redirect:/login";
     }
 
-    @PostMapping("/playlist")
-    public String makePlaylist(Playlist playlist){
-//        playlistService.save(playlist);
-        System.out.println("Mapping virker");
-        return "redirect:/profile";
+    @GetMapping("/playlist")
+    public String playlist(){
+        return "playlist";
     }
-
-
 
 }
