@@ -61,7 +61,7 @@
                             <a th:href="'artist?id='+${member.id}" class="ml-3"><span th:text="${member.name}"></span></a>
                         </th:block>
                     </div>
-                    <div class="text-muted">
+                    <div class="text-muted" th:if="${artist.associatedBands != null && !artist.associatedBands.isEmpty()}">
                         <span class="text-light">Bands: </span>
                         <th:block th:each="bands : ${artist.associatedBands}">
                             <a th:href="'artist?id='+${bands.id}" class="ml-3"><span th:text="${bands.name}"></span></a>
@@ -74,7 +74,7 @@
                     <div class="card">
                         <img id="artistImage" class="rounded card-img-top" src="img/blank.png" alt="Missing artist image">
                     </div>
-                    <div>Average rating: <span id="artistRating"></span> <i class="fas fa-star star"></i></div>
+                    <div style="text-align: center">Average rating: <span id="artistRating"></span> <i class="fas fa-star star"></i></div>
                     <form id="artistRatingForm">
                         <div class="pt-2">
                             <input type="radio" class="star-input" name="rating" id="star-1" value="1" >

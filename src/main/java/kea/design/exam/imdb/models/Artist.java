@@ -173,7 +173,19 @@ public class Artist {
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", wiki='" + wiki + '\'' +
+                ", beginDate=" + beginDate +
+                ", endDate=" + endDate +
+                ", type='" + type + '\'' +
+                ", gender='" + gender + '\'' +
+                ", founded='" + founded + '\'' +
+                ", disambiguation='" + disambiguation + '\'' +
+                ", completeInfo=" + completeInfo +
+                ", bandMembers=" + bandMembers +
+                ", associatedBands=" + associatedBands +
+                ", ratings=" + ratings +
+                ", annotations=" + annotations +
                 ", albums=" + albums +
+                ", spotifyId='" + spotifyId + '\'' +
                 '}';
     }
 }

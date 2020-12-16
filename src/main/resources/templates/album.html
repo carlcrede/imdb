@@ -130,11 +130,13 @@
                     </tbody>
                 </table>
             </div>
-            <div class="tab-pane fade show active" id="description" role="tabpanel">
+            <div class="tab-pane fade" id="description" role="tabpanel">
                 <div class="card-header py-1">
                     <h2 class="text-light">Description</h2>
                 </div>
-                <p id="descText" class="text-light" th:data-value="${album.wiki}">This album has no description.</p>
+                <div class="container">
+                    <p id="descText" class="text-light" th:data-value="${album.wiki}">This album has no description.</p>
+                </div>
             </div>
         </div>
     </div>

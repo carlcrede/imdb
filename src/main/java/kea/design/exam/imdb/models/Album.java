@@ -119,4 +119,6 @@ public class Album {
     public void setWiki(String wiki) {
         this.wiki = wiki;
     }
+
+
 }

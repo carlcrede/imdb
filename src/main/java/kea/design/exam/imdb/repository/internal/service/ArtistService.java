@@ -26,6 +26,12 @@ public class ArtistService implements CrudService<Artist, String>{
         if(artist.isPresent() && artist.get().isCompleteInfo()){
             return artist.get();
         }
+
+        Artist exArtist = externalRepo.getById(id);
+
+        if(exArtist.getType().toLowerCase().equals("person")){
+            exArtist.setAssociatedBands(externalRepo.getBands(exArtist));
+        }
         return save(externalRepo.getById(id));
     }
 

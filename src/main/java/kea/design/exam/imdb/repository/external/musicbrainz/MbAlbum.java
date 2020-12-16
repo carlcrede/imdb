@@ -96,7 +96,9 @@ public class MbAlbum {
         Album album = new Album();
         if(!releaseGroup.getReleases().isEmpty()) {
             ReleaseWs2 releaseWs2 = releaseGroup.getReleases().get(0);
-            album.setLabel(releaseWs2.getLabelInfoList().toString());
+            if(releaseWs2.getLabelInfoList() != null) {
+                album.setLabel(releaseWs2.getLabelInfoList().toString());
+            }
         }
         if(releaseGroup.getTags() != null) {
             StringBuilder genres = new StringBuilder();
