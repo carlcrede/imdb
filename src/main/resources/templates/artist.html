@@ -47,7 +47,7 @@
                 <div class="col-sm mb-2">
                     <div class="row">
                         <h1 id="artistName" th:text="${artist.name}" class="display-4 text-light"></h1>
-                        <a sec:authorize="!isAnonymous()" id="favoriteArtist"><h3 data-toggle="tooltip" data-placement="right" title="Click to add or remove favorite" id="favoriteIcon" class="mt-4 ml-3 far fa-heart"></h3></a>
+                        <a sec:authorize="!isAnonymous()" id="favoriteArtist"><h3 style="color: #ffc107" data-toggle="tooltip" data-placement="right" title="Click to add or remove favorite" id="favoriteIcon" class="mt-4 ml-3 far fa-heart"></h3></a>
                         <div id="favoriteFeedback" style="display: none" class="ml-3 mt-3 alert alert-success alert-dismissible" role="alert">
                             <div id="feedbackText"></div>
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -91,12 +91,11 @@
                             <label for="star-9" class="star"><i class="fas fa-star"></i></label>
                             <input type="radio" class="star-input" name="rating" id="star-10" value="10">
                             <label for="star-10" class="star"><i class="fas fa-star"></i></label>
-                            <button type="submit" th:disabled="${#authorization.expr('isAnonymous()')}" class="button-inverse">Rate</button>
+                            <button type="submit" th:disabled="${#authorization.expr('isAnonymous()')}" class="ml-2 btn btn-sm btn-outline-warning">Rate</button>
                             <div sec:authorize="isAnonymous()">Log in to rate</div>
+                            <div id="ratingFeedback" style="display: none" class="alert alert-success" role="alert"></div>
                         </div>
                     </form>
-                    <div id="ratingFeedback" style="display: none" class="alert alert-success" role="alert">
-                    </div>
                         <div id="showtext">
 
                         </div>
@@ -193,7 +192,7 @@
                                     <label th:for="${album.mbid} + '9'" class="star"><i class="fas fa-star"></i></label>
                                     <input type="radio" class="album-input" name="albumRating" th:id="${album.mbid} + '10'" value="10">
                                     <label th:for="${album.mbid} + '10'" class="star"><i class="fas fa-star"></i></label>
-                                    <button type="submit" class="button-inverse">Rate</button>
+                                    <button type="submit" class="ml-2 btn btn-sm btn-outline-warning">Rate</button>
                                 </form>
                                 <div th:id="'albumRatingFeedback_' + ${album.mbid}" style="display: none" class="mt-2 alert alert-success" role="alert"></div>
                         </div>

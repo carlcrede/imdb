@@ -1,6 +1,8 @@
 let id;
 
 $(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+
     id = $("#id").val();
 
     getCover(id, setMast);
@@ -15,7 +17,27 @@ $(document).ready(function(){
         console.log(rating);
         console.log(userName);
         submitAlbumRating(mbid, rating, userName);
-    })
+    });
+
+    var favorited;
+    $("#favoriteIcon").hover(
+        function () {
+            favorited = $("#favoriteIcon").hasClass('fas fa-heart');
+            if ($(this).hasClass('far fa-heart')) {
+                $(this).removeClass('far fa-heart').addClass('fas fa-heart');
+            }
+        },
+        function () {
+            if (!favorited) {
+                $(this).removeClass('fas fa-heart').addClass('far fa-heart');
+            }
+        });
+
+    $("#favoriteAlbum").click(function () {
+        let mbid = $("#mbid").val();
+        let username = $("#userName").text();
+        addOrRemoveFavorite(mbid, username, "album");
+    });
 
     //sets description
     let wiki = $("#descText")[0].getAttribute("data-value");

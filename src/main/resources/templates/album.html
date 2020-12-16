@@ -20,6 +20,7 @@
     <script src="javascript/pageScripts/albumScript.js"></script>
     <script src="javascript/pageScripts/ratingScript.js"></script>
     <script src="javascript/Apis/wikiRepo.js"> </script>
+    <script src="javascript/pageScripts/favoriteScript.js"></script>
     <title th:text="${album.getTitle()}"></title>
 </head>
 <body class="bg-dark" style="">
@@ -35,7 +36,16 @@
                 </div>
                 <div class="col text-light d-flex align-items-center">
                     <div class="container">
-                        <h1 class="text-center" style="text-shadow: 3px 3px #32383E;" th:text="${album.title}"></h1>
+                        <div>
+                        <h1 class="text-center" style="text-shadow: 3px 3px #32383E; display: inline" th:text="${album.title}"></h1>
+                        <a sec:authorize="!isAnonymous()" id="favoriteAlbum"><h3 style="color: #ffc107" data-toggle="tooltip" data-placement="right" title="Click to add or remove favorite" id="favoriteIcon" class="mt-4 ml-3 far fa-heart"></h3></a>
+                            <div id="favoriteFeedback" style="display: none" class="ml-3 mt-3 alert alert-success alert-dismissible" role="alert">
+                                <div id="feedbackText"></div>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
                         <h5 class="text-center" style="text-shadow: 2px 2px #32383E;" th:text="${album.artist.name}"></h5>
                         <div class="mt-3">Average rating: <span th:id="'albumRating_' + ${album.mbid}"></span> <i class="fas fa-star star"></i></div>
                         <form id="albumRatingForm">
@@ -60,7 +70,7 @@
                                 <label for="star-9" class="star"><i class="fas fa-star"></i></label>
                                 <input type="radio" class="star-input" name="rating" id="star-10" value="10">
                                 <label for="star-10" class="star"><i class="fas fa-star"></i></label>
-                                <button type="submit" th:disabled="${#authorization.expr('isAnonymous()')}" class="button-inverse">Rate</button>
+                                <button type="submit" th:disabled="${#authorization.expr('isAnonymous()')}" class="btn btn-sm btn-outline-warning">Rate</button>
                                 <div sec:authorize="isAnonymous()">Log in to rate</div>
                             </div>
                         </form>
@@ -141,6 +151,7 @@
 </div>
 
 <div id="loader" class="center"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>´

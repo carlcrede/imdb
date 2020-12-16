@@ -1,9 +1,11 @@
 package kea.design.exam.imdb.controller.restcontroller;
 
 import kea.design.exam.imdb.models.*;
+import kea.design.exam.imdb.models.Favorite.FavoriteAlbum;
 import kea.design.exam.imdb.models.Favorite.FavoriteArtist;
 import kea.design.exam.imdb.models.User.MyUserDetails;
 import kea.design.exam.imdb.models.User.User;
+import kea.design.exam.imdb.repository.internal.service.AlbumService;
 import kea.design.exam.imdb.repository.internal.service.ArtistService;
 import kea.design.exam.imdb.repository.internal.service.FavoriteService;
 import kea.design.exam.imdb.repository.internal.service.UserDetailsServiceImpl;
@@ -25,10 +27,28 @@ public class UserController {
     @Autowired
     ArtistService artistService;
     @Autowired
+    AlbumService albumService;
+    @Autowired
     FavoriteService favoriteService;
 
     private ResponseEntity<Object> addOrRemoveAlbumFromFavorites(String mbid, User user) {
-        return null;
+        Album album = albumService.findByid(mbid);
+        List<FavoriteAlbum> favoriteAlbumList = user.getFavoriteAlbums();
+        for (FavoriteAlbum favorite : favoriteAlbumList) {
+            if (favorite.getAlbum().equals(album)) {
+                favoriteAlbumList.remove(favorite);
+                favoriteService.delete(favorite);
+                userService.saveUser(user);
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+        }
+        FavoriteAlbum favorite = new FavoriteAlbum();
+        favorite.setUser(user);
+        favorite.setAlbum(album);
+        favoriteService.save(favorite);
+        user.getFavoriteAlbums().add(0, favorite);
+        userService.saveUser(user);
+        return ResponseEntity.ok(HttpEntity.EMPTY);
     }
 
     private ResponseEntity<Object> addOrRemoveTrackFromFavorites(String mbid, User user) {
@@ -55,8 +75,8 @@ public class UserController {
         return ResponseEntity.ok(HttpEntity.EMPTY);
     }
 
-    @GetMapping("/favorites/addArtist")
-    public ResponseEntity<Object> addArtistToFavorites(@RequestParam String mbid, @RequestParam String userName, @RequestParam String type) {
+    @GetMapping("/favorites/addOrRemoveFavorite")
+    public ResponseEntity<Object> addOrRemoveFavorite(@RequestParam String mbid, @RequestParam String userName, @RequestParam String type) {
         ResponseEntity<Object> responseEntity = ResponseEntity.of(Optional.empty());
         User user = getUser(userName);
         switch (type) {
