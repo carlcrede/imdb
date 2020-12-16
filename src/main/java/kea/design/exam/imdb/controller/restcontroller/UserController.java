@@ -1,5 +1,6 @@
 package kea.design.exam.imdb.controller.restcontroller;
 
+import ch.qos.logback.classic.PatternLayout;
 import kea.design.exam.imdb.models.*;
 import kea.design.exam.imdb.models.Favorite.FavoriteAlbum;
 import kea.design.exam.imdb.models.Favorite.FavoriteArtist;
@@ -8,6 +9,7 @@ import kea.design.exam.imdb.models.User.User;
 import kea.design.exam.imdb.repository.internal.service.AlbumService;
 import kea.design.exam.imdb.repository.internal.service.ArtistService;
 import kea.design.exam.imdb.repository.internal.service.FavoriteService;
+import kea.design.exam.imdb.repository.internal.service.PlaylistService;
 import kea.design.exam.imdb.repository.internal.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -30,6 +32,8 @@ public class UserController {
     AlbumService albumService;
     @Autowired
     FavoriteService favoriteService;
+    @Autowired
+    PlaylistService playlistService;
 
     private ResponseEntity<Object> addOrRemoveAlbumFromFavorites(String mbid, User user) {
         Album album = albumService.findByid(mbid);
@@ -91,6 +95,13 @@ public class UserController {
                 break;
         }
         return responseEntity;
+    }
+
+    @GetMapping("/playlist/makeplaylist")
+    public ResponseEntity<Object> makeNewPlaylist(@RequestParam Long id, Playlist playlist){
+        playlistService.save(playlist);
+        System.out.println("debug");
+        return ResponseEntity.ok(playlistService.getAllPlaylists(id));
     }
 
     private User getUser(String userName) {

@@ -25,6 +25,10 @@ public class Artist {
     private List<Artist> bandMembers;
 
     @OneToMany
+    private List<Artist> associatedBands;
+
+
+    @OneToMany
     private List<ArtistRating> ratings;
 
     @OneToMany(fetch = FetchType.EAGER)
@@ -155,13 +159,33 @@ public class Artist {
         this.completeInfo = completeInfo;
     }
 
+    public List<Artist> getAssociatedBands() {
+        return associatedBands;
+    }
+
+    public void setAssociatedBands(List<Artist> associatedBands) {
+        this.associatedBands = associatedBands;
+    }
+
     @Override
     public String toString() {
         return "Artist{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", wiki='" + wiki + '\'' +
+                ", beginDate=" + beginDate +
+                ", endDate=" + endDate +
+                ", type='" + type + '\'' +
+                ", gender='" + gender + '\'' +
+                ", founded='" + founded + '\'' +
+                ", disambiguation='" + disambiguation + '\'' +
+                ", completeInfo=" + completeInfo +
+                ", bandMembers=" + bandMembers +
+                ", associatedBands=" + associatedBands +
+                ", ratings=" + ratings +
+                ", annotations=" + annotations +
                 ", albums=" + albums +
+                ", spotifyId='" + spotifyId + '\'' +
                 '}';
     }
 }

@@ -6,10 +6,7 @@ import kea.design.exam.imdb.models.Rating.AlbumRating;
 import kea.design.exam.imdb.models.Rating.ArtistRating;
 import kea.design.exam.imdb.models.User.MyUserDetails;
 import kea.design.exam.imdb.models.User.User;
-import kea.design.exam.imdb.repository.internal.service.AlbumService;
-import kea.design.exam.imdb.repository.internal.service.ArtistService;
-import kea.design.exam.imdb.repository.internal.service.RatingService;
-import kea.design.exam.imdb.repository.internal.service.UserDetailsServiceImpl;
+import kea.design.exam.imdb.repository.internal.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +26,8 @@ public class RatingController {
     RatingService ratingService;
     @Autowired
     AlbumService albumService;
+    @Autowired
+    PlaylistService playlistService;
 
     @GetMapping("/getRatingsByAlbum")
     public Double getAverageRatingByAlbum(@RequestParam String mbid) {
@@ -88,5 +87,7 @@ public class RatingController {
         MyUserDetails userDetails = (MyUserDetails) userService.loadUserByUsername(userName);
         return userDetails.getUser();
     }
+
+
 
 }

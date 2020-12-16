@@ -48,7 +48,6 @@ public class MbRepoTest {
         MbAlbum albumRepo = new MbAlbum();
         List<Album> albums = albumRepo.findByQuery("the", 20);
         Assertions.assertEquals(20, albums.size());
-        albums.forEach((a) -> System.out.println(a.getArtist()));
     }
 
     @Test
@@ -58,8 +57,23 @@ public class MbRepoTest {
 
         MbAlbum albumRepo = new MbAlbum();
         List<Album> albums = albumRepo.findAlbumByArtistAndType(artist, "Album");
-        System.out.println(albums.size());
-        albums.forEach(v -> System.out.println(v.getType()));
+    }
+    @Test
+    public void mbGetBandMembers(){
+        MbArtist artistRepo = new MbArtist();
+        //rolling stones
+        Artist artist = artistRepo.getById("b071f9fa-14b0-4217-8e97-eb41da73f598");
+
+        artistRepo.getBandMembers(artist).stream().anyMatch((v) -> v.getName().toLowerCase().equals("mick jagger"));
+        Assertions.assertTrue(true);
+    }
+
+    @Test
+    public void mbGetAssociatedBand(){
+        MbArtist artistRepo = new MbArtist();
+        //paul mccartneys id
+        Artist artist = artistRepo.getById("ba550d0e-adac-4864-b88b-407cab5e76af");
+        Assertions.assertTrue(artistRepo.getBands(artist).stream().anyMatch((v) -> v.getName().toLowerCase().equals("the beatles")));
     }
 
     @Test
