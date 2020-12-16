@@ -1,5 +1,7 @@
 package kea.design.exam.imdb.models;
 
+import kea.design.exam.imdb.models.User.User;
+
 import javax.persistence.*;
 import java.util.List;
 

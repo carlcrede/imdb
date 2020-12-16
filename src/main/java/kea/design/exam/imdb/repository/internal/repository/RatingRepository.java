@@ -1,9 +1,8 @@
 package kea.design.exam.imdb.repository.internal.repository;
 
-import kea.design.exam.imdb.models.AbstractRating;
-import kea.design.exam.imdb.models.AlbumRating;
-import kea.design.exam.imdb.models.ArtistRating;
-import kea.design.exam.imdb.models.Rating;
+import kea.design.exam.imdb.models.Rating.AbstractRating;
+import kea.design.exam.imdb.models.Rating.AlbumRating;
+import kea.design.exam.imdb.models.Rating.ArtistRating;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 

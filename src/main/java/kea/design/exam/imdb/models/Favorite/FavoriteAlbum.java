@@ -1,12 +1,14 @@
-package kea.design.exam.imdb.models;
+package kea.design.exam.imdb.models.Favorite;
+
+import kea.design.exam.imdb.models.Album;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
-@Entity(name = "AlbumRating")
+@Entity(name = "FavoriteAlbum")
 @DiscriminatorValue("Album")
-public class AlbumRating extends AbstractRating {
+public class FavoriteAlbum extends Favorite {
 
     @ManyToOne
     private Album album;

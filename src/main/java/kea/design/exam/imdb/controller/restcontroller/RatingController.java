@@ -2,6 +2,10 @@ package kea.design.exam.imdb.controller.restcontroller;
 
 
 import kea.design.exam.imdb.models.*;
+import kea.design.exam.imdb.models.Rating.AlbumRating;
+import kea.design.exam.imdb.models.Rating.ArtistRating;
+import kea.design.exam.imdb.models.User.MyUserDetails;
+import kea.design.exam.imdb.models.User.User;
 import kea.design.exam.imdb.repository.internal.service.AlbumService;
 import kea.design.exam.imdb.repository.internal.service.ArtistService;
 import kea.design.exam.imdb.repository.internal.service.RatingService;

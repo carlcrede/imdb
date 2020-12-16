@@ -33,6 +33,8 @@
 
 $(document).ready(function(){
 
+    $('[data-toggle="tooltip"]').tooltip();
+
     //loads Description from wiki
     let wiki = $("#description")[0].getAttribute("data-value");
     if(wiki != null) {
@@ -41,6 +43,27 @@ $(document).ready(function(){
     }
 
     let artistName = $("#artistName").text();
+
+    var favorited;
+    $("#favoriteIcon").hover(
+        function () {
+            favorited = $("#favoriteIcon").hasClass('fas fa-heart');
+            if ($(this).hasClass('far fa-heart')) {
+                $(this).removeClass('far fa-heart').addClass('fas fa-heart');
+            }
+    },
+        function () {
+            if (!favorited) {
+                $(this).removeClass('fas fa-heart').addClass('far fa-heart');
+            }
+        });
+
+    $("#favoriteArtist").click(function () {
+        console.log("Clicked favorite icon!");
+        let mbid = $("#mbid").val();
+        let username = $("#userName").text();
+        addArtistToFavorites(mbid, username, "artist");
+    });
 
     // adds onclick to albums to redirect their main page
     $(".albumLink").click(function(){

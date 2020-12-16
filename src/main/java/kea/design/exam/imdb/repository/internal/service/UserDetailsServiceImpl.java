@@ -1,9 +1,8 @@
 package kea.design.exam.imdb.repository.internal.service;
 
-import kea.design.exam.imdb.models.MyUserDetails;
-import kea.design.exam.imdb.models.User;
+import kea.design.exam.imdb.models.User.MyUserDetails;
+import kea.design.exam.imdb.models.User.User;
 import kea.design.exam.imdb.repository.internal.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -23,6 +22,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     public void saveUserRating(User user) {
+        userRepository.save(user);
+    }
+
+    public void saveUser(User user) {
         userRepository.save(user);
     }
 

@@ -1,10 +1,8 @@
 package kea.design.exam.imdb.repository.internal.service;
 
-
-import kea.design.exam.imdb.models.AbstractRating;
-import kea.design.exam.imdb.models.AlbumRating;
-import kea.design.exam.imdb.models.ArtistRating;
-import kea.design.exam.imdb.models.Rating;
+import kea.design.exam.imdb.models.Rating.AbstractRating;
+import kea.design.exam.imdb.models.Rating.AlbumRating;
+import kea.design.exam.imdb.models.Rating.ArtistRating;
 import kea.design.exam.imdb.repository.internal.repository.RatingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
