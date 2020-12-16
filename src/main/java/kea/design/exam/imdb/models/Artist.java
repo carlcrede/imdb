@@ -1,5 +1,7 @@
 package kea.design.exam.imdb.models;
 
+import kea.design.exam.imdb.models.Rating.ArtistRating;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;

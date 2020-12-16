@@ -1,6 +1,8 @@
 package kea.design.exam.imdb.controller;
 
 import kea.design.exam.imdb.models.*;
+import kea.design.exam.imdb.models.User.MyUserDetails;
+import kea.design.exam.imdb.models.User.User;
 import kea.design.exam.imdb.repository.external.SpotifyRepository;
 import kea.design.exam.imdb.repository.internal.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,9 @@ public class Home {
     RatingService ratingService;
     @Autowired
     PlaylistService playlistService;
+    @Autowired
+    FavoriteService favoriteService;
+
 
     Home() {
         spotifyRepo = new SpotifyRepository("1d1caf5e2f0048abaaf3a5c6c6db18d9", "f0b2c475ad1f47aca16104715212a5b7");
@@ -64,7 +69,7 @@ public class Home {
     public String userprofile(Model model, Authentication auth) {
         MyUserDetails userDetails = (MyUserDetails) userService.loadUserByUsername(auth.getName());
         User user = userDetails.getUser();
-        model.addAttribute("favoriteArtists", userService.getFavoriteArtists(user.getId()));
+        model.addAttribute("favoriteArtists", favoriteService.getFavoriteArtists(user.getId()));
         return "/userprofile";
     }
 

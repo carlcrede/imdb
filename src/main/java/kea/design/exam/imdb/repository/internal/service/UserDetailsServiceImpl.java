@@ -1,17 +1,13 @@
 package kea.design.exam.imdb.repository.internal.service;
 
-import kea.design.exam.imdb.models.FavoriteArtist;
-import kea.design.exam.imdb.models.MyUserDetails;
-import kea.design.exam.imdb.models.User;
+import kea.design.exam.imdb.models.User.MyUserDetails;
+import kea.design.exam.imdb.models.User.User;
 import kea.design.exam.imdb.repository.internal.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -23,10 +19,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetailsServiceImpl(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userRepository = userRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-    }
-    //TODO: move to favoriteService
-    public List<FavoriteArtist> getFavoriteArtists(Long id) {
-        return userRepository.getFavoriteArtistsByUserId(id);
     }
 
     public void saveUserRating(User user) {

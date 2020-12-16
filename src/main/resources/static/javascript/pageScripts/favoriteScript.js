@@ -1,5 +1,5 @@
-function addArtistToFavorites(mbid, username) {
-    $.get("/favorites/addArtist", {mbid: mbid, userName: username})
+function addArtistToFavorites(mbid, username, type) {
+    $.get("/favorites/addArtist", {mbid: mbid, userName: username, type: type})
         .done(function (data) {
             console.log("Favorited artist");
             $("#favoriteIcon").removeClass('far fa-heart');

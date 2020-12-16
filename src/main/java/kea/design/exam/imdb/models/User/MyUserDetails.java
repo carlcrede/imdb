@@ -1,5 +1,6 @@
-package kea.design.exam.imdb.models;
+package kea.design.exam.imdb.models.User;
 
+import kea.design.exam.imdb.models.User.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

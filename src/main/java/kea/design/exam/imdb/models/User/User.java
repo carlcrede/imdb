@@ -1,4 +1,11 @@
-package kea.design.exam.imdb.models;
+package kea.design.exam.imdb.models.User;
+
+import kea.design.exam.imdb.models.Favorite.FavoriteAlbum;
+import kea.design.exam.imdb.models.Favorite.FavoriteArtist;
+import kea.design.exam.imdb.models.Favorite.FavoriteTrack;
+import kea.design.exam.imdb.models.Playlist;
+import kea.design.exam.imdb.models.Rating.AlbumRating;
+import kea.design.exam.imdb.models.Rating.ArtistRating;
 
 import javax.persistence.*;
 import java.util.List;
@@ -24,11 +31,33 @@ public class User {
     @OneToMany()
     private List<ArtistRating> artistRatings;
 
-    @OneToMany
+    @OneToMany()
     private List<AlbumRating> albumRatings;
 
-    @OneToMany
+    @OneToMany()
     private List<FavoriteArtist> favoriteArtists;
+
+    public List<FavoriteAlbum> getFavoriteAlbums() {
+        return favoriteAlbums;
+    }
+
+    public void setFavoriteAlbums(List<FavoriteAlbum> favoriteAlbums) {
+        this.favoriteAlbums = favoriteAlbums;
+    }
+
+    public List<FavoriteTrack> getFavoriteTracks() {
+        return favoriteTracks;
+    }
+
+    public void setFavoriteTracks(List<FavoriteTrack> favoriteTracks) {
+        this.favoriteTracks = favoriteTracks;
+    }
+
+    @OneToMany
+    private List<FavoriteAlbum> favoriteAlbums;
+
+    @OneToMany
+    private List<FavoriteTrack> favoriteTracks;
 
     public List<FavoriteArtist> getFavoriteArtists() {
         return favoriteArtists;

@@ -1,15 +1,19 @@
-package kea.design.exam.imdb.models;
+package kea.design.exam.imdb.models.Rating;
+
+
+import kea.design.exam.imdb.models.User.User;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "favorite_type")
-public abstract class Favorite {
+@DiscriminatorColumn(name = "Rating_Type")
+public abstract class AbstractRating {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    private double rating;
 
     @ManyToOne
     private User user;
@@ -20,6 +24,14 @@ public abstract class Favorite {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
     }
 
     public User getUser() {
