@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 
 @Service
@@ -26,13 +27,21 @@ public class ArtistService implements CrudService<Artist, String>{
         if(artist.isPresent() && artist.get().isCompleteInfo()){
             return artist.get();
         }
-
         Artist exArtist = externalRepo.getById(id);
-
-        if(exArtist.getType().toLowerCase().equals("person")){
+        if(exArtist.getType().toLowerCase().equals("group")){
+            exArtist.setBandMembers(externalRepo.getBands(exArtist));
+            exArtist.getBandMembers().forEach(mem -> {
+                Optional<Artist> opMem = internalRepo.findById(mem.getId());
+                if(opMem.isEmpty()) {save(mem);}else{mem = opMem.get();}
+            });
+        }else if(exArtist.getType().toLowerCase().equals("person")){
             exArtist.setAssociatedBands(externalRepo.getBands(exArtist));
+            exArtist.getAssociatedBands().forEach(mem -> {
+                Optional<Artist> opMem = internalRepo.findById(mem.getId());
+                if(opMem.isEmpty()) { save(mem); }else{mem = opMem.get();}
+            });
         }
-        return save(externalRepo.getById(id));
+        return save(exArtist);
     }
 
     @Override

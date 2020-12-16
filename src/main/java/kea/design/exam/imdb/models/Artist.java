@@ -24,7 +24,7 @@ public class Artist {
     @ManyToMany
     private List<Artist> bandMembers;
 
-    @OneToMany
+    @ManyToMany
     private List<Artist> associatedBands;
 
 

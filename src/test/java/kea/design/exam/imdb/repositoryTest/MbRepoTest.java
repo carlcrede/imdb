@@ -63,9 +63,7 @@ public class MbRepoTest {
         MbArtist artistRepo = new MbArtist();
         //rolling stones
         Artist artist = artistRepo.getById("b071f9fa-14b0-4217-8e97-eb41da73f598");
-
-        artistRepo.getBandMembers(artist).stream().anyMatch((v) -> v.getName().toLowerCase().equals("mick jagger"));
-        Assertions.assertTrue(true);
+        Assertions.assertTrue(artist.getBandMembers().stream().anyMatch((v) -> v.getName().toLowerCase().equals("mick jagger")));
     }
 
     @Test
