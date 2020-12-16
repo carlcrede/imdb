@@ -144,7 +144,7 @@ let artistGenre = function setArtistGenre(data){
     textInGenre = textInGenre.slice(0, textInGenre.length -2);
     textInGenre += ".";
     $("#genres").append(textInGenre)
-    if(data.artists.items[0].genres.length === 0){
+    if(data.artists.items[0].genres.length === 0 || data.artists.items[0].genres.length === null){
         $("#genres").remove();
     }
 }

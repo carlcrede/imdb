@@ -25,6 +25,10 @@ public class Artist {
     private List<Artist> bandMembers;
 
     @OneToMany
+    private List<Artist> associatedBands;
+
+
+    @OneToMany
     private List<ArtistRating> ratings;
 
     @OneToMany(fetch = FetchType.EAGER)
@@ -153,6 +157,14 @@ public class Artist {
 
     public void setCompleteInfo(boolean completeInfo) {
         this.completeInfo = completeInfo;
+    }
+
+    public List<Artist> getAssociatedBands() {
+        return associatedBands;
+    }
+
+    public void setAssociatedBands(List<Artist> associatedBands) {
+        this.associatedBands = associatedBands;
     }
 
     @Override
