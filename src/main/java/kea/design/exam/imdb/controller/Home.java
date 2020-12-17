@@ -46,6 +46,7 @@ public class Home {
     public String index(Model model){
         model.addAttribute("topArtists", ratingService.getTopRatedArtists());
         model.addAttribute("topAlbums", ratingService.getTopRatedAlbums());
+        //model.addAttribute("topTracks", ratingService.getTopRatedTracks());
         return "index";
     }
 
