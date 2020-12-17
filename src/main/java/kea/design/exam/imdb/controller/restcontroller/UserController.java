@@ -12,12 +12,14 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RestController
 public class UserController {
@@ -54,29 +56,23 @@ public class UserController {
         return ResponseEntity.ok(HttpEntity.EMPTY);
     }
 
-    private ResponseEntity<Object> addOrRemoveTracksFromFavorites(String[] tracks, User user) {
-
-        System.out.println(Arrays.toString(tracks));
+    private ResponseEntity<Object> addOrRemoveTracksFromFavorites(String mbid, User user) {
+        Track track = trackService.findByid(mbid);
         List<FavoriteTrack> favoriteTracks = user.getFavoriteTracks();
-        // loop users favorite tracklist
-        // compare each existing favorite track to each track in submitted array
-        // if match, delete favorite
         for (FavoriteTrack favorite : favoriteTracks) {
-            for (String trackId: tracks) {
-                if (favorite.getTrack().getId().equals(trackId)) {
-                    favoriteTracks.remove(favorite);
-                    favoriteService.delete(favorite);
-                } else {
-                    Track track = trackService.findByid(trackId);
-                    FavoriteTrack favoriteTrack = new FavoriteTrack();
-                    favoriteTrack.setUser(user);
-                    favoriteTrack.setTrack(track);
-                    favoriteService.save(favoriteTrack);
-                }
+            if (favorite.getTrack().equals(track)) {
+                favoriteTracks.remove(favorite);
+                favoriteService.delete(favorite);
+                userService.saveUser(user);
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
         }
-        // else add track to favorites
-        userService.saveUser(user); // Test if this works - maybe it needs to be in the outer loop
+        FavoriteTrack favorite = new FavoriteTrack();
+        favorite.setUser(user);
+        favorite.setTrack(track);
+        favoriteService.save(favorite);
+        favoriteTracks.add(0, favorite);
+        userService.saveUser(user);
         return ResponseEntity.ok(HttpEntity.EMPTY);
     }
 
@@ -101,7 +97,7 @@ public class UserController {
     }
 
     @GetMapping("/favorites/addOrRemoveFavorite")
-    public ResponseEntity<Object> addOrRemoveFavorite(@RequestParam(required = false) String mbid, @RequestParam(required = false) String[] tracks , @RequestParam String userName, @RequestParam String type) {
+    public ResponseEntity<Object> addOrRemoveFavorite(@RequestParam(required = false) String mbid, @RequestParam String userName, @RequestParam String type) {
         ResponseEntity<Object> responseEntity = ResponseEntity.of(Optional.empty());
         User user = getUser(userName);
         switch (type) {
@@ -112,7 +108,7 @@ public class UserController {
                 responseEntity = addOrRemoveAlbumFromFavorites(mbid, user);
                 break;
             case "track":
-                responseEntity = addOrRemoveTracksFromFavorites(tracks, user);
+                responseEntity = addOrRemoveTracksFromFavorites(mbid, user);
                 break;
         }
         return responseEntity;
