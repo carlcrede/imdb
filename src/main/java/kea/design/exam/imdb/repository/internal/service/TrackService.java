@@ -33,10 +33,8 @@ public class TrackService implements CrudService<Track, String>{
 
     public Album addAlbumTrackList(Album album){
         List<Track> tracks = album.getTracks();
-        if(tracks != null) {
-            if (tracks.isEmpty()) {
-                tracks = internalRepo.findTracksByAlbumOrderByPosition(album);
-            }
+        if(tracks == null || tracks.isEmpty()){
+            tracks = internalRepo.findTracksByAlbumOrderByPosition(album);
             if (tracks.isEmpty()) {
                 tracks = saveAll(externalRepo.getTracksForAlbum(album));
             }
