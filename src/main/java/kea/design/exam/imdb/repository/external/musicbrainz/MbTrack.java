@@ -32,7 +32,6 @@ public class MbTrack {
         try {
             ReleaseGroup releaseGroup = new ReleaseGroup();
             releaseGroup.getReleaseIncludes().excludeAll();
-            releaseGroup.getReleaseIncludes().setMedia(true);
             releaseGroup.lookUp(album.getMbid());
 
             //finds the release with the most tracks and makes it the primary release
@@ -51,8 +50,7 @@ public class MbTrack {
             String releaseId = releaseList.get(index).getId();
 
             Recording recSearch = new Recording();
-            recSearch.getIncludes().setRecordingRelations(true);
-            recSearch.getIncludes().setRecordingLevelRelations(true);
+            recSearch.getIncludes().excludeAll();
 
             recSearch.search("reid:"+releaseId);
             List<RecordingResultWs2> recordings = recSearch.getFirstSearchResultPage();
@@ -80,6 +78,7 @@ public class MbTrack {
                 credits.append(", "+ features.get(i).getArtistName());
             }
         }
+
         track.setFeatures(credits.toString());
         track.setAlbum(album);
         track.setIsrc(recording.getIsrcString());

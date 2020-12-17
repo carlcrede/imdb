@@ -25,9 +25,11 @@ public class Artist {
     private boolean completeInfo;
 
     @ManyToMany
+    @JoinColumn(unique = false)
     private List<Artist> bandMembers;
 
     @ManyToMany
+    @JoinColumn(unique = false)
     private List<Artist> associatedBands;
 
 
