@@ -77,11 +77,10 @@
                     <div th:id="'albumRatingFeedback_' + ${album.mbid}" style="display: none" class="alert alert-success" role="alert"></div>
                 </div>
             </div>
-            <div class="col container">
-                <table class="card table table-sm border bg-dark">
+                <table style="border-radius:20px" class="col container table table-sm bg-dark">
                     <tr>
-                        <td class="text-warning">Release date: </td>
-                        <td class="text-light" th:text="${album.releaseDate}"> </td>
+                        <td class="text-warning" style="border-top:none">Release date: </td>
+                        <td class="text-light"  style="border-top:none" th:text="${album.releaseDate}"> </td>
                     </tr>
                     <tr>
                         <td class="text-warning">Type: </td>
@@ -92,15 +91,10 @@
                         <td class="text-light" th:text="${album.label} ?: 'Unknown'"></td>
                     </tr>
                     <tr>
-                        <td class="text-warning">Years active: </td>
-                        <td class="text-light"></td>
-                    </tr>
-                    <tr>
                         <td class="text-warning">Genres: </td>
                         <td class="text-light" th:text="${album.genre}"></td>
                     </tr>
                 </table>
-            </div>
         </div>
     </div>
 </div>
