@@ -21,7 +21,7 @@
     <script src="javascript/pageScripts/artist.js"></script>
     <script src="javascript/Apis/wikiRepo.js"></script>
     <script src="javascript/pageScripts/favoriteScript.js"></script>
-    <title>Artist</title>
+    <title th:text="${artist.name}">Artist</title>
     <style type="text/css">
         .loader {background: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.dribbble.com%2Fusers%2F65451%2Fscreenshots%2F2922226%2Fslider.gif&f=1&nofb=1') 50% 50% no-repeat rgba(0,0,0,0);}
 
@@ -169,54 +169,60 @@
     <div class="section card container-fluid" id="content" style="background-color: #313335">
         <div class="row">
             <div class="col p-0 col-lg-6" id="albumColumn">
-                <div class="container">
-                    <h3 class="text-light">Albums</h3>
-                </div>
-                <div id="albumsCollection" class="scrollable p-3 col">
-                    <div id="albumScroll" class="scroller row">
-                        <div th:each=" album, count : ${album}" class="col-3 mx-3 p-0 text-light container align-top" style="display: inline-block">
-                            <p th="${album.release}"></p>
-                            <form class="albumLink" action="/album" method="get">
-                                <div class="card" style="border:none">
-                                    <!--<a data-toggle="collapse" th:href="'#'+${count.count}" role="button" aria-expanded="false" aria-controls="collapseExample"> -->
-                                        <div class="albums loader scaled card-body p-0">
-                                            <img class="album rounded card-img-top" th:id="${album.mbid}" src="/img/blank.png" alt="Missing cover art">
+                <ul  class="nav nav-tabs" id="releasesTab" role="tablist">
+                    <li class="nav-item" th:each="releaseTypes:${releases.keySet()}">
+                        <a class="nav-link" data-toggle="tab" role="tab" th:href="'#' + ${releaseTypes}" th:text="${releaseTypes} + 's'"></a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="releasesTab tab-pane fade" th:each="albums:${releases.keySet()}" th:id="${albums}" role="tabpanel">
+                        <div id="albumsCollection" class="scrollable p-3 col">
+                            <div id="albumScroll" class="scroller row">
+                                <div th:each=" album, count : ${releases.get(albums)}" class="col-3 mx-3 p-0 text-light container align-top" style="display: inline-block">
+                                    <p class="text-center p-0 m-0" th:text="${album.releaseDate?.getYear()}"></p>
+                                    <form class="albumLink" action="/album" method="get">
+                                        <div class="card" style="border:none">
+                                            <!--<a data-toggle="collapse" th:href="'#'+${count.count}" role="button" aria-expanded="false" aria-controls="collapseExample"> -->
+                                                <div class="albums loader scaled card-body p-0">
+                                                    <img class="album rounded card-img-top" th:id="${album.mbid}" src="/img/blank.png" alt="Missing cover art">
+                                                </div>
+                                            <!-- </a> -->
                                         </div>
-                                    <!-- </a> -->
+                                        <input type="hidden" name="id" th:value="${album.getMbid()}">
+                                    </form>
+                                    <div style="white-space: initial">
+                                        <h5 class="card-text text-center" th:text="${album.title}"></h5>
+                                        <div class="text-center">Average rating: <span class="avg_rating" th:value="${album.mbid}" th:id="'albumRating_' + ${album.mbid}"></span></div>
+                                        <form sec:authorize="!isAnonymous()" class="album-rating" th:id="${album.mbid}">
+                                            <input type="radio" class="album-input" name="albumRating" th:id="${album.mbid} + '1'" value="1" >
+                                            <label th:for="${album.mbid} + '1'" class="star"><i class="fas fa-star"></i></label>
+                                            <input type="radio" class="album-input" name="albumRating" th:id="${album.mbid} + '2'" value="2">
+                                            <label th:for="${album.mbid} + '2'" class="star"><i class="fas fa-star"></i></label>
+                                            <input type="radio" class="album-input" name="albumRating" th:id="${album.mbid} + '3'" value="3">
+                                            <label th:for="${album.mbid} + '3'" class="star"><i class="fas fa-star"></i></label>
+                                            <input type="radio" class="album-input" name="albumRating" th:id="${album.mbid} + '4'" value="4" >
+                                            <label th:for="${album.mbid} + '4'" class="star"><i class="fas fa-star"></i></label>
+                                            <input type="radio" class="album-input" name="albumRating" th:id="${album.mbid} + '5'" value="5">
+                                            <label th:for="${album.mbid} + '5'" class="star"><i class="fas fa-star"></i></label>
+                                            <input type="radio" class="album-input" name="albumRating" th:id="${album.mbid} + '6'" value="6">
+                                            <label th:for="${album.mbid} + '6'" class="star"><i class="fas fa-star"></i></label>
+                                            <input type="radio" class="album-input" name="albumRating" th:id="${album.mbid} + '7'" value="7">
+                                            <label th:for="${album.mbid} + '7'" class="star"><i class="fas fa-star"></i></label>
+                                            <input type="radio" class="album-input" name="albumRating" th:id="${album.mbid} + '8'" value="8" >
+                                            <label th:for="${album.mbid} + '8'" class="star"><i class="fas fa-star"></i></label>
+                                            <input type="radio" class="album-input" name="albumRating" th:id="${album.mbid} + '9'" value="9">
+                                            <label th:for="${album.mbid} + '9'" class="star"><i class="fas fa-star"></i></label>
+                                            <input type="radio" class="album-input" name="albumRating" th:id="${album.mbid} + '10'" value="10">
+                                            <label th:for="${album.mbid} + '10'" class="star"><i class="fas fa-star"></i></label>
+                                            <button type="submit" class="ml-2 btn btn-sm btn-outline-warning">Rate</button>
+                                        </form>
+                                        <div th:id="'albumRatingFeedback_' + ${album.mbid}" style="display: none" class="mt-2 alert alert-success" role="alert"></div>
+                                    </div>
                                 </div>
-                                <input type="hidden" name="id" th:value="${album.getMbid()}">
-                            </form>
-                            <div style="white-space: initial">
-                                <h5 class="card-text text-center" th:text="${album.title}"></h5>
-                                <div>Average rating: <span class="avg_rating" th:value="${album.mbid}" th:id="'albumRating_' + ${album.mbid}"></span></div>
-                                <form sec:authorize="!isAnonymous()" class="album-rating" th:id="${album.mbid}">
-                                    <input type="radio" class="album-input" name="albumRating" th:id="${album.mbid} + '1'" value="1" >
-                                    <label th:for="${album.mbid} + '1'" class="star"><i class="fas fa-star"></i></label>
-                                    <input type="radio" class="album-input" name="albumRating" th:id="${album.mbid} + '2'" value="2">
-                                    <label th:for="${album.mbid} + '2'" class="star"><i class="fas fa-star"></i></label>
-                                    <input type="radio" class="album-input" name="albumRating" th:id="${album.mbid} + '3'" value="3">
-                                    <label th:for="${album.mbid} + '3'" class="star"><i class="fas fa-star"></i></label>
-                                    <input type="radio" class="album-input" name="albumRating" th:id="${album.mbid} + '4'" value="4" >
-                                    <label th:for="${album.mbid} + '4'" class="star"><i class="fas fa-star"></i></label>
-                                    <input type="radio" class="album-input" name="albumRating" th:id="${album.mbid} + '5'" value="5">
-                                    <label th:for="${album.mbid} + '5'" class="star"><i class="fas fa-star"></i></label>
-                                    <input type="radio" class="album-input" name="albumRating" th:id="${album.mbid} + '6'" value="6">
-                                    <label th:for="${album.mbid} + '6'" class="star"><i class="fas fa-star"></i></label>
-                                    <input type="radio" class="album-input" name="albumRating" th:id="${album.mbid} + '7'" value="7">
-                                    <label th:for="${album.mbid} + '7'" class="star"><i class="fas fa-star"></i></label>
-                                    <input type="radio" class="album-input" name="albumRating" th:id="${album.mbid} + '8'" value="8" >
-                                    <label th:for="${album.mbid} + '8'" class="star"><i class="fas fa-star"></i></label>
-                                    <input type="radio" class="album-input" name="albumRating" th:id="${album.mbid} + '9'" value="9">
-                                    <label th:for="${album.mbid} + '9'" class="star"><i class="fas fa-star"></i></label>
-                                    <input type="radio" class="album-input" name="albumRating" th:id="${album.mbid} + '10'" value="10">
-                                    <label th:for="${album.mbid} + '10'" class="star"><i class="fas fa-star"></i></label>
-                                    <button type="submit" class="ml-2 btn btn-sm btn-outline-warning">Rate</button>
-                                </form>
-                                <div th:id="'albumRatingFeedback_' + ${album.mbid}" style="display: none" class="mt-2 alert alert-success" role="alert"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             </div>
             <div class="col p-0 col-lg-6" id="extraInfo">
                 <div class="section bg-dark card" id="newsContainer">

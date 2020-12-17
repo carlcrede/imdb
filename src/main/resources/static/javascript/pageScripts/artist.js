@@ -35,6 +35,11 @@ $(document).ready(function(){
 
     $('[data-toggle="tooltip"]').tooltip();
 
+    //loads the album for at the start
+    $("#releasesTab").click(function(){
+        $("#albumsCollection").getNiceScroll().resize();
+    });
+
     //loads Description from wiki
     let wiki = $("#description")[0].getAttribute("data-value");
     if(wiki != null) {
@@ -201,7 +206,7 @@ let concerts = function setConcerts(data) {
         )
     }
 };
-
+//callback for descriptions
 let setDescripition = function(description){
     $("#description").text(description);
-}
+};

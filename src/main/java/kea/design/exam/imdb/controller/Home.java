@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -53,8 +55,19 @@ public class Home {
     public String artist(@RequestParam String id, Model model) {
         Artist artist = artistService.findByid(id);
 
+        HashMap<String, List<Album>> mapRelease = new HashMap<>();
+        List<Album> albums = albumService.findAllAlbumsByArtist(artist);
+
+        for (Album album : albums) {
+            String type = album.getType();
+            mapRelease.putIfAbsent(type, new ArrayList<>());
+            List<Album> typeAlbum = mapRelease.get(type);
+            typeAlbum.add(album);
+            mapRelease.put(type, typeAlbum);
+        }
+
         model.addAttribute("artist", artist);
-        model.addAttribute("album", albumService.findAlbumTypeByArtist(artist, "album"));
+        model.addAttribute("releases", mapRelease);
         return "artist";
     }
 
@@ -62,7 +75,7 @@ public class Home {
     public String album(Model model, @RequestParam String id) {
         Album album = albumService.findByid(id);
         album = trackService.addAlbumTrackList(album);
-        if(album.getTracks() != null && !album.getTracks().isEmpty()){Collections.sort(album.getTracks());}
+        if(album.getTracks() != null &&  !album.getTracks().isEmpty()){Collections.sort(album.getTracks());}
 
         model.addAttribute("album", album);
         return "album";
