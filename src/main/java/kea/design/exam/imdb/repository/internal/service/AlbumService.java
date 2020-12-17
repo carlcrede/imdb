@@ -4,6 +4,7 @@ import kea.design.exam.imdb.models.Album;
 import kea.design.exam.imdb.models.Artist;
 import kea.design.exam.imdb.models.Track;
 import kea.design.exam.imdb.repository.external.musicbrainz.MbAlbum;
+import kea.design.exam.imdb.repository.external.musicbrainz.MbArtist;
 import kea.design.exam.imdb.repository.internal.repository.AlbumRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,14 +18,20 @@ public class AlbumService implements CrudService<Album, String> {
     MbAlbum externalRepo;
     @Autowired
     AlbumRepository internalRepo;
+    @Autowired
+    ArtistService artistService;
 
     @Override
     public Album findByid(String id) {
-        Optional<Album> album = internalRepo.findById(id);
-        if(album.isPresent() && album.get().isCompleteInfo()){
-            return album.get();
+        Optional<Album> opAlbum = internalRepo.findById(id);
+        if(opAlbum.isPresent() && opAlbum.get().isCompleteInfo()){
+            return opAlbum.get();
         }
-        return save(externalRepo.getById(id));
+        Album album = externalRepo.getById(id);
+        if(!album.getArtist().isCompleteInfo()){
+            artistService.save(album.getArtist());
+        }
+        return save(album);
     }
 
     public List<Album> findAlbumTypeByArtist(Artist artist, String type){

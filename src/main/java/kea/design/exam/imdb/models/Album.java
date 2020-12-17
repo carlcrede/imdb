@@ -11,7 +11,7 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity
-public class Album {
+public class Album implements Comparable<Album>{
     @Id
     private String mbid;
 
@@ -118,5 +118,11 @@ public class Album {
 
     public void setWiki(String wiki) {
         this.wiki = wiki;
+    }
+
+
+    @Override
+    public int compareTo(Album a) {
+        return this.getReleaseDate().compareTo(a.releaseDate);
     }
 }
