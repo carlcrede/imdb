@@ -26,8 +26,8 @@
         <div class="col text-right">
             <a class="headerLink btn bg-transparent" sec:authorize="!isAuthenticated()" href="/login">Login</a>
             <a class="headerLink btn bg-transparent" sec:authorize="!isAuthenticated()" href="/register">Register</a>
-            <a class="headerLink btn bg-transparent" sec:authorize="isAuthenticated()" href="/logout">Logout</a>
             <a class="headerLink btn bg-transparent" sec:authorize="isAuthenticated()" href="/profile">Profile</a>
+            <a class="headerLink btn bg-transparent" sec:authorize="isAuthenticated()" href="/logout">Logout</a>
         </div>
     </nav>
     <div id="searchResults" class="row bg-item" style="display: none">

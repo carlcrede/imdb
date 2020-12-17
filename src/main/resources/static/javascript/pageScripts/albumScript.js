@@ -8,6 +8,14 @@ $(document).ready(function(){
     getCover(id, setMast);
     getAverageRatingForOneAlbum(id);
 
+    $(".favoriteIcon").click(function () {
+        if ($(this).children().hasClass('far fa-heart')) {
+            $(this).children().removeClass('far fa-heart').addClass('fas fa-heart');
+        } else {
+            $(this).children().removeClass('fas fa-heart').addClass('far fa-heart');
+        }
+    });
+
     $("#favoriteTrackForm").submit(function (event) {
         event.preventDefault();
         let userName = $("#userName").text();

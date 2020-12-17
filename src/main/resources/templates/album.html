@@ -137,8 +137,8 @@
                                 <th class="text-center" th:text="${track.position}"></th>
                                 <td th:text="${track.name}"></td>
                                 <td sec:authorize="!isAnonymous()" class="text-center">
-                                    <input name="favorite_tracks" th:value="${track.id}" type="checkbox" th:id="${track.id} + ${track.position}">
-                                    <label th:for="${track.id} + ${track.position}"></label>
+                                    <input hidden name="favorite_tracks" th:value="${track.id}" type="checkbox" th:id="${track.id} + ${track.position}">
+                                    <label class="favoriteIcon" th:for="${track.id} + ${track.position}"><i style="color: #ffc107" class="far fa-heart"></i> </label>
                                 </td>
                                 <td th:text="${track.features}"></td>
                                 <td th:text="${track.length}"></td>
