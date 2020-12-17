@@ -75,6 +75,7 @@ public class Home {
         List<Playlist> playlist = playlistService.getAllPlaylists(user.getId());
         model.addAttribute("favoriteArtists", favoriteService.getFavoriteArtists(user.getId()));
         model.addAttribute("favoriteAlbums", favoriteService.getFavoriteAlbums(user.getId()));
+        model.addAttribute("favoriteTracks", favoriteService.getFavoriteTracks(user.getId()));
         //TODO: add users ratings maybe?
         model.addAttribute("playlist", playlist);
         return "/userprofile";

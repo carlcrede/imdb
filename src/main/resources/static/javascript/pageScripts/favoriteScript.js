@@ -18,9 +18,9 @@ function addOrRemoveFavorite(mbid, username, type) {
         })
 }
 
-function addOrRemoveFavoriteTracks(tracks, username, type) {
-    console.log(JSON.stringify(tracks));
-    $.get("/favorites/addOrRemoveFavorite", {tracks: JSON.stringify(tracks), userName: username, type: type})
+function addOrRemoveFavoriteTracks(mbid, username, type) {
+    console.log(mbid);
+    $.get("/favorites/addOrRemoveFavorite", {mbid: mbid, userName: username, type: type})
         .done(function (data) {
             console.log("success");
         })

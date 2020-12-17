@@ -11,12 +11,9 @@ $(document).ready(function(){
     $("#favoriteTrackForm").submit(function (event) {
         event.preventDefault();
         let userName = $("#userName").text();
-        var tracks = [];
         $.each($("input[name='favorite_tracks']:checked"), function (index, value) {
-            tracks.push($(value).val());
+            addOrRemoveFavoriteTracks($(value).val(), userName, "track");
         });
-        console.log("Selected tracks: " + tracks.join(", "));
-        addOrRemoveFavoriteTracks(tracks, userName, "track");
     });
 
     $("#albumRatingForm").submit(function (event) {

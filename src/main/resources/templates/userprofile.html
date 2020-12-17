@@ -42,6 +42,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" id="album-tab" data-toggle="tab" role="tab" href="#albumFavorites">Albums</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="track-tab" data-toggle="tab" role="tab" href="#trackFavorites">Tracks</a>
+                            </li>
                         </ul>
                         <div class="tab-content" id="favorites">
                             <div class="tab-pane fade show active" id="artistFavorites" role="tabpanel">
@@ -59,6 +62,13 @@
                                         <a th:href="@{/album(id=${favorite.album.mbid})}">
                                             <div th:text="*{favorite.album.title}"></div>
                                         </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="trackFavorites" role="tabpanel">
+                                <div id="favorites_track" class="list-group mt-3">
+                                    <div th:each="favorite : ${favoriteTracks}">
+                                        <div th:text="*{favorite.track.name}"></div>
                                     </div>
                                 </div>
                             </div>
