@@ -1,7 +1,7 @@
 function getAverageRatingByArtist(mbid) {
     $.get("/rating/getRatingsByArtist", {mbid: mbid}, function (data) {
         //console.log(data);
-        $("#artistRating").text(data.toFixed(2));
+        $("#artistRating").text(data);
     });
 }
 
@@ -18,7 +18,7 @@ function getAverageRatingsByAlbum() {
 function getAverageRatingForOneAlbum(mbid) {
     $.get("/rating/getRatingsByAlbum", {mbid: mbid}, function (data) {
         console.log("Average for one album: " + data);
-        $("#albumRating_" + mbid).text(data.toFixed(2));
+        $("#albumRating_" + mbid).text(data);
     })
 }
 

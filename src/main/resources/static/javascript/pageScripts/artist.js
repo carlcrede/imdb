@@ -62,7 +62,7 @@ $(document).ready(function(){
         console.log("Clicked favorite icon!");
         let mbid = $("#mbid").val();
         let username = $("#userName").text();
-        addArtistToFavorites(mbid, username, "artist");
+        addOrRemoveFavorite(mbid, username, "artist");
     });
 
     // adds onclick to albums to redirect their main page

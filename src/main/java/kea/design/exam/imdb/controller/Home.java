@@ -6,6 +6,7 @@ import kea.design.exam.imdb.models.User.User;
 import kea.design.exam.imdb.repository.external.SpotifyRepository;
 import kea.design.exam.imdb.repository.internal.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.text.DecimalFormat;
 import java.util.Collections;
 import java.util.List;
 
@@ -72,6 +74,8 @@ public class Home {
         User user = userDetails.getUser();
         List<Playlist> playlist = playlistService.getAllPlaylists(user.getId());
         model.addAttribute("favoriteArtists", favoriteService.getFavoriteArtists(user.getId()));
+        model.addAttribute("favoriteAlbums", favoriteService.getFavoriteAlbums(user.getId()));
+        //TODO: add users ratings maybe?
         model.addAttribute("playlist", playlist);
         return "/userprofile";
     }

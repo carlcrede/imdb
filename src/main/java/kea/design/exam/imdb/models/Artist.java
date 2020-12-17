@@ -19,6 +19,9 @@ public class Artist {
     private String gender;
     private String founded;
     private String disambiguation;
+
+
+    private String Area;
     private boolean completeInfo;
 
     @ManyToMany
@@ -41,6 +44,14 @@ public class Artist {
 
     public List<ArtistRating> getRatings() {
         return ratings;
+    }
+
+    public String getArea() {
+        return Area;
+    }
+
+    public void setArea(String area) {
+        Area = area;
     }
 
     public void setRatings(List<ArtistRating> ratings) {
