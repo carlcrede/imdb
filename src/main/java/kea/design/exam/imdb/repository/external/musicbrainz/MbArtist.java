@@ -94,7 +94,9 @@ public class MbArtist {
         artist.setId(artistWs2.getId());
         artist.setName(artistWs2.getName());
         artist.setDisambiguation(artistWs2.getDisambiguation());
-        artist.setArea(artistWs2.getArea().getName());
+        if(artistWs2.getArea() != null) {
+            artist.setArea(artistWs2.getArea().getName());
+        }
 
 
         LifeSpanWs2 life = artistWs2.getLifeSpan();
