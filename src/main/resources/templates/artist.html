@@ -40,7 +40,7 @@
 <body class="bg-secondary">
 <input id="mbid" type="hidden" th:value="${artist.id}">
 <div style="display: none" id="userName" sec:authentication="name"></div>
-<div th:replace="/header.html"></div>
+<div th:insert="@{header.html}"></div>
     <div id="banner" class="section bg-dark card">
         <div class="container">
             <div class="row">

@@ -24,7 +24,7 @@
     <title th:text="${album.getTitle()}"></title>
 </head>
 <body class="bg-dark" style="">
-<div th:replace="/header.html"></div>
+<div th:insert="@{header.html}"></div>
 <div style="display: none" id="userName" sec:authentication="name"></div>
 <input id="mbid" type="hidden" th:value="${album.mbid}">
 <div class="container-fluid row py-5" id="mast">
