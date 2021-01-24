@@ -101,13 +101,13 @@ public class Home {
         return "news";
     }
 
-    @GetMapping("/concerts")
-    public String concerts() {
-        return "concerts";
-    }
+//    @GetMapping("/concerts")
+//    public String concerts() {
+//        return "concerts";
+//    }
 
-    @GetMapping("/concerts/artist")
-    public String concertsForArtist(@RequestParam String artist, Model model) {
+    @GetMapping("/concerts")
+    public String concertsForArtist(@RequestParam(required = false) String artist, Model model) {
         model.addAttribute("artist", artist);
         return "concerts";
     }
