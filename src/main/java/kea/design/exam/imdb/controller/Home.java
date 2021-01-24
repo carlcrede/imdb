@@ -98,12 +98,12 @@ public class Home {
     @GetMapping("/news")
     public String newsSite(Model model, @RequestParam(required = false) String artist){
         model.addAttribute("artistName", artist);
-        return "/news";
+        return "news";
     }
 
     @GetMapping("/concerts")
     public String concerts() {
-        return "/concerts";
+        return "concerts";
     }
 
     @GetMapping("/concerts/artist")
