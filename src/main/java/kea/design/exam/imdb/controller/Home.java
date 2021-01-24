@@ -92,7 +92,7 @@ public class Home {
         model.addAttribute("favoriteTracks", favoriteService.getFavoriteTracks(user.getId()));
         //TODO: add users ratings maybe?
         model.addAttribute("playlist", playlist);
-        return "/userprofile";
+        return "userprofile";
     }
 
     @GetMapping("/news")
@@ -109,7 +109,7 @@ public class Home {
     @GetMapping("/concerts/artist")
     public String concertsForArtist(@RequestParam String artist, Model model) {
         model.addAttribute("artist", artist);
-        return "/concerts";
+        return "concerts";
     }
 
     @GetMapping("/register")
