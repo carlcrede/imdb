@@ -1,9 +1,9 @@
-<html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <script src="javascript/utilScripts/searchBar.js"></script>
 <body>
 <div class="container-fluid" style="position:sticky; z-index:1000; top:0; background-color:#000000;">
     <div class="row">
-        <div class="navbar-brand px-4"><a href="/"><img src="/img/Logo.png" class="img-fluid d-inline-block align-top" style="max-height: 2em" alt=""></a>            </div>
+        <div class="navbar-brand px-4"><a href="/"><img src="/img/Logo.png" class="img-fluid d-inline-block align-top" style="max-height: 2em" alt=""></a></div>
         <div class="col input-group" style="text-align: center">
             <input id="searchQuery" class="form-control input-group-text" type="search" placeholder="Search" aria-label="Search" style="border:none; height:3em; background-color:#000000">
             <div class="input-group-append">
@@ -18,15 +18,15 @@
     <nav class="row justify-content-between">
         <div class="col text-left">
             <a class="headerLink btn" href="/">Home</a>
-            <a class="headerLink btn" href="/news">News</a>
-            <a class="headerLink btn" href="/concerts">Concerts</a>
+            <a class="headerLink btn" th:href="@{~/news}">News</a>
+            <a class="headerLink btn" th:href="@{~/concerts}">Concerts</a>
             <a class="headerLink btn" >Albums</a>
             <a class="headerLink btn">Artists</a>
         </div>
         <div class="col text-right">
             <a class="headerLink btn bg-transparent" sec:authorize="!isAuthenticated()" href="/login">Login</a>
             <a class="headerLink btn bg-transparent" sec:authorize="!isAuthenticated()" href="/register">Register</a>
-            <a class="headerLink btn bg-transparent" sec:authorize="isAuthenticated()" href="/profile">Profile</a>
+            <a class="headerLink btn bg-transparent" sec:authorize="isAuthenticated()" th:href="@{~/profile}">Profile</a>
             <a class="headerLink btn bg-transparent" sec:authorize="isAuthenticated()" href="/logout">Logout</a>
         </div>
     </nav>
