@@ -92,24 +92,24 @@ public class Home {
         model.addAttribute("favoriteTracks", favoriteService.getFavoriteTracks(user.getId()));
         //TODO: add users ratings maybe?
         model.addAttribute("playlist", playlist);
-        return "/userprofile";
+        return "userprofile";
     }
 
     @GetMapping("/news")
     public String newsSite(Model model, @RequestParam(required = false) String artist){
         model.addAttribute("artistName", artist);
-        return "/news";
+        return "news";
     }
+
+//    @GetMapping("/concerts")
+//    public String concerts() {
+//        return "concerts";
+//    }
 
     @GetMapping("/concerts")
-    public String concerts() {
-        return "/concerts";
-    }
-
-    @GetMapping("/concerts/artist")
-    public String concertsForArtist(@RequestParam String artist, Model model) {
+    public String concertsForArtist(@RequestParam(required = false) String artist, Model model) {
         model.addAttribute("artist", artist);
-        return "/concerts";
+        return "concerts";
     }
 
     @GetMapping("/register")

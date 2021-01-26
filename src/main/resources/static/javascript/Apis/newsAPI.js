@@ -6,7 +6,7 @@ let domains = [
 let key_news = "60da648bf5674318bb72968b1dbbc553";
 let endpoint = "https://newsapi.org/v2/everything?qInTitle=%22";
 
-const DEBUG = true;
+const DEBUG = false;
 
 function getNews(q, pageSize, callback) {
     if (!DEBUG) {
